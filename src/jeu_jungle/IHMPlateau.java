@@ -16,7 +16,7 @@ import javax.imageio.ImageIO;
  * @author lucas
  */
 public class IHMPlateau extends javax.swing.JFrame {
-
+    
     private File fichierPlateau = new File("src/Image/plateau.jpg");
     private File fichierElephantRouge = new File("src/Image/EléphantRouge.png");
     private File fichierElephantBleu = new File("src/Image/EléphantBleu.png");
