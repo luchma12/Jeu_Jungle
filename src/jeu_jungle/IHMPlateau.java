@@ -17,7 +17,7 @@ import javax.imageio.ImageIO;
  */
 public class IHMPlateau extends javax.swing.JFrame {
     
-    private File fichierPlateau = new File("src/Image/plateau.jpg");
+    private File fichierPlateau = new File("src/Image/Plateau.PNG");
     private File fichierElephantRouge = new File("src/Image/EléphantRouge.png");
     private File fichierElephantBleu = new File("src/Image/EléphantBleu.png");
     private File fichierTigreRouge = new File("src/Image/TigreRouge.png");
@@ -58,7 +58,7 @@ public class IHMPlateau extends javax.swing.JFrame {
      */
     public IHMPlateau() {
         initComponents();
-        setBounds(0, 0, 1000, 943);
+        setBounds(0, 0, 1000, 970);
         jPanel1.setFocusable(true);
         try {
             imagePlateau = ImageIO.read(fichierPlateau);
@@ -98,23 +98,23 @@ public class IHMPlateau extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel(){
             public void paintComponent(Graphics g)
             {
-                g.drawImage(imagePlateau, 0,0, null);
-                g.drawImage(imageElephantRouge, 610, 210, 80, 80, null);
-                g.drawImage(imageElephantBleu, 10, 610, 80, 80, null);
-                g.drawImage(imageTigreRouge, 610, 10, 80, 80, null);
-                g.drawImage(imageTigreBleu, 10, 810, 80, 80, null);
-                g.drawImage(imageLionRouge, 10, 10, 80, 80, null);
-                g.drawImage(imageLionBleu, 610, 810, 80, 80, null);
-                g.drawImage(imageLeopardRouge, 210, 210, 80, 80, null);
-                g.drawImage(imageLeopardBleu, 410, 610, 80, 80, null);
-                g.drawImage(imageLoupRouge, 410, 210, 80, 80, null);
-                g.drawImage(imageLoupBleu, 210, 610, 80, 80, null);
-                g.drawImage(imageChienRouge, 110, 110, 80, 80, null);
-                g.drawImage(imageChienBleu, 510, 710, 80, 80, null);
-                g.drawImage(imageChatRouge, 510, 110, 80, 80, null);
-                g.drawImage(imageChatBleu, 110, 710, 80, 80, null);
-                g.drawImage(imageRatRouge, 10, 210, 80, 80, null);
-                g.drawImage(imageRatBleu, 610, 610, 80, 80, null);
+                g.drawImage(imagePlateau, 10, 10, 700, 900, null);
+                g.drawImage(imageElephantRouge, 620, 220, 80, 80, null);
+                g.drawImage(imageElephantBleu, 20, 620, 80, 80, null);
+                g.drawImage(imageTigreRouge, 620, 20, 80, 80, null);
+                g.drawImage(imageTigreBleu, 20, 820, 80, 80, null);
+                g.drawImage(imageLionRouge, 20, 20, 80, 80, null);
+                g.drawImage(imageLionBleu, 620, 820, 80, 80, null);
+                g.drawImage(imageLeopardRouge, 220, 220, 80, 80, null);
+                g.drawImage(imageLeopardBleu, 420, 620, 80, 80, null);
+                g.drawImage(imageLoupRouge, 420, 220, 80, 80, null);
+                g.drawImage(imageLoupBleu, 220, 620, 80, 80, null);
+                g.drawImage(imageChienRouge, 120, 120, 80, 80, null);
+                g.drawImage(imageChienBleu, 520, 720, 80, 80, null);
+                g.drawImage(imageChatRouge, 520, 120, 80, 80, null);
+                g.drawImage(imageChatBleu, 120, 720, 80, 80, null);
+                g.drawImage(imageRatRouge, 20, 220, 80, 80, null);
+                g.drawImage(imageRatBleu, 620, 620, 80, 80, null);
 
             }
         };
