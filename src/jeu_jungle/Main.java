@@ -17,6 +17,7 @@ public class Main {
     public static void main(String[] args) {
         IHMPlateau ihm = new IHMPlateau();
         ihm.setVisible(true);
+        //Je t'aime!!!!!!!!!!!
     }
     
 }
