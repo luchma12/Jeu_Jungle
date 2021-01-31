@@ -16,7 +16,7 @@ import javax.imageio.ImageIO;
  * @author lucas
  */
 public class IHMPlateau extends javax.swing.JFrame {
-    
+
     private File fichierPlateau = new File("src/Image/Plateau.PNG");
     private File fichierElephantRouge = new File("src/Image/EléphantRouge.png");
     private File fichierElephantBleu = new File("src/Image/EléphantBleu.png");
@@ -53,6 +53,9 @@ public class IHMPlateau extends javax.swing.JFrame {
     private BufferedImage imageRatRouge;
     private BufferedImage imageRatBleu;
 
+    private int xElephantRouge = 0;
+    private int yElephantRouge = 0;
+
     /**
      * Creates new form IHMPlateau
      */
@@ -78,7 +81,6 @@ public class IHMPlateau extends javax.swing.JFrame {
             imageChatBleu = ImageIO.read(fichierChatBleu);
             imageRatRouge = ImageIO.read(fichierRatRouge);
             imageRatBleu = ImageIO.read(fichierRatBleu);
-
 
         } catch (IOException ex) {
             System.out.println("fichier introuvable");
@@ -123,6 +125,12 @@ public class IHMPlateau extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jPanel1MouseClicked(evt);
+            }
+        });
+
         jButtonRejouer.setText("Rejouer");
 
         jButtonSauvegarde.setText("Sauvegarde");
@@ -162,6 +170,9 @@ public class IHMPlateau extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+
+    }//GEN-LAST:event_jPanel1MouseClicked
     /**
      * @param args the command line arguments
      */

@@ -34,6 +34,9 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="jPanel1">
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanel1MouseClicked"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(){&#xa;    public void paintComponent(Graphics g)&#xa;    {&#xa;        g.drawImage(imagePlateau, 10, 10, 700, 900, null);&#xa;        g.drawImage(imageElephantRouge, 620, 220, 80, 80, null);&#xa;        g.drawImage(imageElephantBleu, 20, 620, 80, 80, null);&#xa;        g.drawImage(imageTigreRouge, 620, 20, 80, 80, null);&#xa;        g.drawImage(imageTigreBleu, 20, 820, 80, 80, null);&#xa;        g.drawImage(imageLionRouge, 20, 20, 80, 80, null);&#xa;        g.drawImage(imageLionBleu, 620, 820, 80, 80, null);&#xa;        g.drawImage(imageLeopardRouge, 220, 220, 80, 80, null);&#xa;        g.drawImage(imageLeopardBleu, 420, 620, 80, 80, null);&#xa;        g.drawImage(imageLoupRouge, 420, 220, 80, 80, null);&#xa;        g.drawImage(imageLoupBleu, 220, 620, 80, 80, null);&#xa;        g.drawImage(imageChienRouge, 120, 120, 80, 80, null);&#xa;        g.drawImage(imageChienBleu, 520, 720, 80, 80, null);&#xa;        g.drawImage(imageChatRouge, 520, 120, 80, 80, null);&#xa;        g.drawImage(imageChatBleu, 120, 720, 80, 80, null);&#xa;        g.drawImage(imageRatRouge, 20, 220, 80, 80, null);&#xa;        g.drawImage(imageRatBleu, 620, 620, 80, 80, null);&#xa;&#xa;    }&#xa;}"/>
       </AuxValues>
