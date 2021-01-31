@@ -58,7 +58,7 @@ public class IHMPlateau extends javax.swing.JFrame {
      */
     public IHMPlateau() {
         initComponents();
-        setBounds(0, 0, 1000, 970);
+        setBounds(0, 0, 1400, 970);
         jPanel1.setFocusable(true);
         try {
             imagePlateau = ImageIO.read(fichierPlateau);
@@ -119,24 +119,31 @@ public class IHMPlateau extends javax.swing.JFrame {
             }
         };
         jButtonRejouer = new javax.swing.JButton();
+        jButtonSauvegarde = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButtonRejouer.setText("Rejouer");
+
+        jButtonSauvegarde.setText("Sauvegarde");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(303, Short.MAX_VALUE)
-                .addComponent(jButtonRejouer)
-                .addGap(20, 20, 20))
+                .addContainerGap(281, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonSauvegarde)
+                    .addComponent(jButtonRejouer))
+                .addGap(18, 18, 18))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(262, Short.MAX_VALUE)
+                .addContainerGap(205, Short.MAX_VALUE)
+                .addComponent(jButtonSauvegarde)
+                .addGap(32, 32, 32)
                 .addComponent(jButtonRejouer)
                 .addContainerGap())
         );
@@ -192,6 +199,7 @@ public class IHMPlateau extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonRejouer;
+    private javax.swing.JButton jButtonSauvegarde;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
