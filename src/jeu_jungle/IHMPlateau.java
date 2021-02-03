@@ -53,9 +53,6 @@ public class IHMPlateau extends javax.swing.JFrame {
     private BufferedImage imageRatRouge;
     private BufferedImage imageRatBleu;
 
-    private int xElephantRouge = 0;
-    private int yElephantRouge = 0;
-
     /**
      * Creates new form IHMPlateau
      */
@@ -171,7 +168,7 @@ public class IHMPlateau extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
-        
+
     }//GEN-LAST:event_jPanel1MouseClicked
     /**
      * @param args the command line arguments
