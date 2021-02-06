@@ -6,10 +6,13 @@
 package jeu_jungle;
 
 import java.awt.Graphics;
+import java.awt.HeadlessException;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 
 /**
  *
@@ -20,13 +23,19 @@ public class IHMPresentation extends javax.swing.JFrame {
     private File fichierfond_jungle = new File("src/Image/fond_jungle.jpg");
 
     private BufferedImage imagefond_jungle;
-
-    /**
-     * Creates new form IHMPresentation
-     */
-    public IHMPresentation() {
+    
+    public IHMPresentation() throws HeadlessException {   
+        setTitle("Présentation");
+        setSize(800,670);
+        JButton boutonJouer = new JButton("Jouer");
+        JLabel labelTitre = new JLabel("Bienvenue dans la jungle !");
+        
+        labelTitre.setFont(new java.awt.Font("Bradley Hand ITC",0,36));
+        
+        boutonJouer.setBounds(50,50,100,100);
+    
         initComponents();
-        setBounds(540, 360, 600, 470);
+        setBounds(650, 250, 700, 570);
         jPanel1.setFocusable(true);
         try {
             imagefond_jungle = ImageIO.read(fichierfond_jungle);
@@ -35,8 +44,9 @@ public class IHMPresentation extends javax.swing.JFrame {
             System.out.println("fichier introuvable");
 
         }
-    }
+}
 
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -49,49 +59,22 @@ public class IHMPresentation extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel(){
             public void paintComponent (Graphics g){
 
-                g.drawImage(imagefond_jungle, 0, 0, 600, 470, null);
+                g.drawImage(imagefond_jungle, 0, 0, 700, 570, null);
 
             }}
             ;
-            jButtonJouer = new javax.swing.JButton();
-            jLabel1 = new javax.swing.JLabel();
 
             setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-            jButtonJouer.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-            jButtonJouer.setForeground(new java.awt.Color(0, 102, 51));
-            jButtonJouer.setText("JOUER");
-            jButtonJouer.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    jButtonJouerActionPerformed(evt);
-                }
-            });
-
-            jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-            jLabel1.setText("Bienvenue dans la jungle !");
 
             javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
             jPanel1.setLayout(jPanel1Layout);
             jPanel1Layout.setHorizontalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(96, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(jButtonJouer)
-                            .addGap(185, 185, 185))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(89, 89, 89))))
+                .addGap(0, 466, Short.MAX_VALUE)
             );
             jPanel1Layout.setVerticalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addGap(61, 61, 61)
-                    .addComponent(jLabel1)
-                    .addGap(58, 58, 58)
-                    .addComponent(jButtonJouer)
-                    .addContainerGap(179, Short.MAX_VALUE))
+                .addGap(0, 352, Short.MAX_VALUE)
             );
 
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -107,13 +90,6 @@ public class IHMPresentation extends javax.swing.JFrame {
 
             pack();
         }// </editor-fold>//GEN-END:initComponents
-
-    private void jButtonJouerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonJouerActionPerformed
-        IHMNom_Joueur ihm_Nom_Joueur = new IHMNom_Joueur();
-        ihm_Nom_Joueur.setVisible(true); // afficher l'ihm qui demande le nom des joueurs
-        this.setVisible(false);
-        
-    }//GEN-LAST:event_jButtonJouerActionPerformed
 
     /**
      * @param args the command line arguments
@@ -151,8 +127,6 @@ public class IHMPresentation extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButtonJouer;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
