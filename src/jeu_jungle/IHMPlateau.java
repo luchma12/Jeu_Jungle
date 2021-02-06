@@ -128,6 +128,8 @@ public class IHMPlateau extends javax.swing.JFrame {
             }
         });
 
+        jButtonRejouer.setBackground(new java.awt.Color(132, 201, 132));
+        jButtonRejouer.setForeground(new java.awt.Color(0, 102, 51));
         jButtonRejouer.setText("Rejouer");
 
         jButtonSauvegarde.setText("Sauvegarde");

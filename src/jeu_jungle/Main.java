@@ -15,8 +15,10 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        IHMPlateau ihm = new IHMPlateau();
-        ihm.setVisible(true); // afficher le plateau 
+        
+        IHMPresentation ihm_Presentation = new IHMPresentation();
+        ihm_Presentation.setVisible(true); // afficher l'ihm de présentation 
+        
         
     }
     
