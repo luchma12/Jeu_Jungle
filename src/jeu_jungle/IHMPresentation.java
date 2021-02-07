@@ -62,7 +62,7 @@ public class IHMPresentation extends javax.swing.JFrame {
 
             setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-            jLabel1.setFont(new java.awt.Font("Lucida Handwriting", 1, 48)); // NOI18N
+            jLabel1.setFont(new java.awt.Font("Segoe Script", 1, 48)); // NOI18N
             jLabel1.setText(" Bienvenue ");
 
             jButtonJouer.setBackground(new java.awt.Color(132, 201, 132));
@@ -75,7 +75,7 @@ public class IHMPresentation extends javax.swing.JFrame {
                 }
             });
 
-            jLabel2.setFont(new java.awt.Font("Lucida Handwriting", 1, 48)); // NOI18N
+            jLabel2.setFont(new java.awt.Font("Segoe Script", 1, 48)); // NOI18N
             jLabel2.setText("dans la jungle !");
 
             jButtonQuitter.setBackground(new java.awt.Color(132, 201, 132));
@@ -97,29 +97,29 @@ public class IHMPresentation extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jButtonJouer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButtonQuitter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addContainerGap(278, Short.MAX_VALUE))
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap(149, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addGap(96, 96, 96))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel1)
-                            .addGap(165, 165, 165))))
+                            .addGap(176, 176, 176))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addGap(127, 127, 127))))
             );
             jPanel1Layout.setVerticalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(96, 96, 96)
+                    .addGap(101, 101, 101)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(18, 18, 18)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jLabel2)
-                    .addGap(33, 33, 33)
+                    .addGap(40, 40, 40)
                     .addComponent(jButtonJouer)
                     .addGap(47, 47, 47)
                     .addComponent(jButtonQuitter)
-                    .addContainerGap(173, Short.MAX_VALUE))
+                    .addContainerGap(162, Short.MAX_VALUE))
             );
 
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
