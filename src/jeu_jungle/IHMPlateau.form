@@ -38,30 +38,35 @@
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanel1MouseClicked"/>
       </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(){&#xa;    public void paintComponent(Graphics g)&#xa;    {&#xa;        g.drawImage(imagePlateau, 10, 10, 700, 900, null);&#xa;        g.drawImage(imageElephantRouge, 620, 220, 80, 80, null);&#xa;        g.drawImage(imageElephantBleu, 20, 620, 80, 80, null);&#xa;        g.drawImage(imageTigreRouge, 620, 20, 80, 80, null);&#xa;        g.drawImage(imageTigreBleu, 20, 820, 80, 80, null);&#xa;        g.drawImage(imageLionRouge, 20, 20, 80, 80, null);&#xa;        g.drawImage(imageLionBleu, 620, 820, 80, 80, null);&#xa;        g.drawImage(imageLeopardRouge, 220, 220, 80, 80, null);&#xa;        g.drawImage(imageLeopardBleu, 420, 620, 80, 80, null);&#xa;        g.drawImage(imageLoupRouge, 420, 220, 80, 80, null);&#xa;        g.drawImage(imageLoupBleu, 220, 620, 80, 80, null);&#xa;        g.drawImage(imageChienRouge, 120, 120, 80, 80, null);&#xa;        g.drawImage(imageChienBleu, 520, 720, 80, 80, null);&#xa;        g.drawImage(imageChatRouge, 520, 120, 80, 80, null);&#xa;        g.drawImage(imageChatBleu, 120, 720, 80, 80, null);&#xa;        g.drawImage(imageRatRouge, 20, 220, 80, 80, null);&#xa;        g.drawImage(imageRatBleu, 620, 620, 80, 80, null);&#xa;&#xa;    }&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(){&#xa;    public void paintComponent(Graphics g)&#xa;    {&#xa;        g.drawImage(imagefond2, 0, 0, 1500, 970, null);&#xa;        g.drawImage(imagePlateau, 580, 10, 700, 900, null);&#xa;        g.drawImage(imageElephantRouge, 1190, 220, 80, 80, null);&#xa;        g.drawImage(imageElephantBleu, 590, 620, 80, 80, null);&#xa;        g.drawImage(imageTigreRouge, 1190, 20, 80, 80, null);&#xa;        g.drawImage(imageTigreBleu, 590, 820, 80, 80, null);&#xa;        g.drawImage(imageLionRouge, 590, 20, 80, 80, null);&#xa;        g.drawImage(imageLionBleu, 1190, 820, 80, 80, null);&#xa;        g.drawImage(imageLeopardRouge, 790, 220, 80, 80, null);&#xa;        g.drawImage(imageLeopardBleu, 990, 620, 80, 80, null);&#xa;        g.drawImage(imageLoupRouge, 990, 220, 80, 80, null);&#xa;        g.drawImage(imageLoupBleu, 790, 620, 80, 80, null);&#xa;        g.drawImage(imageChienRouge, 690, 120, 80, 80, null);&#xa;        g.drawImage(imageChienBleu, 1090, 720, 80, 80, null);&#xa;        g.drawImage(imageChatRouge, 1090, 120, 80, 80, null);&#xa;        g.drawImage(imageChatBleu, 690, 720, 80, 80, null);&#xa;        g.drawImage(imageRatRouge, 590, 220, 80, 80, null);&#xa;        g.drawImage(imageRatBleu, 1190, 620, 80, 80, null);&#xa;&#xa;    }&#xa;}"/>
       </AuxValues>
 
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="281" max="32767" attributes="0"/>
+              <Group type="102" attributes="0">
+                  <EmptySpace pref="247" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jButtonSauvegarde" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButtonRejouer" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="jButtonRejouer" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Component id="jButtonSauvegarde" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="205" max="32767" attributes="0"/>
+                  <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
                   <Component id="jButtonSauvegarde" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jButtonRejouer" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace pref="148" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -72,6 +77,9 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="84" green="c9" red="84" type="rgb"/>
             </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="18" style="0"/>
+            </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="66" red="0" type="rgb"/>
             </Property>
@@ -80,6 +88,15 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButtonSauvegarde">
           <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="83" green="c6" red="83" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="18" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="33" green="66" red="0" type="rgb"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Sauvegarde"/>
           </Properties>
         </Component>

@@ -17,6 +17,7 @@ import javax.imageio.ImageIO;
  */
 public class IHMPlateau extends javax.swing.JFrame {
 
+    private File fichierfond2 = new File("src/Image/fond2.png");
     private File fichierPlateau = new File("src/Image/Plateau.PNG");
     private File fichierElephantRouge = new File("src/Image/EléphantRouge.png");
     private File fichierElephantBleu = new File("src/Image/EléphantBleu.png");
@@ -35,6 +36,7 @@ public class IHMPlateau extends javax.swing.JFrame {
     private File fichierRatRouge = new File("src/Image/RatRouge.png");
     private File fichierRatBleu = new File("src/Image/RatBleu.png");
 
+    private BufferedImage imagefond2 ;
     private BufferedImage imagePlateau;
     private BufferedImage imageElephantRouge;
     private BufferedImage imageElephantBleu;
@@ -58,9 +60,12 @@ public class IHMPlateau extends javax.swing.JFrame {
      */
     public IHMPlateau() {
         initComponents();
-        setBounds(300, 50, 1400, 970);
+        setTitle("Plateau de jeu");
+        setBounds(200, 50, 1500, 970);
         jPanel1.setFocusable(true);
+        
         try {
+            imagefond2 = ImageIO.read(fichierfond2);
             imagePlateau = ImageIO.read(fichierPlateau);
             imageElephantRouge = ImageIO.read(fichierElephantRouge);
             imageElephantBleu = ImageIO.read(fichierElephantBleu);
@@ -97,23 +102,24 @@ public class IHMPlateau extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel(){
             public void paintComponent(Graphics g)
             {
-                g.drawImage(imagePlateau, 10, 10, 700, 900, null);
-                g.drawImage(imageElephantRouge, 620, 220, 80, 80, null);
-                g.drawImage(imageElephantBleu, 20, 620, 80, 80, null);
-                g.drawImage(imageTigreRouge, 620, 20, 80, 80, null);
-                g.drawImage(imageTigreBleu, 20, 820, 80, 80, null);
-                g.drawImage(imageLionRouge, 20, 20, 80, 80, null);
-                g.drawImage(imageLionBleu, 620, 820, 80, 80, null);
-                g.drawImage(imageLeopardRouge, 220, 220, 80, 80, null);
-                g.drawImage(imageLeopardBleu, 420, 620, 80, 80, null);
-                g.drawImage(imageLoupRouge, 420, 220, 80, 80, null);
-                g.drawImage(imageLoupBleu, 220, 620, 80, 80, null);
-                g.drawImage(imageChienRouge, 120, 120, 80, 80, null);
-                g.drawImage(imageChienBleu, 520, 720, 80, 80, null);
-                g.drawImage(imageChatRouge, 520, 120, 80, 80, null);
-                g.drawImage(imageChatBleu, 120, 720, 80, 80, null);
-                g.drawImage(imageRatRouge, 20, 220, 80, 80, null);
-                g.drawImage(imageRatBleu, 620, 620, 80, 80, null);
+                g.drawImage(imagefond2, 0, 0, 1500, 970, null);
+                g.drawImage(imagePlateau, 580, 10, 700, 900, null);
+                g.drawImage(imageElephantRouge, 1190, 220, 80, 80, null);
+                g.drawImage(imageElephantBleu, 590, 620, 80, 80, null);
+                g.drawImage(imageTigreRouge, 1190, 20, 80, 80, null);
+                g.drawImage(imageTigreBleu, 590, 820, 80, 80, null);
+                g.drawImage(imageLionRouge, 590, 20, 80, 80, null);
+                g.drawImage(imageLionBleu, 1190, 820, 80, 80, null);
+                g.drawImage(imageLeopardRouge, 790, 220, 80, 80, null);
+                g.drawImage(imageLeopardBleu, 990, 620, 80, 80, null);
+                g.drawImage(imageLoupRouge, 990, 220, 80, 80, null);
+                g.drawImage(imageLoupBleu, 790, 620, 80, 80, null);
+                g.drawImage(imageChienRouge, 690, 120, 80, 80, null);
+                g.drawImage(imageChienBleu, 1090, 720, 80, 80, null);
+                g.drawImage(imageChatRouge, 1090, 120, 80, 80, null);
+                g.drawImage(imageChatBleu, 690, 720, 80, 80, null);
+                g.drawImage(imageRatRouge, 590, 220, 80, 80, null);
+                g.drawImage(imageRatBleu, 1190, 620, 80, 80, null);
 
             }
         };
@@ -129,30 +135,37 @@ public class IHMPlateau extends javax.swing.JFrame {
         });
 
         jButtonRejouer.setBackground(new java.awt.Color(132, 201, 132));
+        jButtonRejouer.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButtonRejouer.setForeground(new java.awt.Color(0, 102, 51));
         jButtonRejouer.setText("Rejouer");
 
+        jButtonSauvegarde.setBackground(new java.awt.Color(131, 198, 131));
+        jButtonSauvegarde.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButtonSauvegarde.setForeground(new java.awt.Color(0, 102, 51));
         jButtonSauvegarde.setText("Sauvegarde");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(281, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(247, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButtonSauvegarde)
-                    .addComponent(jButtonRejouer))
-                .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButtonRejouer)
+                        .addGap(33, 33, 33))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButtonSauvegarde)
+                        .addGap(20, 20, 20))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(205, Short.MAX_VALUE)
+                .addGap(66, 66, 66)
                 .addComponent(jButtonSauvegarde)
-                .addGap(32, 32, 32)
+                .addGap(18, 18, 18)
                 .addComponent(jButtonRejouer)
-                .addContainerGap())
+                .addContainerGap(148, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
