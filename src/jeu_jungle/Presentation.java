@@ -5,29 +5,52 @@
  */
 package jeu_jungle;
 
+import java.awt.BorderLayout;
 import java.awt.HeadlessException;
+import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 /**
  *
  * @author albou
  */
 public class Presentation extends JFrame {
+
     public Presentation() throws HeadlessException {
+
         setTitle("Présentation");
-        setSize(700,570);
+        setBounds(650, 250, 700, 570);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        IHMNom_Joueur ihmNom_joueur = new IHMNom_Joueur();
+
         JButton boutonJouer = new JButton("Jouer");
+
         JLabel labelTitre = new JLabel("Bienvenue dans la jungle !");
+        labelTitre.setHorizontalAlignment(SwingConstants.CENTER);
+        ImageIcon image = new ImageIcon("src/Image/fond_jungle.jpg");
+        JLabel JLabelImage = new JLabel(image);
+
+        labelTitre.setFont(new java.awt.Font("Bradley Hand ITC", 1, 36));
+
+        boutonJouer.addActionListener(new ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ihmNom_joueur.setVisible(true);
+            }
+        });
+
+        this.add(JLabelImage);
+
+        JPanel btns_panel = new JPanel();
+        btns_panel.setLayout(new BorderLayout());
+        btns_panel.add(labelTitre, BorderLayout.CENTER);
+        btns_panel.add(boutonJouer, BorderLayout.SOUTH);
         
-        labelTitre.setFont(new java.awt.Font("Bradley Hand ITC",0,36));
-        
-        boutonJouer.setBounds(50,50,100,100);
-        
-        ImageIcon fond_jungle = new ImageIcon(getClass().getResource("fond_jungle.jpg"));
-        JLabel LabelFond = new JLabel(fond_jungle);
+        this.add(btns_panel, BorderLayout.CENTER);
+
     }
 }

@@ -5,14 +5,18 @@
  */
 package jeu_jungle;
 
+import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.HeadlessException;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 /**
  *
@@ -23,18 +27,27 @@ public class IHMPresentation extends javax.swing.JFrame {
     private File fichierfond_jungle = new File("src/Image/fond_jungle.jpg");
 
     private BufferedImage imagefond_jungle;
-    
-    public IHMPresentation() throws HeadlessException {   
-        setTitle("Présentation");
-        setSize(800,670);
-        JButton boutonJouer = new JButton("Jouer");
-        JLabel labelTitre = new JLabel("Bienvenue dans la jungle !");
-        
-        labelTitre.setFont(new java.awt.Font("Bradley Hand ITC",0,36));
-        
-        boutonJouer.setBounds(50,50,100,100);
-    
+
+    public IHMPresentation() throws HeadlessException {
+
         initComponents();
+        setTitle("Présentation");
+        setSize(800, 670);
+        IHMNom_Joueur ihmNom_joueur = new IHMNom_Joueur();
+
+        JButton boutonJouer = new JButton("Jouer");
+
+        JLabel labelTitre = new JLabel("Bienvenue dans la jungle !");
+        labelTitre.setHorizontalAlignment(SwingConstants.CENTER);
+
+        labelTitre.setFont(new java.awt.Font("Bradley Hand ITC", 0, 36));
+
+        boutonJouer.addActionListener(new ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ihmNom_joueur.setVisible(true);
+            }
+        });
+
         setBounds(650, 250, 700, 570);
         jPanel1.setFocusable(true);
         try {
@@ -44,9 +57,14 @@ public class IHMPresentation extends javax.swing.JFrame {
             System.out.println("fichier introuvable");
 
         }
-}
+        JPanel btns_panel = new JPanel();
+        btns_panel.setLayout(new BorderLayout());
+        btns_panel.add(labelTitre, BorderLayout.CENTER);
+        btns_panel.add(boutonJouer, BorderLayout.SOUTH);
 
-   
+        this.add(btns_panel, BorderLayout.CENTER);
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

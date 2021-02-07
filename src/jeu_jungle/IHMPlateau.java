@@ -52,13 +52,13 @@ public class IHMPlateau extends javax.swing.JFrame {
     private BufferedImage imageChatBleu;
     private BufferedImage imageRatRouge;
     private BufferedImage imageRatBleu;
-
+    
     /**
      * Creates new form IHMPlateau
      */
     public IHMPlateau() {
         initComponents();
-        setBounds(0, 0, 1400, 970);
+        setBounds(300, 50, 1400, 970);
         jPanel1.setFocusable(true);
         try {
             imagePlateau = ImageIO.read(fichierPlateau);
@@ -84,7 +84,7 @@ public class IHMPlateau extends javax.swing.JFrame {
 
         }
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
