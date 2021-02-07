@@ -12,7 +12,6 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 
-
 /**
  *
  * @author albou
@@ -27,7 +26,7 @@ public class IHMPresentation extends javax.swing.JFrame {
 
         initComponents();
         setTitle("Présentation");
-                
+
         setBounds(650, 250, 700, 570);
         jPanel1.setFocusable(true);
         try {
@@ -37,7 +36,7 @@ public class IHMPresentation extends javax.swing.JFrame {
             System.out.println("fichier introuvable");
 
         }
-       
+
     }
 
     /**
@@ -59,10 +58,11 @@ public class IHMPresentation extends javax.swing.JFrame {
             jLabel1 = new javax.swing.JLabel();
             jButtonJouer = new javax.swing.JButton();
             jLabel2 = new javax.swing.JLabel();
+            jButtonQuitter = new javax.swing.JButton();
 
             setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-            jLabel1.setFont(new java.awt.Font("Bradley Hand ITC", 1, 48)); // NOI18N
+            jLabel1.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
             jLabel1.setText(" Bienvenue ");
 
             jButtonJouer.setBackground(new java.awt.Color(132, 201, 132));
@@ -75,8 +75,18 @@ public class IHMPresentation extends javax.swing.JFrame {
                 }
             });
 
-            jLabel2.setFont(new java.awt.Font("Bradley Hand ITC", 1, 48)); // NOI18N
+            jLabel2.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
             jLabel2.setText("dans la jungle !");
+
+            jButtonQuitter.setBackground(new java.awt.Color(132, 201, 132));
+            jButtonQuitter.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+            jButtonQuitter.setForeground(new java.awt.Color(0, 102, 51));
+            jButtonQuitter.setText("QUITTER");
+            jButtonQuitter.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jButtonQuitterActionPerformed(evt);
+                }
+            });
 
             javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
             jPanel1.setLayout(jPanel1Layout);
@@ -92,7 +102,9 @@ public class IHMPresentation extends javax.swing.JFrame {
                             .addComponent(jLabel1))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addGap(286, 286, 286)
-                            .addComponent(jButtonJouer)))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(jButtonJouer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonQuitter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addContainerGap(172, Short.MAX_VALUE))
             );
             jPanel1Layout.setVerticalGroup(
@@ -104,7 +116,9 @@ public class IHMPresentation extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addGap(29, 29, 29)
                     .addComponent(jButtonJouer)
-                    .addContainerGap(256, Short.MAX_VALUE))
+                    .addGap(38, 38, 38)
+                    .addComponent(jButtonQuitter)
+                    .addContainerGap(199, Short.MAX_VALUE))
             );
 
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -126,6 +140,10 @@ public class IHMPresentation extends javax.swing.JFrame {
         ihmNom_Joueur.setVisible(true); // afficher l'ihm du nom des joueurs
         this.setVisible(false);
     }//GEN-LAST:event_jButtonJouerActionPerformed
+
+    private void jButtonQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonQuitterActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButtonQuitterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -164,6 +182,7 @@ public class IHMPresentation extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonJouer;
+    private javax.swing.JButton jButtonQuitter;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

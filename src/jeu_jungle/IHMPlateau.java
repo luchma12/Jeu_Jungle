@@ -16,7 +16,7 @@ import javax.imageio.ImageIO;
  * @author lucas
  */
 public class IHMPlateau extends javax.swing.JFrame {
-
+    
     private File fichierfond2 = new File("src/Image/fond2.png");
     private File fichierPlateau = new File("src/Image/Plateau.PNG");
     private File fichierElephantRouge = new File("src/Image/EléphantRouge.png");
@@ -35,8 +35,8 @@ public class IHMPlateau extends javax.swing.JFrame {
     private File fichierChatBleu = new File("src/Image/ChatBleu.png");
     private File fichierRatRouge = new File("src/Image/RatRouge.png");
     private File fichierRatBleu = new File("src/Image/RatBleu.png");
-
-    private BufferedImage imagefond2 ;
+    
+    private BufferedImage imagefond2;
     private BufferedImage imagePlateau;
     private BufferedImage imageElephantRouge;
     private BufferedImage imageElephantBleu;
@@ -54,7 +54,7 @@ public class IHMPlateau extends javax.swing.JFrame {
     private BufferedImage imageChatBleu;
     private BufferedImage imageRatRouge;
     private BufferedImage imageRatBleu;
-    
+
     /**
      * Creates new form IHMPlateau
      */
@@ -83,13 +83,13 @@ public class IHMPlateau extends javax.swing.JFrame {
             imageChatBleu = ImageIO.read(fichierChatBleu);
             imageRatRouge = ImageIO.read(fichierRatRouge);
             imageRatBleu = ImageIO.read(fichierRatBleu);
-
+            
         } catch (IOException ex) {
             System.out.println("fichier introuvable");
-
+            
         }
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -125,6 +125,7 @@ public class IHMPlateau extends javax.swing.JFrame {
         };
         jButtonRejouer = new javax.swing.JButton();
         jButtonSauvegarde = new javax.swing.JButton();
+        jButtonQuitter = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -144,6 +145,16 @@ public class IHMPlateau extends javax.swing.JFrame {
         jButtonSauvegarde.setForeground(new java.awt.Color(0, 102, 51));
         jButtonSauvegarde.setText("Sauvegarde");
 
+        jButtonQuitter.setBackground(new java.awt.Color(132, 201, 132));
+        jButtonQuitter.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButtonQuitter.setForeground(new java.awt.Color(0, 102, 51));
+        jButtonQuitter.setText("Quitter");
+        jButtonQuitter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonQuitterActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -152,11 +163,13 @@ public class IHMPlateau extends javax.swing.JFrame {
                 .addContainerGap(247, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButtonRejouer)
-                        .addGap(33, 33, 33))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jButtonSauvegarde)
-                        .addGap(20, 20, 20))))
+                        .addGap(20, 20, 20))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButtonQuitter)
+                            .addComponent(jButtonRejouer))
+                        .addGap(33, 33, 33))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,7 +178,9 @@ public class IHMPlateau extends javax.swing.JFrame {
                 .addComponent(jButtonSauvegarde)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonRejouer)
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButtonQuitter)
+                .addContainerGap(104, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -185,6 +200,10 @@ public class IHMPlateau extends javax.swing.JFrame {
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
 
     }//GEN-LAST:event_jPanel1MouseClicked
+
+    private void jButtonQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonQuitterActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButtonQuitterActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -221,6 +240,7 @@ public class IHMPlateau extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonQuitter;
     private javax.swing.JButton jButtonRejouer;
     private javax.swing.JButton jButtonSauvegarde;
     private javax.swing.JPanel jPanel1;

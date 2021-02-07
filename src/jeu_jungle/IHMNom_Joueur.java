@@ -17,7 +17,7 @@ import javax.imageio.ImageIO;
  */
 public class IHMNom_Joueur extends javax.swing.JFrame {
     
-    private File fichierfond2 = new File ("src/Image/fond2.png");
+    private File fichierfond2 = new File("src/Image/fond2.png");
     
     private BufferedImage imagefond2;
     
@@ -30,11 +30,10 @@ public class IHMNom_Joueur extends javax.swing.JFrame {
         jPanelFond.setFocusable(true);
         try {
             imagefond2 = ImageIO.read(fichierfond2);
-                      
+            
         } catch (IOException ex) {
             System.out.println("fichier introuvable");
         }
-        
         
     }
 
@@ -60,6 +59,7 @@ public class IHMNom_Joueur extends javax.swing.JFrame {
             jLabel3 = new javax.swing.JLabel();
             jButtonValider = new javax.swing.JButton();
             jTextFieldJoueur1 = new javax.swing.JTextField();
+            jButtonQuitter = new javax.swing.JButton();
 
             setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,6 +85,16 @@ public class IHMNom_Joueur extends javax.swing.JFrame {
                 }
             });
 
+            jButtonQuitter.setBackground(new java.awt.Color(132, 201, 132));
+            jButtonQuitter.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+            jButtonQuitter.setForeground(new java.awt.Color(0, 102, 51));
+            jButtonQuitter.setText("QUITTER");
+            jButtonQuitter.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jButtonQuitterActionPerformed(evt);
+                }
+            });
+
             javax.swing.GroupLayout jPanelFondLayout = new javax.swing.GroupLayout(jPanelFond);
             jPanelFond.setLayout(jPanelFondLayout);
             jPanelFondLayout.setHorizontalGroup(
@@ -95,22 +105,24 @@ public class IHMNom_Joueur extends javax.swing.JFrame {
                     .addContainerGap(91, Short.MAX_VALUE))
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFondLayout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2)
+                    .addGap(230, 230, 230))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFondLayout.createSequentialGroup()
+                    .addGap(24, 24, 24)
+                    .addComponent(jButtonQuitter)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanelFondLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFondLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextFieldJoueur1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanelFondLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFondLayout.createSequentialGroup()
-                                    .addComponent(jButtonValider)
-                                    .addGap(27, 27, 27))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFondLayout.createSequentialGroup()
-                                    .addComponent(jTextFieldJoueur2, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(169, 169, 169))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFondLayout.createSequentialGroup()
-                                    .addComponent(jLabel3)
-                                    .addGap(229, 229, 229))))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFondLayout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addGap(230, 230, 230))))
+                        .addComponent(jTextFieldJoueur1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanelFondLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFondLayout.createSequentialGroup()
+                                .addComponent(jButtonValider)
+                                .addGap(27, 27, 27))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFondLayout.createSequentialGroup()
+                                .addComponent(jTextFieldJoueur2, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(169, 169, 169))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFondLayout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(229, 229, 229)))))
             );
             jPanelFondLayout.setVerticalGroup(
                 jPanelFondLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,7 +138,9 @@ public class IHMNom_Joueur extends javax.swing.JFrame {
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                     .addComponent(jTextFieldJoueur2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 113, Short.MAX_VALUE)
-                    .addComponent(jButtonValider)
+                    .addGroup(jPanelFondLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButtonValider)
+                        .addComponent(jButtonQuitter))
                     .addGap(20, 20, 20))
             );
 
@@ -149,6 +163,10 @@ public class IHMNom_Joueur extends javax.swing.JFrame {
         ihmPlateau.setVisible(true); // afficher le plateau
         this.setVisible(false);
     }//GEN-LAST:event_jButtonValiderActionPerformed
+
+    private void jButtonQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonQuitterActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButtonQuitterActionPerformed
 
     /**
      * @param args the command line arguments
@@ -186,6 +204,7 @@ public class IHMNom_Joueur extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonQuitter;
     private javax.swing.JButton jButtonValider;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

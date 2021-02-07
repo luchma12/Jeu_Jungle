@@ -15,11 +15,10 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-        Presentation ihmPresentation = new Presentation();
+
+        IHMPresentation ihmPresentation = new IHMPresentation();
         ihmPresentation.setVisible(true); // afficher l'ihm de présentation 
-        
-        
+
     }
-    
+
 }
