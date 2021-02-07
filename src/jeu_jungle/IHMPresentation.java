@@ -62,7 +62,7 @@ public class IHMPresentation extends javax.swing.JFrame {
 
             setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-            jLabel1.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
+            jLabel1.setFont(new java.awt.Font("Lucida Handwriting", 1, 48)); // NOI18N
             jLabel1.setText(" Bienvenue ");
 
             jButtonJouer.setBackground(new java.awt.Color(132, 201, 132));
@@ -75,11 +75,11 @@ public class IHMPresentation extends javax.swing.JFrame {
                 }
             });
 
-            jLabel2.setFont(new java.awt.Font("Arial", 1, 48)); // NOI18N
+            jLabel2.setFont(new java.awt.Font("Lucida Handwriting", 1, 48)); // NOI18N
             jLabel2.setText("dans la jungle !");
 
             jButtonQuitter.setBackground(new java.awt.Color(132, 201, 132));
-            jButtonQuitter.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+            jButtonQuitter.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
             jButtonQuitter.setForeground(new java.awt.Color(0, 102, 51));
             jButtonQuitter.setText("QUITTER");
             jButtonQuitter.addActionListener(new java.awt.event.ActionListener() {
@@ -93,32 +93,33 @@ public class IHMPresentation extends javax.swing.JFrame {
             jPanel1Layout.setHorizontalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(286, 286, 286)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jButtonJouer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonQuitter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addContainerGap(278, Short.MAX_VALUE))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(161, 161, 161)
-                            .addComponent(jLabel2))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(215, 215, 215)
-                            .addComponent(jLabel1))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(286, 286, 286)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jButtonJouer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButtonQuitter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addContainerGap(172, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addGap(96, 96, 96))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addGap(165, 165, 165))))
             );
             jPanel1Layout.setVerticalGroup(
                 jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(100, 100, 100)
+                    .addGap(96, 96, 96)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGap(18, 18, 18)
                     .addComponent(jLabel2)
-                    .addGap(29, 29, 29)
+                    .addGap(33, 33, 33)
                     .addComponent(jButtonJouer)
-                    .addGap(38, 38, 38)
+                    .addGap(47, 47, 47)
                     .addComponent(jButtonQuitter)
-                    .addContainerGap(199, Short.MAX_VALUE))
+                    .addContainerGap(173, Short.MAX_VALUE))
             );
 
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
