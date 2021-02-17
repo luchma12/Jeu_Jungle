@@ -88,6 +88,7 @@ public class IHMPlateau extends javax.swing.JFrame {
             System.out.println("fichier introuvable");
             
         }
+        
     }
 
     /**
@@ -126,6 +127,8 @@ public class IHMPlateau extends javax.swing.JFrame {
         jButtonRejouer = new javax.swing.JButton();
         jButtonSauvegarde = new javax.swing.JButton();
         jButtonQuitter = new javax.swing.JButton();
+        jLabelNomJoueur1 = new javax.swing.JLabel();
+        jLabelNomJoueur2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -166,21 +169,31 @@ public class IHMPlateau extends javax.swing.JFrame {
                         .addComponent(jButtonSauvegarde)
                         .addGap(20, 20, 20))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonQuitter)
-                            .addComponent(jButtonRejouer))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButtonRejouer)
+                            .addComponent(jButtonQuitter))
                         .addGap(33, 33, 33))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabelNomJoueur2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabelNomJoueur1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(66, 66, 66)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelNomJoueur2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButtonSauvegarde)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonRejouer)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jButtonQuitter)
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addComponent(jLabelNomJoueur1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(40, 40, 40))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -238,11 +251,14 @@ public class IHMPlateau extends javax.swing.JFrame {
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonQuitter;
     private javax.swing.JButton jButtonRejouer;
     private javax.swing.JButton jButtonSauvegarde;
+    private javax.swing.JLabel jLabelNomJoueur1;
+    private javax.swing.JLabel jLabelNomJoueur2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

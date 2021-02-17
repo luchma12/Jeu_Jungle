@@ -34,9 +34,8 @@ public class IHMNom_Joueur extends javax.swing.JFrame {
         } catch (IOException ex) {
             System.out.println("fichier introuvable");
         }
-        
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -88,7 +87,7 @@ public class IHMNom_Joueur extends javax.swing.JFrame {
             jButtonQuitter.setBackground(new java.awt.Color(132, 201, 132));
             jButtonQuitter.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
             jButtonQuitter.setForeground(new java.awt.Color(0, 102, 51));
-            jButtonQuitter.setText("QUITTER");
+            jButtonQuitter.setText("Quitter");
             jButtonQuitter.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     jButtonQuitterActionPerformed(evt);
