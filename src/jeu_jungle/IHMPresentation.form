@@ -75,7 +75,11 @@
                   <Component id="jButtonJouer" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                   <Component id="jButtonQuitter" min="-2" max="-2" attributes="0"/>
+<<<<<<< Upstream, based on origin/master
                   <EmptySpace pref="162" max="32767" attributes="0"/>
+=======
+                  <EmptySpace pref="157" max="32767" attributes="0"/>
+>>>>>>> 40f1b4a modifs
               </Group>
           </Group>
         </DimensionLayout>

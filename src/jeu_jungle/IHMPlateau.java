@@ -9,6 +9,8 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 import javax.imageio.ImageIO;
 
 /**
@@ -16,7 +18,7 @@ import javax.imageio.ImageIO;
  * @author lucas
  */
 public class IHMPlateau extends javax.swing.JFrame {
-    
+
     private File fichierfond2 = new File("src/Image/fond2.png");
     private File fichierPlateau = new File("src/Image/Plateau.PNG");
     private File fichierElephantRouge = new File("src/Image/EléphantRouge.png");
@@ -35,7 +37,7 @@ public class IHMPlateau extends javax.swing.JFrame {
     private File fichierChatBleu = new File("src/Image/ChatBleu.png");
     private File fichierRatRouge = new File("src/Image/RatRouge.png");
     private File fichierRatBleu = new File("src/Image/RatBleu.png");
-    
+
     private BufferedImage imagefond2;
     private BufferedImage imagePlateau;
     private BufferedImage imageElephantRouge;
@@ -55,6 +57,23 @@ public class IHMPlateau extends javax.swing.JFrame {
     private BufferedImage imageRatRouge;
     private BufferedImage imageRatBleu;
 
+    int[] ligne = {65, 165, 265, 365, 465, 565, 665, 765, 865};
+    int[] colonne = {600, 700, 800, 900, 1000, 1100, 1200};
+
+    Boolean ElementSelectionne = FALSE;
+    TableauDesPieces tableauDesPieces = new TableauDesPieces();
+    String[][] pieces;
+
+    int coordonnee_c1 = 0;
+    int coordonnee_l1 = 0;
+    int coordonnee_c2 = 0;
+    int coordonnee_l2 = 0;
+    String imageCible;
+    int c1 = 0;
+    int l1 = 0;
+    int c2 = 0;
+    int l2 = 0;
+
     /**
      * Creates new form IHMPlateau
      */
@@ -63,7 +82,11 @@ public class IHMPlateau extends javax.swing.JFrame {
         setTitle("Plateau de jeu");
         setBounds(200, 50, 1500, 970);
         jPanel1.setFocusable(true);
-        
+//      TableauDesPieces tableauDesPieces = new TableauDesPieces();
+//      String[][] pieces;
+        pieces = tableauDesPieces.InitialisationTableauDesPieces();
+        tableauDesPieces.AfficherTableauPieces(pieces);
+
         try {
             imagefond2 = ImageIO.read(fichierfond2);
             imagePlateau = ImageIO.read(fichierPlateau);
@@ -83,10 +106,10 @@ public class IHMPlateau extends javax.swing.JFrame {
             imageChatBleu = ImageIO.read(fichierChatBleu);
             imageRatRouge = ImageIO.read(fichierRatRouge);
             imageRatBleu = ImageIO.read(fichierRatBleu);
-            
+
         } catch (IOException ex) {
             System.out.println("fichier introuvable");
-            
+
         }
         
     }
@@ -211,6 +234,51 @@ public class IHMPlateau extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
+        String ImageCible;
+        Animal animal = new Animal();
+        if (ElementSelectionne == FALSE) {
+//            System.out.println("Position de la souris : " + evt.getPoint());
+            System.out.println("Element sélectionne FALSE");
+            int x = evt.getX();
+            int y = evt.getY();
+            c1 = ((x - 590) / 100);
+            coordonnee_c1 = colonne[c1];
+            l1 = (y / 100);
+            coordonnee_l1 = ligne[l1];
+//                System.out.println("Souris x :" + x);
+//                System.out.println("Souris y :" + y);
+//                System.out.println("Colonne :" + c1);
+//                System.out.println("Ligne :" + l1);
+//                System.out.println("Coordonnee Colonne :" + coordonnee_c1);
+//                System.out.println("Coordonnee Ligne :" + coordonnee_l1);
+            System.out.println("Contenu de la case sélectionnée : " + pieces[l1][c1]);
+            animal.IsAnimal(pieces[l1][c1]);
+//            String ImageCible = pieces [l1] [c1];
+//            System.out.println("ImageCible : " + ImageCible);
+            // Ajouter une boucle
+            // Tant que la case sélectionnée ne contient pas un pion de la bonne couleur continuer à cliquer, on recommence
+            imageCible = "image" + pieces[l1][c1];
+
+            ElementSelectionne = TRUE;
+            System.out.println("=> Element sélectionne TRUE");
+        } else {
+            System.out.println("Element sélectionne TRUE");
+            System.out.println("Position cible de la souris : " + evt.getPoint());
+            int x2 = evt.getX();
+            int y2 = evt.getY();
+            /* Formule a revoir */
+            c2 = ((x2 - 590) / 100);
+            coordonnee_c2 = colonne[c2];
+            l2 = (y2 / 100);
+            coordonnee_l2 = ligne[l2];
+            tableauDesPieces.majTableauPiece(pieces, c1, l1, c2, l2);
+            afficherPlateau();
+
+//            ElementSelectionne = FALSE;
+            // passer la main à l'autre joueur
+            ElementSelectionne = FALSE;
+            System.out.println("=> Element sélectionne FALSE");
+        }
 
     }//GEN-LAST:event_jPanel1MouseClicked
 
@@ -231,16 +299,24 @@ public class IHMPlateau extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(IHMPlateau.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IHMPlateau.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(IHMPlateau.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IHMPlateau.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(IHMPlateau.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IHMPlateau.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(IHMPlateau.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IHMPlateau.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -252,6 +328,53 @@ public class IHMPlateau extends javax.swing.JFrame {
         });
     }
     
+
+    public void afficherPlateau() {
+        System.out.println("afficher Tableau début");
+        Graphics g = this.getGraphics();
+//                BufferedImage img = null;
+        g.clearRect(590, 55, 700, 900);
+        g.drawImage(imagePlateau, 590, 55, 700, 900, null);
+        tableauDesPieces.AfficherTableauPieces(pieces);
+        System.out.println("afficher Tableau pieces" + pieces[0][0]);
+        for (int NumLigne = 0; NumLigne < 9; NumLigne++) {
+            for (int NumCol = 0; NumCol < 7; NumCol++) {
+                if ("LionRouge".equals(pieces[NumLigne][NumCol])) {
+                    g.drawImage(imageLionRouge, colonne[NumCol], ligne[NumLigne], 80, 80, null);
+                } else if ("TigreRouge".equals(pieces[NumLigne][NumCol])) {
+                    g.drawImage(imageTigreRouge, colonne[NumCol], ligne[NumLigne], 80, 80, null);
+                } else if ("ChienRouge".equals(pieces[NumLigne][NumCol])) {
+                    g.drawImage(imageChienRouge, colonne[NumCol], ligne[NumLigne], 80, 80, null);
+                } else if ("ChatRouge".equals(pieces[NumLigne][NumCol])) {
+                    g.drawImage(imageChatRouge, colonne[NumCol], ligne[NumLigne], 80, 80, null);
+                } else if ("RatRouge".equals(pieces[NumLigne][NumCol])) {
+                    g.drawImage(imageRatRouge, colonne[NumCol], ligne[NumLigne], 80, 80, null);
+                } else if ("LeopardRouge".equals(pieces[NumLigne][NumCol])) {
+                    g.drawImage(imageLeopardRouge, colonne[NumCol], ligne[NumLigne], 80, 80, null);
+                } else if ("LoupRouge".equals(pieces[NumLigne][NumCol])) {
+                    g.drawImage(imageLoupRouge, colonne[NumCol], ligne[NumLigne], 80, 80, null);
+                } else if ("ElephantRouge".equals(pieces[NumLigne][NumCol])) {
+                    g.drawImage(imageElephantRouge, colonne[NumCol], ligne[NumLigne], 80, 80, null);
+                } else if ("LionBleu".equals(pieces[NumLigne][NumCol])) {
+                    g.drawImage(imageLionBleu, colonne[NumCol], ligne[NumLigne], 80, 80, null);
+                } else if ("TigreBleu".equals(pieces[NumLigne][NumCol])) {
+                    g.drawImage(imageTigreBleu, colonne[NumCol], ligne[NumLigne], 80, 80, null);
+                } else if ("ChienBleu".equals(pieces[NumLigne][NumCol])) {
+                    g.drawImage(imageChienBleu, colonne[NumCol], ligne[NumLigne], 80, 80, null);
+                } else if ("ChatBleu".equals(pieces[NumLigne][NumCol])) {
+                    g.drawImage(imageChatBleu, colonne[NumCol], ligne[NumLigne], 80, 80, null);
+                } else if ("RatBleu".equals(pieces[NumLigne][NumCol])) {
+                    g.drawImage(imageRatBleu, colonne[NumCol], ligne[NumLigne], 80, 80, null);
+                } else if ("LeopardBleu".equals(pieces[NumLigne][NumCol])) {
+                    g.drawImage(imageLeopardBleu, colonne[NumCol], ligne[NumLigne], 80, 80, null);
+                } else if ("LoupBleu".equals(pieces[NumLigne][NumCol])) {
+                    g.drawImage(imageLoupBleu, colonne[NumCol], ligne[NumLigne], 80, 80, null);
+                } else if ("ElephantBleu".equals(pieces[NumLigne][NumCol])) {
+                    g.drawImage(imageElephantBleu, colonne[NumCol], ligne[NumLigne], 80, 80, null);
+                }
+            }
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonQuitter;
