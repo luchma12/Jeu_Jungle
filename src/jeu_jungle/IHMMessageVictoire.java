@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import javax.swing.JFrame;
 
 /**
  *
@@ -17,25 +18,38 @@ import javax.imageio.ImageIO;
  */
 public class IHMMessageVictoire extends javax.swing.JFrame {
 
+    IHMNom_Joueur ihmNomJoueur = new IHMNom_Joueur();
+
     private File fichierfond2 = new File("src/Image/fond2.png");
     private File fichierCoupe = new File("src/Image/coupe.png");
-    
+
     private BufferedImage imagefond2;
     private BufferedImage imageCoupe;
-    
+
+    JFrame plateau = null;
+    String gagnant = null;
+
     public IHMMessageVictoire() {
         initComponents();
         setTitle("Message de Victoire");
-        
-        setBounds(650,250,500,400);
+
+        setBounds(650, 250, 500, 400);
         jPanelFond2.setFocusable(true);
         try {
             imagefond2 = ImageIO.read(fichierfond2);
             imageCoupe = ImageIO.read(fichierCoupe);
-            
-        } catch(IOException ex) {
+
+        } catch (IOException ex) {
             System.out.println("fichier introuvable");
         }
+    }
+
+    // Passage du plateau
+    public void recupPlateau(JFrame plateau, String g) {
+        this.plateau = plateau;
+        System.out.println(this.gagnant);
+        jLabelGagne.setText("BRAVO " + g + " VOUS AVEZ GAGNE!!!!!");
+        this.setVisible(true);
     }
 
     /**
@@ -50,7 +64,7 @@ public class IHMMessageVictoire extends javax.swing.JFrame {
         jPanelFond2 = new javax.swing.JPanel(){
             public void paintComponent (Graphics g){
                 g.drawImage(imagefond2,0,0,500,400,null);
-                g.drawImage(imageCoupe,0,0,60,40,null);
+                g.drawImage(imageCoupe,160,80,156,138,null);
             }}
             ;
             jLabelGagne = new javax.swing.JLabel();
@@ -61,52 +75,63 @@ public class IHMMessageVictoire extends javax.swing.JFrame {
             setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
             jLabelGagne.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-            jLabelGagne.setText("BRAVO VOUS AVEZ GAGNÉ !!!!");
+            jLabelGagne.setForeground(new java.awt.Color(255, 255, 255));
 
-            jLabelRejoue.setFont(new java.awt.Font("Tahoma", 0, 16)); // NOI18N
+            jLabelRejoue.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+            jLabelRejoue.setForeground(new java.awt.Color(255, 255, 255));
             jLabelRejoue.setText("Voulez vous rejouer et montrer qui est le roi de la jungle ? ");
 
             jButtonOui.setBackground(new java.awt.Color(131, 198, 131));
-            jButtonOui.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+            jButtonOui.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
             jButtonOui.setForeground(new java.awt.Color(0, 102, 51));
             jButtonOui.setText("Oui");
+            jButtonOui.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jButtonOuiActionPerformed(evt);
+                }
+            });
 
             jButton1.setBackground(new java.awt.Color(131, 198, 131));
-            jButton1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+            jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
             jButton1.setForeground(new java.awt.Color(0, 102, 51));
             jButton1.setText("Non");
+            jButton1.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jButton1ActionPerformed(evt);
+                }
+            });
 
             javax.swing.GroupLayout jPanelFond2Layout = new javax.swing.GroupLayout(jPanelFond2);
             jPanelFond2.setLayout(jPanelFond2Layout);
             jPanelFond2Layout.setHorizontalGroup(
                 jPanelFond2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelFond2Layout.createSequentialGroup()
-                    .addGap(32, 32, 32)
-                    .addComponent(jLabelRejoue, javax.swing.GroupLayout.PREFERRED_SIZE, 451, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGroup(jPanelFond2Layout.createSequentialGroup()
-                    .addGap(108, 108, 108)
-                    .addComponent(jButtonOui)
+                    .addGap(101, 101, 101)
+                    .addComponent(jButtonOui, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1)
-                    .addGap(105, 105, 105))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(107, 107, 107))
+                .addGroup(jPanelFond2Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLabelRejoue, javax.swing.GroupLayout.DEFAULT_SIZE, 471, Short.MAX_VALUE)
+                    .addContainerGap())
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelFond2Layout.createSequentialGroup()
                     .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabelGagne)
-                    .addGap(77, 77, 77))
+                    .addGap(81, 81, 81))
             );
             jPanelFond2Layout.setVerticalGroup(
                 jPanelFond2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanelFond2Layout.createSequentialGroup()
-                    .addGap(69, 69, 69)
+                    .addGap(52, 52, 52)
                     .addComponent(jLabelGagne)
-                    .addGap(139, 139, 139)
+                    .addGap(153, 153, 153)
                     .addComponent(jLabelRejoue, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(28, 28, 28)
+                    .addGap(31, 31, 31)
                     .addGroup(jPanelFond2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButtonOui)
-                        .addComponent(jButton1))
-                    .addContainerGap(88, Short.MAX_VALUE))
+                        .addComponent(jButtonOui, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(103, Short.MAX_VALUE))
             );
 
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -122,6 +147,16 @@ public class IHMMessageVictoire extends javax.swing.JFrame {
 
             pack();
         }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButtonOuiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOuiActionPerformed
+        ihmNomJoueur.setVisible(true);
+        this.setVisible(false);
+        plateau.setVisible(false);
+    }//GEN-LAST:event_jButtonOuiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -153,6 +188,7 @@ public class IHMMessageVictoire extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                Graphics g = null;
                 new IHMMessageVictoire().setVisible(true);
             }
         });

@@ -5,13 +5,16 @@
  */
 package jeu_jungle;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
+import java.util.Objects;
 import javax.imageio.ImageIO;
+import javax.swing.JLabel;
 
 /**
  *
@@ -61,6 +64,9 @@ public class IHMPlateau extends javax.swing.JFrame {
     int[] colonne = {600, 700, 800, 900, 1000, 1100, 1200};
 
     Boolean ElementSelectionne = FALSE;
+    Boolean JoueurBleu = TRUE;
+    Boolean JoueurRouge = FALSE;
+
     TableauDesPieces tableauDesPieces = new TableauDesPieces();
     String[][] pieces;
 
@@ -68,7 +74,11 @@ public class IHMPlateau extends javax.swing.JFrame {
     int coordonnee_l1 = 0;
     int coordonnee_c2 = 0;
     int coordonnee_l2 = 0;
+
     String imageCible;
+    String joueurBleu = null;
+    String joueurRouge = null;
+
     int c1 = 0;
     int l1 = 0;
     int c2 = 0;
@@ -82,10 +92,7 @@ public class IHMPlateau extends javax.swing.JFrame {
         setTitle("Plateau de jeu");
         setBounds(200, 50, 1500, 970);
         jPanel1.setFocusable(true);
-//      TableauDesPieces tableauDesPieces = new TableauDesPieces();
-//      String[][] pieces;
         pieces = tableauDesPieces.InitialisationTableauDesPieces();
-        tableauDesPieces.AfficherTableauPieces(pieces);
 
         try {
             imagefond2 = ImageIO.read(fichierfond2);
@@ -111,7 +118,7 @@ public class IHMPlateau extends javax.swing.JFrame {
             System.out.println("fichier introuvable");
 
         }
-        
+
     }
 
     /**
@@ -150,8 +157,8 @@ public class IHMPlateau extends javax.swing.JFrame {
         jButtonRejouer = new javax.swing.JButton();
         jButtonSauvegarde = new javax.swing.JButton();
         jButtonQuitter = new javax.swing.JButton();
-        jLabelNomJoueur1 = new javax.swing.JLabel();
         jLabelNomJoueur2 = new javax.swing.JLabel();
+        jLabelNomJoueur1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -181,42 +188,48 @@ public class IHMPlateau extends javax.swing.JFrame {
             }
         });
 
+        jLabelNomJoueur2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabelNomJoueur2.setForeground(new java.awt.Color(255, 255, 255));
+
+        jLabelNomJoueur1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabelNomJoueur1.setForeground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(247, Short.MAX_VALUE)
+                .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButtonSauvegarde)
-                        .addGap(20, 20, 20))
+                        .addComponent(jLabelNomJoueur1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jButtonRejouer)
                             .addComponent(jButtonQuitter))
-                        .addGap(33, 33, 33))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabelNomJoueur2, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabelNomJoueur1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(33, 33, 33))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabelNomJoueur2, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
+                            .addComponent(jButtonSauvegarde))
+                        .addGap(20, 20, 20))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(jLabelNomJoueur2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap()
+                .addComponent(jLabelNomJoueur2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonSauvegarde)
-                .addGap(18, 18, 18)
+                .addGap(20, 20, 20)
                 .addComponent(jButtonRejouer)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonQuitter)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                .addComponent(jLabelNomJoueur1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addComponent(jLabelNomJoueur1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -236,8 +249,9 @@ public class IHMPlateau extends javax.swing.JFrame {
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
         String ImageCible;
         Animal animal = new Animal();
-        if (ElementSelectionne == FALSE) {
-//            System.out.println("Position de la souris : " + evt.getPoint());
+        IHMMessageVictoire ihmMessageVictoire = new IHMMessageVictoire();
+
+        if (Objects.equals(ElementSelectionne, FALSE)) {
             System.out.println("Element sélectionne FALSE");
             int x = evt.getX();
             int y = evt.getY();
@@ -245,25 +259,23 @@ public class IHMPlateau extends javax.swing.JFrame {
             coordonnee_c1 = colonne[c1];
             l1 = (y / 100);
             coordonnee_l1 = ligne[l1];
-//                System.out.println("Souris x :" + x);
-//                System.out.println("Souris y :" + y);
-//                System.out.println("Colonne :" + c1);
-//                System.out.println("Ligne :" + l1);
-//                System.out.println("Coordonnee Colonne :" + coordonnee_c1);
-//                System.out.println("Coordonnee Ligne :" + coordonnee_l1);
+            System.out.println("Coordonnee Ligne :" + coordonnee_l1);
             System.out.println("Contenu de la case sélectionnée : " + pieces[l1][c1]);
-            animal.IsAnimal(pieces[l1][c1]);
-//            String ImageCible = pieces [l1] [c1];
-//            System.out.println("ImageCible : " + ImageCible);
-            // Ajouter une boucle
-            // Tant que la case sélectionnée ne contient pas un pion de la bonne couleur continuer à cliquer, on recommence
-            imageCible = "image" + pieces[l1][c1];
-
-            ElementSelectionne = TRUE;
-            System.out.println("=> Element sélectionne TRUE");
+            if (JoueurBleu == TRUE) {
+                if (animal.IsAnimalJoueurBleu(pieces[l1][c1])) {
+                    imageCible = "image" + pieces[l1][c1];
+                    ElementSelectionne = TRUE;
+                    System.out.println("=> Element sélectionne BLEU OK");
+                }
+            }
+            if (JoueurRouge == TRUE) {
+                if (animal.IsAnimalJoueurRouge(pieces[l1][c1])) {
+                    imageCible = "image" + pieces[l1][c1];
+                    ElementSelectionne = TRUE;
+                    System.out.println("=> Element sélectionne ROUGE OK");
+                }
+            }
         } else {
-            System.out.println("Element sélectionne TRUE");
-            System.out.println("Position cible de la souris : " + evt.getPoint());
             int x2 = evt.getX();
             int y2 = evt.getY();
             /* Formule a revoir */
@@ -271,15 +283,19 @@ public class IHMPlateau extends javax.swing.JFrame {
             coordonnee_c2 = colonne[c2];
             l2 = (y2 / 100);
             coordonnee_l2 = ligne[l2];
-            tableauDesPieces.majTableauPiece(pieces, c1, l1, c2, l2);
-            afficherPlateau();
+            if (animal.IsLegalMouvement(c1, l1, l2, c2)) {
+                if (animal.win(pieces[l2][c2], this.joueurBleu, this.joueurRouge)) {
+//                    String gagnant = animal.gagnant;
+                    ihmMessageVictoire.recupPlateau(this, animal.gagnant);
 
-//            ElementSelectionne = FALSE;
-            // passer la main à l'autre joueur
-            ElementSelectionne = FALSE;
-            System.out.println("=> Element sélectionne FALSE");
+                }
+                tableauDesPieces.majTableauPiece(pieces, c1, l1, c2, l2);
+                afficherPlateau();
+                ElementSelectionne = FALSE;
+                changerDeJoueur();
+                System.out.println("=> Element sélectionne FALSE");
+            }
         }
-
     }//GEN-LAST:event_jPanel1MouseClicked
 
     private void jButtonQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonQuitterActionPerformed
@@ -327,16 +343,26 @@ public class IHMPlateau extends javax.swing.JFrame {
             }
         });
     }
-    
 
     public void afficherPlateau() {
-        System.out.println("afficher Tableau début");
         Graphics g = this.getGraphics();
-//                BufferedImage img = null;
         g.clearRect(590, 55, 700, 900);
         g.drawImage(imagePlateau, 590, 55, 700, 900, null);
-        tableauDesPieces.AfficherTableauPieces(pieces);
-        System.out.println("afficher Tableau pieces" + pieces[0][0]);
+        //Afficher les noms des joueurs
+        //       JLabel jLabelNomJoueur1 = new JLabel();
+        //       JLabel jLabelNomJoueur2 = new JLabel();
+
+//        jLabelNomJoueur1.setText(this.joueurBleu);
+        //       jLabelNomJoueur2.setText(this.joueurRouge);
+//
+//        jLabelNomJoueur1.setForeground(Color.white);
+//        jLabelNomJoueur2.setForeground(Color.white);
+//        jLabelNomJoueur1.setFont(new java.awt.Font("Arial", 1, 30));
+//        jLabelNomJoueur2.setFont(new java.awt.Font("Arial", 1, 30));
+//        jLabelNomJoueur1.setVisible(true);
+//        jLabelNomJoueur2.setVisible(true);
+//        this.add(jLabelNomJoueur1);
+//        this.add(jLabelNomJoueur2);
         for (int NumLigne = 0; NumLigne < 9; NumLigne++) {
             for (int NumCol = 0; NumCol < 7; NumCol++) {
                 if ("LionRouge".equals(pieces[NumLigne][NumCol])) {
@@ -374,6 +400,28 @@ public class IHMPlateau extends javax.swing.JFrame {
                 }
             }
         }
+    }
+
+    public void changerDeJoueur() {
+        if (JoueurBleu == TRUE) {
+            JoueurBleu = FALSE;
+            JoueurRouge = TRUE;
+            System.out.println("*******le joueur rouge joue");
+
+        } else {
+            JoueurBleu = TRUE;
+            JoueurRouge = FALSE;
+            System.out.println("*******le joueur bleu joue");
+        }
+    }
+
+    public void affichageNomJoueur(String jB, String jR) {
+        this.joueurBleu = jB;
+        this.joueurRouge = jR;
+
+        jLabelNomJoueur1.setText("Joueur Bleu : " + jB);
+        jLabelNomJoueur2.setText("Joueur Rouge : " + jR);
+
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

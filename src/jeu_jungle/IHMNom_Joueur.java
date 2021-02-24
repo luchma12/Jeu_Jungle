@@ -16,26 +16,26 @@ import javax.imageio.ImageIO;
  * @author albou
  */
 public class IHMNom_Joueur extends javax.swing.JFrame {
-    
+
     private File fichierfond2 = new File("src/Image/fond2.png");
-    
+
     private BufferedImage imagefond2;
-    
+
     public IHMNom_Joueur() {
-        
+
         initComponents();
         setTitle("Nom des joueurs");
-        
+
         setBounds(650, 250, 600, 500);
         jPanelFond.setFocusable(true);
         try {
             imagefond2 = ImageIO.read(fichierfond2);
-            
+
         } catch (IOException ex) {
             System.out.println("fichier introuvable");
         }
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -81,6 +81,12 @@ public class IHMNom_Joueur extends javax.swing.JFrame {
             jButtonValider.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     jButtonValiderActionPerformed(evt);
+                }
+            });
+
+            jTextFieldJoueur1.addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jTextFieldJoueur1ActionPerformed(evt);
                 }
             });
 
@@ -158,7 +164,12 @@ public class IHMNom_Joueur extends javax.swing.JFrame {
         }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonValiderActionPerformed
+        String joueurBleu = jTextFieldJoueur1.getText();
+        String joueurRouge = jTextFieldJoueur2.getText();
+        System.out.println("joueur 1 = " + joueurBleu);
+        System.out.println("joueur2 = " + joueurRouge);
         IHMPlateau ihmPlateau = new IHMPlateau();
+        ihmPlateau.affichageNomJoueur(joueurBleu, joueurRouge);
         ihmPlateau.setVisible(true); // afficher le plateau
         this.setVisible(false);
     }//GEN-LAST:event_jButtonValiderActionPerformed
@@ -166,6 +177,10 @@ public class IHMNom_Joueur extends javax.swing.JFrame {
     private void jButtonQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonQuitterActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButtonQuitterActionPerformed
+
+    private void jTextFieldJoueur1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldJoueur1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldJoueur1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -201,6 +216,7 @@ public class IHMNom_Joueur extends javax.swing.JFrame {
             }
         });
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonQuitter;
