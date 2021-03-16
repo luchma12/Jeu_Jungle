@@ -17,14 +17,14 @@ public class TableauDesPieces {
     /* Attributs */
     public String[][] InitialisationTableauDesPieces() {
         String[][] pieces = {{"LionRouge", null, null, "TaniereRouge", null, null, "TigreRouge"},
-        {null, "ChienRouge", null, null, null, "ChatRouge", null},
-        {"RatRouge", null, "LeopardRouge", null, "LoupRouge", null, "ElephantRouge"},
-        {null, null, null, null, null, null, null},
-        {null, null, null, null, null, null, null},
-        {null, null, null, null, null, null, null},
-        {"ElephantBleu", null, "LoupBleu", null, "LeopardBleu", null, "RatBleu"},
-        {null, "ChatBleu", null, null, null, "ChienBleu", null},
-        {"TigreBleu", null, null, "TaniereBleu", null, null, "LionBleu"},};
+                             {null, "ChienRouge", null, null, null, "ChatRouge", null},
+                             {"RatRouge", null, "LeopardRouge", null, "LoupRouge", null, "ElephantRouge"},
+                             {null, null, null, null, null, null, null},
+                             {null, null, null, null, null, null, null},
+                             {null, null, null, null, null, null, null},
+                             {"ElephantBleu", null, "LoupBleu", null, "LeopardBleu", null, "RatBleu"},
+                             {null, "ChatBleu", null, null, null, "ChienBleu", null},
+                             {"TigreBleu", null, null, "TaniereBleu", null, null, "LionBleu"},};
         return (pieces);
     }
 
