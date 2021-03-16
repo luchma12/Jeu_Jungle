@@ -5,7 +5,6 @@
  */
 package jeu_jungle;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -13,8 +12,9 @@ import java.io.IOException;
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.JLabel;
 
 /**
  *
@@ -64,6 +64,7 @@ public class IHMPlateau extends javax.swing.JFrame {
     int[] colonne = {600, 700, 800, 900, 1000, 1100, 1200};
 
     Boolean ElementSelectionne = FALSE;
+    // Le joueur Bleu commence la partie
     Boolean JoueurBleu = TRUE;
     Boolean JoueurRouge = FALSE;
 
@@ -91,6 +92,8 @@ public class IHMPlateau extends javax.swing.JFrame {
         initComponents();
         setTitle("Plateau de jeu");
         setBounds(200, 50, 1500, 970);
+        String joueur1 = null;
+        String joueur2 = null;
         jPanel1.setFocusable(true);
         pieces = tableauDesPieces.InitialisationTableauDesPieces();
 
@@ -205,14 +208,18 @@ public class IHMPlateau extends javax.swing.JFrame {
                         .addComponent(jLabelNomJoueur1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(699, 699, 699)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButtonRejouer)
-                            .addComponent(jButtonQuitter))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jButtonQuitter))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButtonRejouer)))
                         .addGap(33, 33, 33))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabelNomJoueur2, javax.swing.GroupLayout.DEFAULT_SIZE, 428, Short.MAX_VALUE)
+                            .addComponent(jLabelNomJoueur2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonSauvegarde))
                         .addGap(20, 20, 20))))
         );
@@ -227,7 +234,7 @@ public class IHMPlateau extends javax.swing.JFrame {
                 .addComponent(jButtonRejouer)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonQuitter)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
                 .addComponent(jLabelNomJoueur1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
         );
@@ -251,51 +258,81 @@ public class IHMPlateau extends javax.swing.JFrame {
         Animal animal = new Animal();
         IHMMessageVictoire ihmMessageVictoire = new IHMMessageVictoire();
 
+//        jLabelTourJoueur.setText("Le joueur bleu commence la partie");
         if (Objects.equals(ElementSelectionne, FALSE)) {
             System.out.println("Element sélectionne FALSE");
-            int x = evt.getX();
-            int y = evt.getY();
-            c1 = ((x - 590) / 100);
-            coordonnee_c1 = colonne[c1];
-            l1 = (y / 100);
-            coordonnee_l1 = ligne[l1];
-            System.out.println("Coordonnee Ligne :" + coordonnee_l1);
-            System.out.println("Contenu de la case sélectionnée : " + pieces[l1][c1]);
-            if (JoueurBleu == TRUE) {
-                if (animal.IsAnimalJoueurBleu(pieces[l1][c1])) {
-                    imageCible = "image" + pieces[l1][c1];
-                    ElementSelectionne = TRUE;
-                    System.out.println("=> Element sélectionne BLEU OK");
+            int x1 = evt.getX();
+            int y1 = evt.getY();
+            // Vérifie qu'il a cliqué dans le plateau
+            if ((inPlateau(x1, y1))) {
+                c1 = ((x1 - 590) / 100);
+                coordonnee_c1 = colonne[c1];
+                l1 = (y1 / 100);
+                coordonnee_l1 = ligne[l1];
+//                System.out.println("Coordonnee Ligne :" + coordonnee_l1);
+                System.out.println("Contenu de la case sélectionnée : " + pieces[l1][c1]);
+                if (JoueurBleu == TRUE) {
+                    if (animal.IsAnimalJoueurBleu(pieces[l1][c1])) {
+                        // Tant que la case sélectionnée ne contient pas un pion de la bonne couleur
+                        // => continuer à cliquer, on recommence
+                        imageCible = "image" + pieces[l1][c1];
+                        ElementSelectionne = TRUE;
+                        System.out.println("=> Element sélectionne BLEU OK");
+                    }
                 }
-            }
-            if (JoueurRouge == TRUE) {
-                if (animal.IsAnimalJoueurRouge(pieces[l1][c1])) {
-                    imageCible = "image" + pieces[l1][c1];
-                    ElementSelectionne = TRUE;
-                    System.out.println("=> Element sélectionne ROUGE OK");
+                if (JoueurRouge == TRUE) {
+                    if (animal.IsAnimalJoueurRouge(pieces[l1][c1])) {
+                        imageCible = "image" + pieces[l1][c1];
+                        ElementSelectionne = TRUE;
+                        System.out.println("=> Element sélectionne ROUGE OK");
+                    }
                 }
             }
         } else {
             int x2 = evt.getX();
             int y2 = evt.getY();
-            /* Formule a revoir */
-            c2 = ((x2 - 590) / 100);
-            coordonnee_c2 = colonne[c2];
-            l2 = (y2 / 100);
-            coordonnee_l2 = ligne[l2];
-            if (animal.IsLegalMouvement(c1, l1, l2, c2)) {
-                if (animal.win(pieces[l2][c2], this.joueurBleu, this.joueurRouge)) {
-//                    String gagnant = animal.gagnant;
-                    ihmMessageVictoire.recupPlateau(this, animal.gagnant);
-
+            if ((inPlateau(x2, y2))) {
+                /* Formule a revoir */
+                c2 = ((x2 - 590) / 100);
+                coordonnee_c2 = colonne[c2];
+                l2 = (y2 / 100);
+                coordonnee_l2 = ligne[l2];
+                if (animal.IsLegalMouvement(pieces, l1, c1, l2, c2)) {
+                    if (animal.win(pieces[l2][c2], this.joueurBleu, this.joueurRouge)) {
+                        ihmMessageVictoire.recupPlateau(this, animal.gagnant);
+                    }
+                    if (pieces[l2][c2] != null) {
+                        if (animal.combat(pieces, l1, c1, l2, c2) == pieces[l1][c1]) {
+                            try {
+                                afficherPrise(pieces[l2][c2], "rouge");
+                            } catch (IOException ex) {
+                                Logger.getLogger(IHMPlateau.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            tableauDesPieces.majTableauPiece(pieces, c1, l1, c2, l2);
+                            // Afficher piece prise "pieces[l2][c2]" à gauche du plateau
+                        } else {
+                            pieces[l1][c1] = null;
+                            tableauDesPieces.AfficherTableauPieces(pieces);
+                            try {
+                                // Afficher piece prise "pieces[l1][c1]" à gauche du plateau
+                                afficherPrise(pieces[l1][c1], "rouge");
+                            } catch (IOException ex) {
+                                Logger.getLogger(IHMPlateau.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                        }
+                    } else {
+                        // si case 2 = null
+                        tableauDesPieces.majTableauPiece(pieces, c1, l1, c2, l2);
+                    }
+                    afficherPlateau();
+                    // Passer la main à l'autre joueur
+                    ElementSelectionne = FALSE;
+                    changerDeJoueur();
+//                System.out.println("=> Element sélectionne FALSE");
                 }
-                tableauDesPieces.majTableauPiece(pieces, c1, l1, c2, l2);
-                afficherPlateau();
-                ElementSelectionne = FALSE;
-                changerDeJoueur();
-                System.out.println("=> Element sélectionne FALSE");
             }
         }
+
     }//GEN-LAST:event_jPanel1MouseClicked
 
     private void jButtonQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonQuitterActionPerformed
@@ -346,82 +383,134 @@ public class IHMPlateau extends javax.swing.JFrame {
 
     public void afficherPlateau() {
         Graphics g = this.getGraphics();
+        BufferedImage image;
         g.clearRect(590, 55, 700, 900);
         g.drawImage(imagePlateau, 590, 55, 700, 900, null);
-        //Afficher les noms des joueurs
-        //       JLabel jLabelNomJoueur1 = new JLabel();
-        //       JLabel jLabelNomJoueur2 = new JLabel();
-
-//        jLabelNomJoueur1.setText(this.joueurBleu);
-        //       jLabelNomJoueur2.setText(this.joueurRouge);
-//
-//        jLabelNomJoueur1.setForeground(Color.white);
-//        jLabelNomJoueur2.setForeground(Color.white);
-//        jLabelNomJoueur1.setFont(new java.awt.Font("Arial", 1, 30));
-//        jLabelNomJoueur2.setFont(new java.awt.Font("Arial", 1, 30));
-//        jLabelNomJoueur1.setVisible(true);
-//        jLabelNomJoueur2.setVisible(true);
-//        this.add(jLabelNomJoueur1);
-//        this.add(jLabelNomJoueur2);
         for (int NumLigne = 0; NumLigne < 9; NumLigne++) {
             for (int NumCol = 0; NumCol < 7; NumCol++) {
-                if ("LionRouge".equals(pieces[NumLigne][NumCol])) {
-                    g.drawImage(imageLionRouge, colonne[NumCol], ligne[NumLigne], 80, 80, null);
-                } else if ("TigreRouge".equals(pieces[NumLigne][NumCol])) {
-                    g.drawImage(imageTigreRouge, colonne[NumCol], ligne[NumLigne], 80, 80, null);
-                } else if ("ChienRouge".equals(pieces[NumLigne][NumCol])) {
-                    g.drawImage(imageChienRouge, colonne[NumCol], ligne[NumLigne], 80, 80, null);
-                } else if ("ChatRouge".equals(pieces[NumLigne][NumCol])) {
-                    g.drawImage(imageChatRouge, colonne[NumCol], ligne[NumLigne], 80, 80, null);
-                } else if ("RatRouge".equals(pieces[NumLigne][NumCol])) {
-                    g.drawImage(imageRatRouge, colonne[NumCol], ligne[NumLigne], 80, 80, null);
-                } else if ("LeopardRouge".equals(pieces[NumLigne][NumCol])) {
-                    g.drawImage(imageLeopardRouge, colonne[NumCol], ligne[NumLigne], 80, 80, null);
-                } else if ("LoupRouge".equals(pieces[NumLigne][NumCol])) {
-                    g.drawImage(imageLoupRouge, colonne[NumCol], ligne[NumLigne], 80, 80, null);
-                } else if ("ElephantRouge".equals(pieces[NumLigne][NumCol])) {
-                    g.drawImage(imageElephantRouge, colonne[NumCol], ligne[NumLigne], 80, 80, null);
-                } else if ("LionBleu".equals(pieces[NumLigne][NumCol])) {
-                    g.drawImage(imageLionBleu, colonne[NumCol], ligne[NumLigne], 80, 80, null);
-                } else if ("TigreBleu".equals(pieces[NumLigne][NumCol])) {
-                    g.drawImage(imageTigreBleu, colonne[NumCol], ligne[NumLigne], 80, 80, null);
-                } else if ("ChienBleu".equals(pieces[NumLigne][NumCol])) {
-                    g.drawImage(imageChienBleu, colonne[NumCol], ligne[NumLigne], 80, 80, null);
-                } else if ("ChatBleu".equals(pieces[NumLigne][NumCol])) {
-                    g.drawImage(imageChatBleu, colonne[NumCol], ligne[NumLigne], 80, 80, null);
-                } else if ("RatBleu".equals(pieces[NumLigne][NumCol])) {
-                    g.drawImage(imageRatBleu, colonne[NumCol], ligne[NumLigne], 80, 80, null);
-                } else if ("LeopardBleu".equals(pieces[NumLigne][NumCol])) {
-                    g.drawImage(imageLeopardBleu, colonne[NumCol], ligne[NumLigne], 80, 80, null);
-                } else if ("LoupBleu".equals(pieces[NumLigne][NumCol])) {
-                    g.drawImage(imageLoupBleu, colonne[NumCol], ligne[NumLigne], 80, 80, null);
-                } else if ("ElephantBleu".equals(pieces[NumLigne][NumCol])) {
-                    g.drawImage(imageElephantBleu, colonne[NumCol], ligne[NumLigne], 80, 80, null);
-                }
+                image = imageAnimal(pieces[NumLigne][NumCol]);
+                g.drawImage(image, colonne[NumCol], ligne[NumLigne], 80, 80, null);
             }
         }
     }
 
+//                if ("LionRouge".equals(pieces[NumLigne][NumCol])) {
+//                    g.drawImage(imageLionRouge, colonne[NumCol], ligne[NumLigne], 80, 80, null);
+//                } else if ("TigreRouge".equals(pieces[NumLigne][NumCol])) {
+//                    g.drawImage(imageTigreRouge, colonne[NumCol], ligne[NumLigne], 80, 80, null);
+//                } else if ("ChienRouge".equals(pieces[NumLigne][NumCol])) {
+//                    g.drawImage(imageChienRouge, colonne[NumCol], ligne[NumLigne], 80, 80, null);
+//                } else if ("ChatRouge".equals(pieces[NumLigne][NumCol])) {
+//                    g.drawImage(imageChatRouge, colonne[NumCol], ligne[NumLigne], 80, 80, null);
+//                } else if ("RatRouge".equals(pieces[NumLigne][NumCol])) {
+//                    g.drawImage(imageRatRouge, colonne[NumCol], ligne[NumLigne], 80, 80, null);
+//                } else if ("LeopardRouge".equals(pieces[NumLigne][NumCol])) {
+//                    g.drawImage(imageLeopardRouge, colonne[NumCol], ligne[NumLigne], 80, 80, null);
+//                } else if ("LoupRouge".equals(pieces[NumLigne][NumCol])) {
+//                    g.drawImage(imageLoupRouge, colonne[NumCol], ligne[NumLigne], 80, 80, null);
+//                } else if ("ElephantRouge".equals(pieces[NumLigne][NumCol])) {
+//                    g.drawImage(imageElephantRouge, colonne[NumCol], ligne[NumLigne], 80, 80, null);
+//                } else if ("LionBleu".equals(pieces[NumLigne][NumCol])) {
+//                    g.drawImage(imageLionBleu, colonne[NumCol], ligne[NumLigne], 80, 80, null);
+//                } else if ("TigreBleu".equals(pieces[NumLigne][NumCol])) {
+//                    g.drawImage(imageTigreBleu, colonne[NumCol], ligne[NumLigne], 80, 80, null);
+//                } else if ("ChienBleu".equals(pieces[NumLigne][NumCol])) {
+//                    g.drawImage(imageChienBleu, colonne[NumCol], ligne[NumLigne], 80, 80, null);
+//                } else if ("ChatBleu".equals(pieces[NumLigne][NumCol])) {
+//                    g.drawImage(imageChatBleu, colonne[NumCol], ligne[NumLigne], 80, 80, null);
+//                } else if ("RatBleu".equals(pieces[NumLigne][NumCol])) {
+//                    g.drawImage(imageRatBleu, colonne[NumCol], ligne[NumLigne], 80, 80, null);
+//                } else if ("LeopardBleu".equals(pieces[NumLigne][NumCol])) {
+//                    g.drawImage(imageLeopardBleu, colonne[NumCol], ligne[NumLigne], 80, 80, null);
+//                } else if ("LoupBleu".equals(pieces[NumLigne][NumCol])) {
+//                    g.drawImage(imageLoupBleu, colonne[NumCol], ligne[NumLigne], 80, 80, null);
+//                } else if ("ElephantBleu".equals(pieces[NumLigne][NumCol])) {
+//                    g.drawImage(imageElephantBleu, colonne[NumCol], ligne[NumLigne], 80, 80, null);
+//                }
+//            }
+//        }
+//    }
     public void changerDeJoueur() {
         if (JoueurBleu == TRUE) {
             JoueurBleu = FALSE;
             JoueurRouge = TRUE;
-            System.out.println("*******le joueur rouge joue");
+//            System.out.println("*******le joueur rouge joue");
+//            jLabelTourJoueur.setText("Le joueur rouge joue");
 
         } else {
             JoueurBleu = TRUE;
             JoueurRouge = FALSE;
-            System.out.println("*******le joueur bleu joue");
+//            System.out.println("*******le joueur bleu joue");
+//            jLabelTourJoueur.setText("Le joueur bleu joue");
+        }
+    }
+
+    public boolean inPlateau(int x, int y) {
+        if ((x < 590) || (x > 1290)) {
+            System.out.println("Hors du cadre x");
+            return false;
+        } else if ((y < 20) || (y > 955)) {
+            System.out.println("Hors du cadre y");
+            return false;
+        } else {
+            return true;
         }
     }
 
     public void affichageNomJoueur(String jB, String jR) {
         this.joueurBleu = jB;
         this.joueurRouge = jR;
+//        jLabelNomJoueur1.setText("Joueur Bleu : " + jB);
+//        jLabelNomJoueur2.setText("Joueur Rouge : " + jR);
+    }
 
-        jLabelNomJoueur1.setText("Joueur Bleu : " + jB);
-        jLabelNomJoueur2.setText("Joueur Rouge : " + jR);
+    public void afficherPrise(String piece, String couleur) throws IOException {
+        Graphics g = this.getGraphics();
+        BufferedImage image = imageAnimal(piece);
+        g.drawImage(image, 30, 30, 80, 80, null);
+    }
 
+    // Transforme la String contenant l'animal en une BufferedImage
+    public BufferedImage imageAnimal(String animal) {
+        if (null != animal) {
+            switch (animal) {
+                case "LionRouge":
+                    return imageLionRouge;
+                case "TigreRouge":
+                    return imageTigreRouge;
+                case "ChienRouge":
+                    return imageChienRouge;
+                case "ChatRouge":
+                    return imageChatRouge;
+                case "RatRouge":
+                    return imageRatRouge;
+                case "LeopardRouge":
+                    return imageLeopardRouge;
+                case "LoupRouge":
+                    return imageLoupRouge;
+                case "ElephantRouge":
+                    return imageElephantRouge;
+                case "LionBleu":
+                    return imageLionBleu;
+                case "TigreBleu":
+                    return imageTigreBleu;
+                case "ChienBleu":
+                    return imageChienBleu;
+                case "ChatBleu":
+                    return imageChatBleu;
+                case "RatBleu":
+                    return imageRatBleu;
+                case "LeopardBleu":
+                    return imageLeopardBleu;
+                case "LoupBleu":
+                    return imageLoupBleu;
+                case "ElephantBleu":
+                    return imageElephantBleu;
+                default:
+                    return null;
+            }
+        }
+        return null;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
