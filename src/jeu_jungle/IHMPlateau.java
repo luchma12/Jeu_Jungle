@@ -85,6 +85,9 @@ public class IHMPlateau extends javax.swing.JFrame {
     int c2 = 0;
     int l2 = 0;
 
+    int PositionPriseX = 50;
+    int PositionPriseY = 150;
+
     /**
      * Creates new form IHMPlateau
      */
@@ -304,9 +307,11 @@ public class IHMPlateau extends javax.swing.JFrame {
                     if (pieces[l2][c2] != null) {
                         if (animal.combat(pieces, l1, c1, l2, c2) == pieces[l1][c1]) {
                             try {
-                                afficherPrise(pieces[l2][c2], "rouge");
+                                afficherPrisePionBleu(pieces[l2][c2], PositionPriseX, PositionPriseY);
+//                                afficherPrise(pieces[l2][c2], "bleu");
                             } catch (IOException ex) {
                                 Logger.getLogger(IHMPlateau.class.getName()).log(Level.SEVERE, null, ex);
+
                             }
                             tableauDesPieces.majTableauPiece(pieces, c1, l1, c2, l2);
                             // Afficher piece prise "pieces[l2][c2]" à gauche du plateau
@@ -315,7 +320,8 @@ public class IHMPlateau extends javax.swing.JFrame {
                             tableauDesPieces.AfficherTableauPieces(pieces);
                             try {
                                 // Afficher piece prise "pieces[l1][c1]" à gauche du plateau
-                                afficherPrise(pieces[l1][c1], "rouge");
+                                afficherPrisePionBleu(pieces[l1][c1], PositionPriseX, PositionPriseY);
+//                                afficherPrise(pieces[l1][c1], "bleu");
                             } catch (IOException ex) {
                                 Logger.getLogger(IHMPlateau.class.getName()).log(Level.SEVERE, null, ex);
                             }
@@ -460,14 +466,22 @@ public class IHMPlateau extends javax.swing.JFrame {
     public void affichageNomJoueur(String jB, String jR) {
         this.joueurBleu = jB;
         this.joueurRouge = jR;
-//        jLabelNomJoueur1.setText("Joueur Bleu : " + jB);
-//        jLabelNomJoueur2.setText("Joueur Rouge : " + jR);
+        jLabelNomJoueur1.setText("Joueur Bleu : " + jB);
+        jLabelNomJoueur2.setText("Joueur Rouge : " + jR);
     }
 
-    public void afficherPrise(String piece, String couleur) throws IOException {
+    public void afficherPrisePionBleu(String piece, int x, int y) throws IOException {
         Graphics g = this.getGraphics();
         BufferedImage image = imageAnimal(piece);
-        g.drawImage(image, 30, 30, 80, 80, null);
+        g.drawImage(image, PositionPriseX, PositionPriseY, 80, 80, null);
+        // affiche les pions mangés en dehors du plateau
+        if (PositionPriseX < 400) {
+            PositionPriseX += 100;
+            PositionPriseY = 150;
+        } else {
+            PositionPriseX = 50;
+            PositionPriseY += 100;
+        }
     }
 
     // Transforme la String contenant l'animal en une BufferedImage

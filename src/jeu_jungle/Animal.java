@@ -89,6 +89,8 @@ public class Animal {
     public String combat(String[][] p, int l1, int c1, int l2, int c2) {
         String animalCourant = p[l1][c1];
         String animalTarget = p[l2][c2];
+        // lignes à revoir
+//        if (IsLegalMouvement(p, l1, c1, l2, c2)) {
 //        System.out.println("Animal courant " + animalCourant);
 //        System.out.println("AnimalTarget " + animalTarget);
         if (animalTarget != null) {
@@ -98,6 +100,10 @@ public class Animal {
                 System.out.println(animal1[0] + animal1[1] + animal1[2]);
                 System.out.println(animal2[0] + animal2[1] + animal2[2]);
                 return plusPuissant(animalCourant, animalTarget, animal1, animal2);
+//            } else if (animal1[1] == "RAT" && animal2[1] == "ELEPHANT") {
+//                return animalCourant;
+//            } else if (animal1[1] == "ELEPHANT" && animal2[1] == "RAT") {
+//                return animalTarget;
             } else {
                 // couleur  animal2 != couleur du piège
                 // animal1 qui gagne
@@ -105,6 +111,8 @@ public class Animal {
             }
         }
         return null;
+//        }
+//        return null;
     }
 
     @SuppressWarnings("empty-statement")
@@ -300,18 +308,19 @@ public class Animal {
         }
     }
 
-    // conditon à revoir
     public Boolean isPiege(String couleur, int l, int c) {
-        if (l == 0 || l == 1) {
-            if (c == 2 || c == 3 || c == 4) {
-                return true;
-            } else {
-                if (l == 7 || l == 8) {
-                    if (c == 2 || c == 3 || c == 4) {
-                        return true;
-                    }
-                }
-            }
+        if (l == 0 && c == 2) {
+            return true;
+        } else if (l == 0 && c == 4) {
+            return true;
+        } else if (l == 1 && c == 3) {
+            return true;
+        } else if (l == 7 && c == 3) {
+            return true;
+        } else if (l == 8 && c == 2) {
+            return true;
+        } else if (l == 8 && c == 4) {
+            return true;
         }
         return false;
     }
