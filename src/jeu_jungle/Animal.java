@@ -12,7 +12,7 @@ package jeu_jungle;
 public class Animal {
 
     String gagnant = null;
-
+      
     @SuppressWarnings("empty-statement")
     // renvoie True si la pièce sélectionnée est un animal bleu
     public boolean IsAnimalJoueurBleu(String a) {

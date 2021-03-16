@@ -18,7 +18,7 @@ public class Main {
 
         IHMPresentation ihmPresentation = new IHMPresentation();
         ihmPresentation.setVisible(true); // afficher l'ihm de présentation 
-
+        
     }
 
 }
