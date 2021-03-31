@@ -105,7 +105,7 @@ public class IHMPlateau extends javax.swing.JFrame {
     public void setjLabelCommentaire(JLabel jLabelCommentaire) {
         this.jLabelCommentaire = jLabelCommentaire;
     }
-    
+
     /**
      * Creates new form IHMPlateau
      */
@@ -307,7 +307,7 @@ public class IHMPlateau extends javax.swing.JFrame {
                         imageCible = "image" + pieces[l1][c1];
                         ElementSelectionne = TRUE;
                         System.out.println("=> Element sélectionne BLEU OK");
-                        jLabelCommentaire.setText("<HTML>" + "Le joueur bleu a sélectionné" + " " + pieces[l1][c1] + "</HTML>");
+                        jLabelCommentaire.setText("<HTML>" + "Le joueur bleu a sélectionné le " + " " + pieces[l1][c1] + "</HTML>");
                     }
                 }
                 if (JoueurRouge == TRUE) {
@@ -315,7 +315,7 @@ public class IHMPlateau extends javax.swing.JFrame {
                         imageCible = "image" + pieces[l1][c1];
                         ElementSelectionne = TRUE;
                         System.out.println("=> Element sélectionne ROUGE OK");
-                        jLabelCommentaire.setText("<HTML>" + "Le joueur rouge a sélectionné" + " " + pieces[l1][c1] + "</HTML>");
+                        jLabelCommentaire.setText("<HTML>" + "Le joueur rouge a sélectionné le " + " " + pieces[l1][c1] + "</HTML>");
                     }
                 }
             }
@@ -430,12 +430,15 @@ public class IHMPlateau extends javax.swing.JFrame {
         if (JoueurBleu == TRUE) {
             JoueurBleu = FALSE;
             JoueurRouge = TRUE;
+            jLabelCommentaire.setText("Au tour du joueur rouge");
 //            System.out.println("*******le joueur rouge joue");
 //            jLabelTourJoueur.setText("Le joueur rouge joue");
 
         } else {
             JoueurBleu = TRUE;
             JoueurRouge = FALSE;
+            jLabelCommentaire.setText("Au tour du joueur bleu");
+
 //            System.out.println("*******le joueur bleu joue");
 //            jLabelTourJoueur.setText("Le joueur bleu joue");
         }
