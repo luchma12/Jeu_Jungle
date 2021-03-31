@@ -98,8 +98,14 @@ public class IHMPlateau extends javax.swing.JFrame {
 
     IHMMessageVictoire ihmMessageVictoire = new IHMMessageVictoire();
 
-//    public JLabel JLabelCommentaire = new JLabel();
+    public JLabel getjLabelCommentaire() {
+        return jLabelCommentaire;
+    }
 
+    public void setjLabelCommentaire(JLabel jLabelCommentaire) {
+        this.jLabelCommentaire = jLabelCommentaire;
+    }
+    
     /**
      * Creates new form IHMPlateau
      */
@@ -109,16 +115,12 @@ public class IHMPlateau extends javax.swing.JFrame {
         setBounds(200, 50, 1500, 970);
         String joueur1 = null;
         String joueur2 = null;
-        
-//        jPanel1.add(JLabelCommentaire);
-//        JLabelCommentaire.setOpaque(true);
+
         jLabelCommentaire.setFont(new Font("Segoe Script", 1, 24));
         jLabelCommentaire.setSize(500, 100);
         jLabelCommentaire.setForeground(Color.white);
         jLabelCommentaire.setText("<HTML> Le joueur Bleu commence </HTML>");
-//        JLabelCommentaire.setSize(100, 100);
-//        JLabelCommentaire.setBounds(50, 500, 500, 50);
-        
+
         jPanel1.setFocusable(true);
         pieces = tableauDesPieces.InitialisationTableauDesPieces();
 
@@ -145,7 +147,6 @@ public class IHMPlateau extends javax.swing.JFrame {
         } catch (IOException ex) {
             System.out.println("fichier introuvable");
         }
-
     }
 
     /**
@@ -222,7 +223,7 @@ public class IHMPlateau extends javax.swing.JFrame {
         jLabelNomJoueur1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabelNomJoueur1.setForeground(new java.awt.Color(51, 51, 255));
 
-        jLabelCommentaire.setText("jLabel1");
+        jLabelCommentaire.setToolTipText("");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -246,8 +247,8 @@ public class IHMPlateau extends javax.swing.JFrame {
                             .addComponent(jButtonSauvegarde))
                         .addGap(20, 20, 20))))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(83, 83, 83)
-                .addComponent(jLabelCommentaire, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(79, 79, 79)
+                .addComponent(jLabelCommentaire, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -261,9 +262,9 @@ public class IHMPlateau extends javax.swing.JFrame {
                 .addComponent(jButtonRejouer)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonQuitter)
-                .addGap(18, 18, 18)
+                .addGap(52, 52, 52)
                 .addComponent(jLabelCommentaire, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 260, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 226, Short.MAX_VALUE)
                 .addComponent(jLabelNomJoueur1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
         );
@@ -306,7 +307,7 @@ public class IHMPlateau extends javax.swing.JFrame {
                         imageCible = "image" + pieces[l1][c1];
                         ElementSelectionne = TRUE;
                         System.out.println("=> Element sélectionne BLEU OK");
-                        jLabelCommentaire.setText("Le joueur bleu a sélectionné" + " " + pieces[l1][c1]);
+                        jLabelCommentaire.setText("<HTML>" + "Le joueur bleu a sélectionné" + " " + pieces[l1][c1] + "</HTML>");
                     }
                 }
                 if (JoueurRouge == TRUE) {
@@ -314,7 +315,7 @@ public class IHMPlateau extends javax.swing.JFrame {
                         imageCible = "image" + pieces[l1][c1];
                         ElementSelectionne = TRUE;
                         System.out.println("=> Element sélectionne ROUGE OK");
-                        jLabelCommentaire.setText("Le joueur rouge a sélectionné" + " " + pieces[l1][c1]);
+                        jLabelCommentaire.setText("<HTML>" + "Le joueur rouge a sélectionné" + " " + pieces[l1][c1] + "</HTML>");
                     }
                 }
             }
@@ -443,11 +444,11 @@ public class IHMPlateau extends javax.swing.JFrame {
     public boolean inPlateau(int x, int y) {
         if ((x < 590) || (x > 1290)) {
             System.out.println("Hors du cadre x");
-            jLabelCommentaire.setText("Veuillez sélectionner une case du plateau");
+            jLabelCommentaire.setText("<HTML> Veuillez sélectionner une case du plateau </HTML>");
             return false;
         } else if ((y < 20) || (y > 955)) {
             System.out.println("Hors du cadre y");
-            jLabelCommentaire.setText("Veuillez sélectionner une case du plateau");
+            jLabelCommentaire.setText("<HTML> Veuillez sélectionner une case du plateau </HTML>");
             return false;
         } else {
             return true;

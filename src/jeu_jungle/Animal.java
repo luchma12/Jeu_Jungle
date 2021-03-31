@@ -9,17 +9,19 @@ package jeu_jungle;
  *
  * @author lucas
  */
-public class Animal {
-
+public class Animal extends IHMPlateau {
+    
     public String gagnant = null;
     public String animal1[];
     public String animal2[];
-
+    
+    
+    
     public Animal() {
         this.animal1 = new String[]{" ", " ", " "};
         this.animal2 = new String[]{" ", " ", " "};
     }
-
+    
     @SuppressWarnings("empty-statement")
     // renvoie True si la pièce sélectionnée est un animal bleu
     public boolean IsAnimalJoueurBleu(String a) {
@@ -30,7 +32,7 @@ public class Animal {
         }
         return false;
     }
-
+    
     public boolean IsAnimalJoueurRouge(String a) {
         System.out.println("Le joueur rouge a sélectionné le  " + a);
         if ((a == "ElephantRouge") || (a == "LoupRouge") || (a == "LeopardRouge") || (a == "RatRouge") || (a == "ChatRouge")
@@ -67,10 +69,11 @@ public class Animal {
                 }
             }
         }
+//        jLabelC.setText("<HTML> " + "pieces[l1][c1]" + " ne peut pas aller dans la rivière" + "</HTML>");
         System.out.println("Le mouvement est illegal");
         return false;
     }
-
+    
     public boolean win(String a, String jB, String jR) {
 //        System.out.println("isAnimal  " + a);
         if (a == "TaniereRouge") {
@@ -85,7 +88,7 @@ public class Animal {
             return false;
         }
     }
-
+    
     public String combat(String[][] p, int l1, int c1, int l2, int c2) {
         String animalCourant = p[l1][c1];
         String animalTarget = p[l2][c2];
@@ -114,7 +117,7 @@ public class Animal {
 //        }
 //        return null;
     }
-
+    
     @SuppressWarnings("empty-statement")
     public void orderAnimal(String a1, String a2,
             String animal1[], String animal2[]
@@ -299,7 +302,7 @@ public class Animal {
             }
         }
     }
-
+    
     public String plusPuissant(String animalCourant, String animalTarget, String animal1[], String animal2[]) {
         if (Integer.parseInt(animal1[2]) >= Integer.parseInt(animal2[2])) {
             return animalCourant;
@@ -307,7 +310,7 @@ public class Animal {
             return animalTarget;
         }
     }
-
+    
     public Boolean isPiege(String couleur, int l, int c) {
         if (l == 0 && c == 2) {
             return true;
@@ -324,7 +327,7 @@ public class Animal {
         }
         return false;
     }
-
+    
     public Boolean isRiver(int l, int c) {
         System.out.println("isRiver => l : " + l + " c: " + c);
         for (int i = 3; i <= 5; i++) {

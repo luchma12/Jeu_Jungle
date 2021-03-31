@@ -21,13 +21,13 @@ public class IHMPresentation_2 extends javax.swing.JFrame {
     private File fichierfond_jungle = new File("src/Image/fond_jungle.jpg");
 
     private BufferedImage imagefond_jungle;
-     
-    public IHMPresentation_2() throws HeadlessException{
+
+    public IHMPresentation_2() throws HeadlessException {
         initComponents();
         setTitle("Présentation");
 
         setBounds(650, 250, 700, 570);
-                
+
         jPanel1.setFocusable(true);
         try {
             imagefond_jungle = ImageIO.read(fichierfond_jungle);
@@ -65,11 +65,21 @@ public class IHMPresentation_2 extends javax.swing.JFrame {
         jButtonJouer.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButtonJouer.setForeground(new java.awt.Color(0, 102, 51));
         jButtonJouer.setText("JOUER");
+        jButtonJouer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonJouerActionPerformed(evt);
+            }
+        });
 
         jButtonQuitter.setBackground(new java.awt.Color(131, 198, 131));
         jButtonQuitter.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButtonQuitter.setForeground(new java.awt.Color(0, 102, 51));
         jButtonQuitter.setText("QUITTER");
+        jButtonQuitter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonQuitterActionPerformed(evt);
+            }
+        });
 
         jButtonCharger.setBackground(new java.awt.Color(131, 198, 131));
         jButtonCharger.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -134,16 +144,16 @@ public class IHMPresentation_2 extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    private void jButtonJouerActionPerformed(java.awt.event.ActionEvent evt) {                                             
+
+    private void jButtonJouerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonJouerActionPerformed
         IHMNom_Joueur ihmNom_Joueur = new IHMNom_Joueur();
         ihmNom_Joueur.setVisible(true); // afficher l'ihm du nom des joueurs
         this.setVisible(false);
-    }                                            
+    }//GEN-LAST:event_jButtonJouerActionPerformed
 
-    private void jButtonQuitterActionPerformed(java.awt.event.ActionEvent evt) {                                               
+    private void jButtonQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonQuitterActionPerformed
         System.exit(0);
-    }                                              
+    }//GEN-LAST:event_jButtonQuitterActionPerformed
 
     /**
      * @param args the command line arguments
