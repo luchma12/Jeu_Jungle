@@ -16,7 +16,7 @@ public class Main {
      */
     public static void main(String[] args) {
 
-        IHMPresentation ihmPresentation = new IHMPresentation();
+        IHMPresentation_2 ihmPresentation = new IHMPresentation_2();
         ihmPresentation.setVisible(true); // afficher l'ihm de présentation 
         
     }
