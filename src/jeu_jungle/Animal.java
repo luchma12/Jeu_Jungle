@@ -43,7 +43,7 @@ public class Animal {
     // Vérifie que le déplacement est legal (colonne +/- 1 && ligne +/- 1)
     // Vérifie que la case sélectionnée ne contient pas un animal de la même couleur
     public boolean IsLegalMouvement(String[][] p, int l1, int c1, int l2, int c2) {
-        if (!isRiver(l2, c2)) {
+        if (!isRiver(l2, c2) || p[l1][c1].equals("RatRouge") || p[l1][c1].equals("RatBleu")) {
             if (p[l2][c2] != null) {
                 orderAnimal(p[l1][c1], p[l2][c2], animal1, animal2);
                 if (animal1[1] == animal2[1]) {

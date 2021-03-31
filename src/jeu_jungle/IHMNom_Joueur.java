@@ -34,6 +34,7 @@ public class IHMNom_Joueur extends javax.swing.JFrame {
         } catch (IOException ex) {
             System.out.println("fichier introuvable");
         }
+        jButtonValider.setEnabled(false);
     }
 
     /**
@@ -70,6 +71,12 @@ public class IHMNom_Joueur extends javax.swing.JFrame {
             jLabel2.setForeground(new java.awt.Color(255, 255, 204));
             jLabel2.setText("Nom du joueur 2");
 
+            jTextFieldJoueur2.addKeyListener(new java.awt.event.KeyAdapter() {
+                public void keyPressed(java.awt.event.KeyEvent evt) {
+                    jTextFieldJoueur2KeyPressed(evt);
+                }
+            });
+
             jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
             jLabel3.setForeground(new java.awt.Color(255, 255, 204));
             jLabel3.setText("Nom du joueur 1");
@@ -87,6 +94,11 @@ public class IHMNom_Joueur extends javax.swing.JFrame {
             jTextFieldJoueur1.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     jTextFieldJoueur1ActionPerformed(evt);
+                }
+            });
+            jTextFieldJoueur1.addKeyListener(new java.awt.event.KeyAdapter() {
+                public void keyPressed(java.awt.event.KeyEvent evt) {
+                    jTextFieldJoueur1KeyPressed(evt);
                 }
             });
 
@@ -167,11 +179,13 @@ public class IHMNom_Joueur extends javax.swing.JFrame {
         String joueurBleu = jTextFieldJoueur1.getText();
         String joueurRouge = jTextFieldJoueur2.getText();
         System.out.println("joueur 1 = " + joueurBleu);
-        System.out.println("joueur2 = " + joueurRouge);
+        System.out.println("joueur 2 = " + joueurRouge);
         IHMPlateau ihmPlateau = new IHMPlateau();
         ihmPlateau.affichageNomJoueur(joueurBleu, joueurRouge);
         ihmPlateau.setVisible(true); // afficher le plateau
         this.setVisible(false);
+
+
     }//GEN-LAST:event_jButtonValiderActionPerformed
 
     private void jButtonQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonQuitterActionPerformed
@@ -181,6 +195,29 @@ public class IHMNom_Joueur extends javax.swing.JFrame {
     private void jTextFieldJoueur1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldJoueur1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldJoueur1ActionPerformed
+
+    private void jTextFieldJoueur1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldJoueur1KeyPressed
+        if (VérifierNom()) {
+            jButtonValider.setEnabled(true);
+        } else {
+            jButtonValider.setEnabled(false);
+        }
+    }//GEN-LAST:event_jTextFieldJoueur1KeyPressed
+
+    private void jTextFieldJoueur2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldJoueur2KeyPressed
+        if (VérifierNom()) {
+            jButtonValider.setEnabled(true);
+        } else {
+            jButtonValider.setEnabled(false);
+        }
+    }//GEN-LAST:event_jTextFieldJoueur2KeyPressed
+
+    public boolean VérifierNom() {
+        if (!jTextFieldJoueur1.getText().equals("") && !jTextFieldJoueur2.getText().equals("")) {
+            return true;
+        }
+        return false;
+    }
 
     /**
      * @param args the command line arguments
@@ -196,16 +233,24 @@ public class IHMNom_Joueur extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(IHMNom_Joueur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IHMNom_Joueur.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(IHMNom_Joueur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IHMNom_Joueur.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(IHMNom_Joueur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IHMNom_Joueur.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(IHMNom_Joueur.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IHMNom_Joueur.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 

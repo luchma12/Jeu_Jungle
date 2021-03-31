@@ -5,6 +5,8 @@
  */
 package jeu_jungle;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -15,6 +17,7 @@ import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
+import javax.swing.JLabel;
 
 /**
  *
@@ -85,8 +88,17 @@ public class IHMPlateau extends javax.swing.JFrame {
     int c2 = 0;
     int l2 = 0;
 
-    int PositionPriseX = 50;
-    int PositionPriseY = 150;
+    int PositionPriseXB = 50;
+    int PositionPriseYB = 100;
+    int PositionPriseXR = 50;
+    int PositionPriseYR = 800;
+
+    int NbrePiecesBleu = 0;
+    int NbrePiecesRouge = 0;
+
+    IHMMessageVictoire ihmMessageVictoire = new IHMMessageVictoire();
+
+//    public JLabel JLabelCommentaire = new JLabel();
 
     /**
      * Creates new form IHMPlateau
@@ -97,6 +109,16 @@ public class IHMPlateau extends javax.swing.JFrame {
         setBounds(200, 50, 1500, 970);
         String joueur1 = null;
         String joueur2 = null;
+        
+//        jPanel1.add(JLabelCommentaire);
+//        JLabelCommentaire.setOpaque(true);
+        jLabelCommentaire.setFont(new Font("Segoe Script", 1, 24));
+        jLabelCommentaire.setSize(500, 100);
+        jLabelCommentaire.setForeground(Color.white);
+        jLabelCommentaire.setText("<HTML> Le joueur Bleu commence </HTML>");
+//        JLabelCommentaire.setSize(100, 100);
+//        JLabelCommentaire.setBounds(50, 500, 500, 50);
+        
         jPanel1.setFocusable(true);
         pieces = tableauDesPieces.InitialisationTableauDesPieces();
 
@@ -122,7 +144,6 @@ public class IHMPlateau extends javax.swing.JFrame {
 
         } catch (IOException ex) {
             System.out.println("fichier introuvable");
-
         }
 
     }
@@ -165,6 +186,7 @@ public class IHMPlateau extends javax.swing.JFrame {
         jButtonQuitter = new javax.swing.JButton();
         jLabelNomJoueur2 = new javax.swing.JLabel();
         jLabelNomJoueur1 = new javax.swing.JLabel();
+        jLabelCommentaire = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -195,15 +217,23 @@ public class IHMPlateau extends javax.swing.JFrame {
         });
 
         jLabelNomJoueur2.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabelNomJoueur2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelNomJoueur2.setForeground(new java.awt.Color(255, 0, 0));
 
         jLabelNomJoueur1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabelNomJoueur1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelNomJoueur1.setForeground(new java.awt.Color(51, 51, 255));
+
+        jLabelCommentaire.setText("jLabel1");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(1154, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButtonRejouer)
+                    .addComponent(jButtonQuitter))
+                .addGap(33, 33, 33))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,20 +241,14 @@ public class IHMPlateau extends javax.swing.JFrame {
                         .addComponent(jLabelNomJoueur1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(699, 699, 699)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButtonQuitter))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButtonRejouer)))
-                        .addGap(33, 33, 33))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabelNomJoueur2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButtonSauvegarde))
                         .addGap(20, 20, 20))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(83, 83, 83)
+                .addComponent(jLabelCommentaire, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -237,7 +261,9 @@ public class IHMPlateau extends javax.swing.JFrame {
                 .addComponent(jButtonRejouer)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonQuitter)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 180, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabelCommentaire, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 260, Short.MAX_VALUE)
                 .addComponent(jLabelNomJoueur1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
         );
@@ -259,7 +285,6 @@ public class IHMPlateau extends javax.swing.JFrame {
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
         String ImageCible;
         Animal animal = new Animal();
-        IHMMessageVictoire ihmMessageVictoire = new IHMMessageVictoire();
 
 //        jLabelTourJoueur.setText("Le joueur bleu commence la partie");
         if (Objects.equals(ElementSelectionne, FALSE)) {
@@ -281,6 +306,7 @@ public class IHMPlateau extends javax.swing.JFrame {
                         imageCible = "image" + pieces[l1][c1];
                         ElementSelectionne = TRUE;
                         System.out.println("=> Element sélectionne BLEU OK");
+                        jLabelCommentaire.setText("Le joueur bleu a sélectionné" + " " + pieces[l1][c1]);
                     }
                 }
                 if (JoueurRouge == TRUE) {
@@ -288,6 +314,7 @@ public class IHMPlateau extends javax.swing.JFrame {
                         imageCible = "image" + pieces[l1][c1];
                         ElementSelectionne = TRUE;
                         System.out.println("=> Element sélectionne ROUGE OK");
+                        jLabelCommentaire.setText("Le joueur rouge a sélectionné" + " " + pieces[l1][c1]);
                     }
                 }
             }
@@ -307,24 +334,23 @@ public class IHMPlateau extends javax.swing.JFrame {
                     if (pieces[l2][c2] != null) {
                         if (animal.combat(pieces, l1, c1, l2, c2) == pieces[l1][c1]) {
                             try {
-                                afficherPrisePionBleu(pieces[l2][c2], PositionPriseX, PositionPriseY);
+                                afficherPrise(pieces[l2][c2]);
 //                                afficherPrise(pieces[l2][c2], "bleu");
                             } catch (IOException ex) {
                                 Logger.getLogger(IHMPlateau.class.getName()).log(Level.SEVERE, null, ex);
-
                             }
                             tableauDesPieces.majTableauPiece(pieces, c1, l1, c2, l2);
                             // Afficher piece prise "pieces[l2][c2]" à gauche du plateau
                         } else {
-                            pieces[l1][c1] = null;
                             tableauDesPieces.AfficherTableauPieces(pieces);
                             try {
                                 // Afficher piece prise "pieces[l1][c1]" à gauche du plateau
-                                afficherPrisePionBleu(pieces[l1][c1], PositionPriseX, PositionPriseY);
+                                afficherPrise(pieces[l1][c1]);
 //                                afficherPrise(pieces[l1][c1], "bleu");
                             } catch (IOException ex) {
                                 Logger.getLogger(IHMPlateau.class.getName()).log(Level.SEVERE, null, ex);
                             }
+                            pieces[l1][c1] = null;
                         }
                     } else {
                         // si case 2 = null
@@ -338,7 +364,6 @@ public class IHMPlateau extends javax.swing.JFrame {
                 }
             }
         }
-
     }//GEN-LAST:event_jPanel1MouseClicked
 
     private void jButtonQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonQuitterActionPerformed
@@ -400,42 +425,6 @@ public class IHMPlateau extends javax.swing.JFrame {
         }
     }
 
-//                if ("LionRouge".equals(pieces[NumLigne][NumCol])) {
-//                    g.drawImage(imageLionRouge, colonne[NumCol], ligne[NumLigne], 80, 80, null);
-//                } else if ("TigreRouge".equals(pieces[NumLigne][NumCol])) {
-//                    g.drawImage(imageTigreRouge, colonne[NumCol], ligne[NumLigne], 80, 80, null);
-//                } else if ("ChienRouge".equals(pieces[NumLigne][NumCol])) {
-//                    g.drawImage(imageChienRouge, colonne[NumCol], ligne[NumLigne], 80, 80, null);
-//                } else if ("ChatRouge".equals(pieces[NumLigne][NumCol])) {
-//                    g.drawImage(imageChatRouge, colonne[NumCol], ligne[NumLigne], 80, 80, null);
-//                } else if ("RatRouge".equals(pieces[NumLigne][NumCol])) {
-//                    g.drawImage(imageRatRouge, colonne[NumCol], ligne[NumLigne], 80, 80, null);
-//                } else if ("LeopardRouge".equals(pieces[NumLigne][NumCol])) {
-//                    g.drawImage(imageLeopardRouge, colonne[NumCol], ligne[NumLigne], 80, 80, null);
-//                } else if ("LoupRouge".equals(pieces[NumLigne][NumCol])) {
-//                    g.drawImage(imageLoupRouge, colonne[NumCol], ligne[NumLigne], 80, 80, null);
-//                } else if ("ElephantRouge".equals(pieces[NumLigne][NumCol])) {
-//                    g.drawImage(imageElephantRouge, colonne[NumCol], ligne[NumLigne], 80, 80, null);
-//                } else if ("LionBleu".equals(pieces[NumLigne][NumCol])) {
-//                    g.drawImage(imageLionBleu, colonne[NumCol], ligne[NumLigne], 80, 80, null);
-//                } else if ("TigreBleu".equals(pieces[NumLigne][NumCol])) {
-//                    g.drawImage(imageTigreBleu, colonne[NumCol], ligne[NumLigne], 80, 80, null);
-//                } else if ("ChienBleu".equals(pieces[NumLigne][NumCol])) {
-//                    g.drawImage(imageChienBleu, colonne[NumCol], ligne[NumLigne], 80, 80, null);
-//                } else if ("ChatBleu".equals(pieces[NumLigne][NumCol])) {
-//                    g.drawImage(imageChatBleu, colonne[NumCol], ligne[NumLigne], 80, 80, null);
-//                } else if ("RatBleu".equals(pieces[NumLigne][NumCol])) {
-//                    g.drawImage(imageRatBleu, colonne[NumCol], ligne[NumLigne], 80, 80, null);
-//                } else if ("LeopardBleu".equals(pieces[NumLigne][NumCol])) {
-//                    g.drawImage(imageLeopardBleu, colonne[NumCol], ligne[NumLigne], 80, 80, null);
-//                } else if ("LoupBleu".equals(pieces[NumLigne][NumCol])) {
-//                    g.drawImage(imageLoupBleu, colonne[NumCol], ligne[NumLigne], 80, 80, null);
-//                } else if ("ElephantBleu".equals(pieces[NumLigne][NumCol])) {
-//                    g.drawImage(imageElephantBleu, colonne[NumCol], ligne[NumLigne], 80, 80, null);
-//                }
-//            }
-//        }
-//    }
     public void changerDeJoueur() {
         if (JoueurBleu == TRUE) {
             JoueurBleu = FALSE;
@@ -454,9 +443,11 @@ public class IHMPlateau extends javax.swing.JFrame {
     public boolean inPlateau(int x, int y) {
         if ((x < 590) || (x > 1290)) {
             System.out.println("Hors du cadre x");
+            jLabelCommentaire.setText("Veuillez sélectionner une case du plateau");
             return false;
         } else if ((y < 20) || (y > 955)) {
             System.out.println("Hors du cadre y");
+            jLabelCommentaire.setText("Veuillez sélectionner une case du plateau");
             return false;
         } else {
             return true;
@@ -470,17 +461,43 @@ public class IHMPlateau extends javax.swing.JFrame {
         jLabelNomJoueur2.setText("Joueur Rouge : " + jR);
     }
 
-    public void afficherPrisePionBleu(String piece, int x, int y) throws IOException {
+    public char CouleurPièces(String piece) {
+        if (piece.contains("Bleu")) {
+            return 'b';
+        } else {
+            return 'r';
+        }
+    }
+
+    public void afficherPrise(String piece) throws IOException {
         Graphics g = this.getGraphics();
         BufferedImage image = imageAnimal(piece);
-        g.drawImage(image, PositionPriseX, PositionPriseY, 80, 80, null);
-        // affiche les pions mangés en dehors du plateau
-        if (PositionPriseX < 400) {
-            PositionPriseX += 100;
-            PositionPriseY = 150;
+        if (CouleurPièces(piece) == 'b') {
+            NbrePiecesBleu += 1;
+            g.drawImage(image, PositionPriseXB, PositionPriseYB, 80, 80, null);
+            if (NbrePiecesBleu == 8) {
+                ihmMessageVictoire.recupPlateau(this, joueurBleu);
+            }
+            // affiche les pions mangés en dehors du plateau
+            if (PositionPriseXB < 400) {
+                PositionPriseXB += 100;
+            } else {
+                PositionPriseXB = 50;
+                PositionPriseYB += 100;
+            }
         } else {
-            PositionPriseX = 50;
-            PositionPriseY += 100;
+            NbrePiecesRouge += 1;
+            g.drawImage(image, PositionPriseXR, PositionPriseYR, 80, 80, null);
+            if (NbrePiecesRouge == 8) {
+                ihmMessageVictoire.recupPlateau(this, joueurRouge);
+            }
+            // affiche les pions mangés en dehors du plateau
+            if (PositionPriseXR < 400) {
+                PositionPriseXR += 100;
+            } else {
+                PositionPriseXR = 50;
+                PositionPriseYR -= 100;
+            }
         }
     }
 
@@ -531,6 +548,7 @@ public class IHMPlateau extends javax.swing.JFrame {
     private javax.swing.JButton jButtonQuitter;
     private javax.swing.JButton jButtonRejouer;
     private javax.swing.JButton jButtonSauvegarde;
+    private javax.swing.JLabel jLabelCommentaire;
     private javax.swing.JLabel jLabelNomJoueur1;
     private javax.swing.JLabel jLabelNomJoueur2;
     private javax.swing.JPanel jPanel1;
