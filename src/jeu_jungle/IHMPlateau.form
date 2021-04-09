@@ -45,7 +45,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="1154" max="32767" attributes="0"/>
+                  <EmptySpace pref="1166" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="jButtonRejouer" alignment="1" min="-2" max="-2" attributes="0"/>
                       <Component id="jButtonQuitter" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -109,6 +109,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Rejouer"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRejouerActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonSauvegarde">
           <Properties>
@@ -123,6 +126,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Sauvegarde"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonSauvegardeActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jButtonQuitter">
           <Properties>

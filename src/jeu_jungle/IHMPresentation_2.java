@@ -22,6 +22,8 @@ public class IHMPresentation_2 extends javax.swing.JFrame {
 
     private BufferedImage imagefond_jungle;
 
+    FichiersParties fichiersParties = new FichiersParties();
+
     public IHMPresentation_2() throws HeadlessException {
         initComponents();
         setTitle("Présentation");
@@ -85,6 +87,11 @@ public class IHMPresentation_2 extends javax.swing.JFrame {
         jButtonCharger.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jButtonCharger.setForeground(new java.awt.Color(0, 102, 51));
         jButtonCharger.setText("Charger une sauvegarde");
+        jButtonCharger.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonChargerActionPerformed(evt);
+            }
+        });
 
         jLabelBienvenue.setFont(new java.awt.Font("Segoe Script", 1, 48)); // NOI18N
         jLabelBienvenue.setText("Bienvenue");
@@ -154,6 +161,11 @@ public class IHMPresentation_2 extends javax.swing.JFrame {
     private void jButtonQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonQuitterActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jButtonQuitterActionPerformed
+
+    private void jButtonChargerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChargerActionPerformed
+        fichiersParties.LireFichier();
+        this.setVisible(false);
+    }//GEN-LAST:event_jButtonChargerActionPerformed
 
     /**
      * @param args the command line arguments

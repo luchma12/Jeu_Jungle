@@ -38,10 +38,10 @@ public class TableauDesPieces {
         }
     }
 
-    public void movePiece(Graphics g, Image i, int froml, int fromc, int tol, int toc) {
-        g.drawImage(i, toc + 10, tol + 45, 80, 80, null);
-        g.clearRect(fromc + 10, froml + 45, 82, 82);
-    }
+//    public void movePiece(Graphics g, Image i, int froml, int fromc, int tol, int toc) {
+//        g.drawImage(i, toc + 10, tol + 45, 80, 80, null);
+//        g.clearRect(fromc + 10, froml + 45, 82, 82);
+//    }
 
     public void majTableauPiece(String[][] p, int c1, int l1, int c2, int l2) {
         /* Mise à jour du tableau pieces */

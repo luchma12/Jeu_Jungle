@@ -1,0 +1,11 @@
+null null null TaniereRouge null null null 
+LionRouge ChienRouge null null null ChatRouge TigreRouge 
+RatRouge null null LeopardRouge LoupRouge null ElephantRouge 
+null null null null null null null 
+null null null null null null null 
+null null null null null null RatBleu 
+ElephantBleu null null LoupBleu LeopardBleu null null 
+TigreBleu ChatBleu null null null ChienBleu LionBleu 
+null null null TaniereBleu null null null 
+fbgxfbv
+sgfvxdv
