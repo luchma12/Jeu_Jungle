@@ -22,13 +22,13 @@ public class FichiersParties {
 
     IHMPlateau ihmPlateau = new IHMPlateau();
 
-    public void LireFichier() {
+    public void LireFichier(String nom) {
         int i = 0;
         System.out.print("LireFichier debut");
 
         try {
 //            File fichier = new File("Sauvegarde_" + dateFormat.format(actuelle) + ".txt");
-            File fichier = new File("C:\\Users\\lucas\\OneDrive\\Documents\\NetBeansProjects\\Jeu_Jungle\\Parties_Sauvegardees\\Sauvegarde.txt");
+            File fichier = new File(nom);
 
             FileReader fr = new FileReader(fichier.getAbsoluteFile());
             BufferedReader br = new BufferedReader(fr);

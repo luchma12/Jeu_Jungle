@@ -163,7 +163,7 @@ public class IHMPresentation_2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonQuitterActionPerformed
 
     private void jButtonChargerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonChargerActionPerformed
-        fichiersParties.LireFichier();
+        fichiersParties.LireFichier("Parties_Sauvegardees//Sauvegarde.txt");
         this.setVisible(false);
     }//GEN-LAST:event_jButtonChargerActionPerformed
 
