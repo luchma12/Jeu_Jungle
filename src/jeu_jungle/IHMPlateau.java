@@ -188,6 +188,7 @@ public class IHMPlateau extends javax.swing.JFrame {
         jLabelNomJoueur2 = new javax.swing.JLabel();
         jLabelNomJoueur1 = new javax.swing.JLabel();
         jLabelCommentaire = new javax.swing.JLabel();
+        jButtonRegles = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -235,6 +236,16 @@ public class IHMPlateau extends javax.swing.JFrame {
 
         jLabelCommentaire.setToolTipText("");
 
+        jButtonRegles.setBackground(new java.awt.Color(131, 198, 131));
+        jButtonRegles.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jButtonRegles.setForeground(new java.awt.Color(0, 102, 51));
+        jButtonRegles.setText("Règles");
+        jButtonRegles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonReglesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -243,7 +254,9 @@ public class IHMPlateau extends javax.swing.JFrame {
                 .addContainerGap(1166, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButtonRejouer)
-                    .addComponent(jButtonQuitter))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jButtonRegles)
+                        .addComponent(jButtonQuitter)))
                 .addGap(33, 33, 33))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
@@ -272,8 +285,13 @@ public class IHMPlateau extends javax.swing.JFrame {
                 .addComponent(jButtonRejouer)
                 .addGap(18, 18, 18)
                 .addComponent(jButtonQuitter)
-                .addGap(52, 52, 52)
-                .addComponent(jLabelCommentaire, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(52, 52, 52)
+                        .addComponent(jLabelCommentaire, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jButtonRegles)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 226, Short.MAX_VALUE)
                 .addComponent(jLabelNomJoueur1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28))
@@ -410,6 +428,11 @@ public class IHMPlateau extends javax.swing.JFrame {
         IHMNom_Joueur ihmNom_Joueur = new IHMNom_Joueur();
         ihmNom_Joueur.setVisible(true);
     }//GEN-LAST:event_jButtonRejouerActionPerformed
+
+    private void jButtonReglesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReglesActionPerformed
+        IHMRegles ihmRegles = new IHMRegles();
+        ihmRegles.setVisible(true);
+    }//GEN-LAST:event_jButtonReglesActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -638,9 +661,12 @@ public class IHMPlateau extends javax.swing.JFrame {
         }
         return null;
     }
+    
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonQuitter;
+    private javax.swing.JButton jButtonRegles;
     private javax.swing.JButton jButtonRejouer;
     private javax.swing.JButton jButtonSauvegarde;
     private javax.swing.JLabel jLabelCommentaire;
