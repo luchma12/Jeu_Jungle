@@ -39,19 +39,21 @@ public class Animal {
     @SuppressWarnings("empty-statement")
     // renvoie True si la pièce sélectionnée est un animal bleu
     public boolean IsAnimalJoueurBleu(String a) {
-        System.out.println("IsAnimalJoueurBleu 1 => Le joueur bleu a sélectionné le " + a);
-        if ((a.equals("ElephantBleu")) || (a.equals("LoupBleu")) || (a.equals("LeopardBleu")) || (a.equals("RatBleu")) || (a.equals("ChatBleu"))
-                || (a.equals("ChienBleu")) || (a.equals("TigreBleu")) || (a.equals("LionBleu"))) {
-            return true;
+        if (a != null) {
+            if ((a.equals("ElephantBleu")) || (a.equals("LoupBleu")) || (a.equals("LeopardBleu")) || (a.equals("RatBleu")) || (a.equals("ChatBleu"))
+                    || (a.equals("ChienBleu")) || (a.equals("TigreBleu")) || (a.equals("LionBleu"))) {
+                return true;
+            }
         }
         return false;
     }
 
     public boolean IsAnimalJoueurRouge(String a) {
-        System.out.println("IsAnimalJoueurRouge => Le joueur rouge a sélectionné le  " + a);
-        if ((a.equals("ElephantRouge")) || (a.equals("LoupRouge")) || (a.equals("LeopardRouge")) || (a.equals("RatRouge")) || (a.equals("ChatRouge"))
-                || (a.equals("ChienRouge")) || (a.equals("TigreRouge")) || (a.equals("LionRouge"))) {
-            return true;
+        if (a != null) {
+            if ((a.equals("ElephantRouge")) || (a.equals("LoupRouge")) || (a.equals("LeopardRouge")) || (a.equals("RatRouge")) || (a.equals("ChatRouge"))
+                    || (a.equals("ChienRouge")) || (a.equals("TigreRouge")) || (a.equals("LionRouge"))) {
+                return true;
+            }
         }
         return false;
     }
@@ -60,12 +62,16 @@ public class Animal {
     // Vérifie que la case sélectionnée ne contient pas un animal de la même couleur
     public boolean IsLegalMouvement(String[][] p, int l1, int c1, int l2, int c2) {
         Boolean mvtLegal = false;
+        System.out.println("IsLegalMouvement => " + p[l1][c1]);
         if (p[l1][c1] == null) {
+            System.out.println("IsLegalMouvement => null");
             return false;
         } else {
             if ((p[l1][c1].equals("TigreRouge") || p[l1][c1].equals("TigreBleu") || p[l1][c1].equals("LionRouge") || p[l1][c1].equals("LionBleu")) && sauterRiviere(p, l1, c1, l2, c2)) {
                 System.out.println("IsLegalMouvement: Tigre ou Lion");
                 return true;
+//        } else if (p[l1][c1] == null) {
+//            return false;
             } else if (!isRiver(l2, c2) || p[l1][c1].equals("RatRouge") || p[l1][c1].equals("RatBleu")) {
                 if ((l2 == l1 - 1) && (c2 == c1)) {
                     System.out.println("Le mouvement est legal part1");

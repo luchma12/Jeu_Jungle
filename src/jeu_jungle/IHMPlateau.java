@@ -31,7 +31,7 @@ import javax.swing.Timer;
  * @author lucas
  */
 public class IHMPlateau extends javax.swing.JFrame {
-    
+
     private File fichierfond2 = new File("src/Image/fond2.png");
     private File fichierPlateau = new File("src/Image/Plateau.PNG");
     private File fichierElephantRouge = new File("src/Image/EléphantRouge.png");
@@ -50,7 +50,7 @@ public class IHMPlateau extends javax.swing.JFrame {
     private File fichierChatBleu = new File("src/Image/ChatBleu.png");
     private File fichierRatRouge = new File("src/Image/RatRouge.png");
     private File fichierRatBleu = new File("src/Image/RatBleu.png");
-    
+
     private BufferedImage imagefond2;
     private BufferedImage imagePlateau;
     private BufferedImage imageElephantRouge;
@@ -69,40 +69,42 @@ public class IHMPlateau extends javax.swing.JFrame {
     private BufferedImage imageChatBleu;
     private BufferedImage imageRatRouge;
     private BufferedImage imageRatBleu;
-    
-    int[] ligne = {65, 165, 265, 365, 465, 565, 665, 765, 865};
-    int[] colonne = {600, 700, 800, 900, 1000, 1100, 1200};
-    
+
+    int[] ligne = {25, 125, 225, 325, 425, 525, 625, 725, 825};
+    int[] colonne = {590, 690, 790, 890, 990, 1090, 1190};
+
     Boolean ElementSelectionne = FALSE;
     // Le joueur Bleu commence la partie
     Boolean JoueurBleu = TRUE;
     Boolean JoueurRouge = FALSE;
-    
+
     TableauDesPieces tableauDesPieces;
     String[][] pieces;
-    
+
+    String[] prises = {"LionRouge", "ElephantBleu", "RatRouge", "RatBleu", "LionRouge", "ChatBleu"};
+
     int coordonnee_c1 = 0;
     int coordonnee_l1 = 0;
     int coordonnee_c2 = 0;
     int coordonnee_l2 = 0;
-    
+
     String imageCible;
     String NomJoueurBleu = null;
     String NomJoueurRouge = null;
-    
+
     int c1 = 0;
     int l1 = 0;
     int c2 = 0;
     int l2 = 0;
-    
+
     int PositionPriseXB = 50;
     int PositionPriseYB = 100;
     int PositionPriseXR = 50;
     int PositionPriseYR = 800;
-    
+
     int NbrePiecesBleu = 0;
     int NbrePiecesRouge = 0;
-    
+
     IHMMessageVictoire ihmMessageVictoire = new IHMMessageVictoire();
 
     /**
@@ -116,15 +118,15 @@ public class IHMPlateau extends javax.swing.JFrame {
         setResizable(false);
         String joueur1 = null;
         String joueur2 = null;
-        
+
         jLabelCommentaire.setFont(new Font("Segoe Script", 1, 24));
         jLabelCommentaire.setSize(500, 100);
         jLabelCommentaire.setForeground(Color.white);
         jLabelCommentaire.setText("<HTML> Le joueur Bleu commence </HTML>");
-        
+
         jPanel1.setFocusable(true);
         pieces = tableauDesPieces.InitialisationTableauDesPieces();
-        
+
         try {
             imagefond2 = ImageIO.read(fichierfond2);
             imagePlateau = ImageIO.read(fichierPlateau);
@@ -144,10 +146,11 @@ public class IHMPlateau extends javax.swing.JFrame {
             imageChatBleu = ImageIO.read(fichierChatBleu);
             imageRatRouge = ImageIO.read(fichierRatRouge);
             imageRatBleu = ImageIO.read(fichierRatBleu);
-            
+
         } catch (IOException ex) {
             System.out.println("fichier introuvable");
         }
+//        afficherPlateau();
     }
 
     /**
@@ -160,26 +163,21 @@ public class IHMPlateau extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel(){
-            public void paintComponent(Graphics g)
-            {
+            public void paintComponent(Graphics g){
+                System.out.println("paintComponent => début");
                 g.drawImage(imagefond2, 0, 0, 1500, 970, null);
                 g.drawImage(imagePlateau, 580, 10, 700, 900, null);
-                g.drawImage(imageElephantRouge, 1190, 220, 80, 80, null);
-                g.drawImage(imageElephantBleu, 590, 620, 80, 80, null);
-                g.drawImage(imageTigreRouge, 1190, 20, 80, 80, null);
-                g.drawImage(imageTigreBleu, 590, 820, 80, 80, null);
-                g.drawImage(imageLionRouge, 590, 20, 80, 80, null);
-                g.drawImage(imageLionBleu, 1190, 820, 80, 80, null);
-                g.drawImage(imageLeopardRouge, 790, 220, 80, 80, null);
-                g.drawImage(imageLeopardBleu, 990, 620, 80, 80, null);
-                g.drawImage(imageLoupRouge, 990, 220, 80, 80, null);
-                g.drawImage(imageLoupBleu, 790, 620, 80, 80, null);
-                g.drawImage(imageChienRouge, 690, 120, 80, 80, null);
-                g.drawImage(imageChienBleu, 1090, 720, 80, 80, null);
-                g.drawImage(imageChatRouge, 1090, 120, 80, 80, null);
-                g.drawImage(imageChatBleu, 690, 720, 80, 80, null);
-                g.drawImage(imageRatRouge, 590, 220, 80, 80, null);
-                g.drawImage(imageRatBleu, 1190, 620, 80, 80, null);
+                for (int NumLigne = 0; NumLigne < 9; NumLigne++) {
+                    for (int NumCol = 0; NumCol < 7; NumCol++) {
+                        g.drawImage(imageAnimal(pieces[NumLigne][NumCol]), colonne[NumCol], ligne[NumLigne], 80, 80, null);
+                    }
+                }
+                try {
+                    afficherLesPrises();
+                } catch (IOException ex) {
+                    Logger.getLogger(IHMPlateau.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                System.out.println("paintComponent => fin");
 
             }
         };
@@ -193,6 +191,7 @@ public class IHMPlateau extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel1MouseClicked(evt);
@@ -309,9 +308,9 @@ public class IHMPlateau extends javax.swing.JFrame {
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
         String ImageCible;
         Animal animal = new Animal();
-        afficherPlateau();
+//        afficherPlateau();
         tableauDesPieces.AfficherTableauPieces(pieces);
-        
+
         System.out.println("jPanel1MouseClicked => JoueurBleu = " + JoueurBleu);
         if (Objects.equals(ElementSelectionne, FALSE)) {
             System.out.println("jPanel1MouseClicked => Element sélectionne FALSE");
@@ -334,7 +333,6 @@ public class IHMPlateau extends javax.swing.JFrame {
                         jLabelCommentaire.setText("<HTML>" + "Le joueur bleu a sélectionné le " + " " + pieces[l1][c1] + "</HTML>");
                     } else {
                         jLabelCommentaire.setText("<HTML> Veuillez sélectionner un animal bleu </HTML>");
-                        
                     }
                 }
                 if (JoueurRouge == TRUE) {
@@ -353,7 +351,7 @@ public class IHMPlateau extends javax.swing.JFrame {
             int y2 = evt.getY();
             if ((inPlateau(x2, y2))) {
                 /* Formule a revoir */
-                c2 = ((x2 - 590) / 100);
+                c2 = ((x2 - 580) / 100);
                 coordonnee_c2 = colonne[c2];
                 l2 = (y2 / 100);
                 coordonnee_l2 = ligne[l2];
@@ -368,28 +366,28 @@ public class IHMPlateau extends javax.swing.JFrame {
                         pieces[l2][c2] = null;
                     }
 //                    tableauDesPieces.AfficherTableauPieces(pieces);
-
                     if (pieces[l2][c2] != null) {
 //                    if (!pieces[l2][c2].equals("null")) {
                         if (animal.combat(pieces, l1, c1, l2, c2) == pieces[l1][c1]) {
-                            try {
-                                afficherPrise(pieces[l2][c2]);
-                            } catch (IOException ex) {
-                                Logger.getLogger(IHMPlateau.class.getName()).log(Level.SEVERE, null, ex);
-                            }
+//                            try {
+//                                afficherPrise(pieces[l2][c2]);
+//                            } catch (IOException ex) {
+//                                Logger.getLogger(IHMPlateau.class.getName()).log(Level.SEVERE, null, ex);
+//                            }
                             jLabelCommentaire.setText("<HTML>" + pieces[l1][c1] + " a gagné le combat" + "</HTML>");
                             tableauDesPieces.majTableauPiece(pieces, c1, l1, c2, l2);
+//                            enregistrerDeplacement();
 
                             // Afficher piece prise "pieces[l2][c2]" à gauche du plateau
                         } else {
 //                            tableauDesPieces.AfficherTableauPieces(pieces);
-                            try {
-                                // Afficher piece prise "pieces[l1][c1]" à gauche du plateau
-                                afficherPrise(pieces[l1][c1]);
-//                                afficherPrise(pieces[l1][c1], "bleu");
-                            } catch (IOException ex) {
-                                Logger.getLogger(IHMPlateau.class.getName()).log(Level.SEVERE, null, ex);
-                            }
+//                            try {
+//                                // Afficher piece prise "pieces[l1][c1]" à gauche du plateau
+//                                afficherPrise(pieces[l1][c1]);
+////                                afficherPrise(pieces[l1][c1], "bleu");
+//                            } catch (IOException ex) {
+//                                Logger.getLogger(IHMPlateau.class.getName()).log(Level.SEVERE, null, ex);
+//                            }
                             jLabelCommentaire.setText("<HTML>" + pieces[l2][c2] + " a gagné le combat" + "</HTML>");
                             pieces[l1][c1] = null;
                         }
@@ -397,8 +395,9 @@ public class IHMPlateau extends javax.swing.JFrame {
                         // si case 2 = null
                         System.out.println("jPanel1MouseClicked => pieces l2 c2 = 2 " + pieces[l2][c2]);
                         tableauDesPieces.majTableauPiece(pieces, c1, l1, c2, l2);
+//                        enregistrerDeplacement();
                     }
-                    afficherPlateau();
+//                    afficherPlateau();
                     // Passer la main à l'autre joueur
                     ElementSelectionne = FALSE;
                     changerDeJoueur();
@@ -407,6 +406,7 @@ public class IHMPlateau extends javax.swing.JFrame {
                 }
             }
         }
+        jPanel1.repaint();
     }//GEN-LAST:event_jPanel1MouseClicked
 
     private void jButtonQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonQuitterActionPerformed
@@ -414,7 +414,7 @@ public class IHMPlateau extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonQuitterActionPerformed
 
     private void jButtonSauvegardeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSauvegardeActionPerformed
-        sauvegarderPartie();
+        sauvegarderPartie("Parties_Sauvegardees\\Sauvegarde.txt");
     }//GEN-LAST:event_jButtonSauvegardeActionPerformed
 
     private void jButtonRejouerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRejouerActionPerformed
@@ -442,21 +442,21 @@ public class IHMPlateau extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                    
+
                 }
             }
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(IHMPlateau.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            
+
         } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(IHMPlateau.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            
+
         } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(IHMPlateau.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
-            
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(IHMPlateau.class
                     .getName()).log(java.util.logging.Level.SEVERE, null, ex);
@@ -470,20 +470,40 @@ public class IHMPlateau extends javax.swing.JFrame {
             }
         });
     }
-    
-    public void afficherPlateau() {
-        Graphics g = this.getGraphics();
-        BufferedImage image;
-        g.clearRect(590, 55, 700, 900);
-        g.drawImage(imagePlateau, 590, 55, 700, 900, null);
-        for (int NumLigne = 0; NumLigne < 9; NumLigne++) {
-            for (int NumCol = 0; NumCol < 7; NumCol++) {
-                image = imageAnimal(pieces[NumLigne][NumCol]);
-                g.drawImage(image, colonne[NumCol], ligne[NumLigne], 80, 80, null);
-            }
-        }
-    }
-    
+
+//    public void paintComponent(Graphics g) {
+//        System.out.println("chargerPlateau => début");
+//
+//        g.drawImage(imagePlateau, 580, 10, 700, 900, null);
+//        g.drawImage(imageElephantRouge, 1190, 220, 80, 80, null);
+//        g.drawImage(imageElephantBleu, 590, 620, 80, 80, null);
+//        g.drawImage(imageTigreRouge, 1190, 20, 80, 80, null);
+//        g.drawImage(imageTigreBleu, 590, 820, 80, 80, null);
+//        g.drawImage(imageLionRouge, 590, 20, 80, 80, null);
+//        g.drawImage(imageLionBleu, 1190, 820, 80, 80, null);
+//        g.drawImage(imageLeopardRouge, 790, 220, 80, 80, null);
+//        g.drawImage(imageLeopardBleu, 990, 620, 80, 80, null);
+//        g.drawImage(imageLoupRouge, 990, 220, 80, 80, null);
+//        g.drawImage(imageLoupBleu, 790, 620, 80, 80, null);
+//        g.drawImage(imageChienRouge, 690, 120, 80, 80, null);
+//        g.drawImage(imageChienBleu, 1090, 720, 80, 80, null);
+//        g.drawImage(imageChatRouge, 1090, 120, 80, 80, null);
+//        g.drawImage(imageChatBleu, 690, 720, 80, 80, null);
+//        g.drawImage(imageRatRouge, 590, 220, 80, 80, null);
+//        g.drawImage(imageRatBleu, 1190, 620, 80, 80, null);
+//        System.out.println("chargerPlateau => fin");
+//    }
+//    public void afficherPlateau() {
+//        Graphics g = this.getGraphics();
+//        BufferedImage image;
+//        g.drawImage(imagePlateau, 590, 55, 700, 900, null);
+//        for (int NumLigne = 0; NumLigne < 9; NumLigne++) {
+//            for (int NumCol = 0; NumCol < 7; NumCol++) {
+//                image = imageAnimal(pieces[NumLigne][NumCol]);
+//                g.drawImage(image, colonne[NumCol], ligne[NumLigne], 80, 80, null);
+//            }
+//        }
+//    }
     public void changerDeJoueur() {
         if (JoueurBleu == TRUE) {
             JoueurBleu = FALSE;
@@ -495,13 +515,13 @@ public class IHMPlateau extends javax.swing.JFrame {
             jLabelCommentaire.setText("Au tour du joueur bleu");
         }
     }
-    
+
     public boolean inPlateau(int x, int y) {
-        if ((x < 590) || (x > 1290)) {
+        if ((x < 580) || (x > 1280)) {
             System.out.println("inPlateau => Hors du cadre x");
             jLabelCommentaire.setText("<HTML> Veuillez sélectionner une case du plateau </HTML>");
             return false;
-        } else if ((y < 20) || (y > 955)) {
+        } else if ((y < 10) || (y > 910)) {
             System.out.println("inPlateau => Hors du cadre y");
             jLabelCommentaire.setText("<HTML> Veuillez sélectionner une case du plateau </HTML>");
             return false;
@@ -509,14 +529,14 @@ public class IHMPlateau extends javax.swing.JFrame {
             return true;
         }
     }
-    
+
     public void afficherNomJoueur(String jB, String jR) {
         NomJoueurBleu = jB;
         NomJoueurRouge = jR;
         jLabelNomJoueur1.setText("Joueur Bleu : " + jB);
         jLabelNomJoueur2.setText("Joueur Rouge : " + jR);
     }
-    
+
     public char CouleurPièces(String piece) {
         if (piece.contains("Bleu")) {
             return 'b';
@@ -524,53 +544,77 @@ public class IHMPlateau extends javax.swing.JFrame {
             return 'r';
         }
     }
-    
-    public void afficherPrise(String piece) throws IOException {
+
+//    public void afficherPrise(String piece) throws IOException {
+//        Graphics g = this.getGraphics();
+//        BufferedImage image = imageAnimal(piece);
+//        if (CouleurPièces(piece) == 'b') {
+//            NbrePiecesBleu += 1;
+//            g.drawImage(image, PositionPriseXB, PositionPriseYB, 80, 80, null);
+//            if (NbrePiecesBleu == 8) {
+//                ihmMessageVictoire.recupPlateau(this, NomJoueurBleu);
+//            }
+//            // affiche les pions mangés en dehors du plateau
+//            if (PositionPriseXB < 400) {
+//                PositionPriseXB += 100;
+//            } else {
+//                PositionPriseXB = 50;
+//                PositionPriseYB += 100;
+//            }
+//        } else {
+//            NbrePiecesRouge += 1;
+//            g.drawImage(image, PositionPriseXR, PositionPriseYR, 80, 80, null);
+//            if (NbrePiecesRouge == 8) {
+//                ihmMessageVictoire.recupPlateau(this, NomJoueurRouge);
+//            }
+//            // affiche les pions mangés en dehors du plateau
+//            if (PositionPriseXR < 400) {
+//                PositionPriseXR += 100;
+//            } else {
+//                PositionPriseXR = 50;
+//                PositionPriseYR -= 100;
+//            }
+//        }
+//    }
+    public void afficherPrise(String piece, String couleur, int x) throws IOException {
         Graphics g = this.getGraphics();
         BufferedImage image = imageAnimal(piece);
-        if (CouleurPièces(piece) == 'b') {
-            NbrePiecesBleu += 1;
-            g.drawImage(image, PositionPriseXB, PositionPriseYB, 80, 80, null);
-            if (NbrePiecesBleu == 8) {
-                ihmMessageVictoire.recupPlateau(this, NomJoueurBleu);
-            }
-            // affiche les pions mangés en dehors du plateau
-            if (PositionPriseXB < 400) {
-                PositionPriseXB += 100;
-            } else {
-                PositionPriseXB = 50;
-                PositionPriseYB += 100;
-            }
+        if ("ROUGE".equals(couleur)) {
+            g.drawImage(image, x, 765, 80, 80, null);
         } else {
-            NbrePiecesRouge += 1;
-            g.drawImage(image, PositionPriseXR, PositionPriseYR, 80, 80, null);
-            if (NbrePiecesRouge == 8) {
-                ihmMessageVictoire.recupPlateau(this, NomJoueurRouge);
-            }
-            // affiche les pions mangés en dehors du plateau
-            if (PositionPriseXR < 400) {
-                PositionPriseXR += 100;
+            g.drawImage(image, x, 565, 80, 80, null);
+        }
+    }
+
+    public void afficherLesPrises() throws IOException {
+        Animal animal = new Animal();
+        int nbPionsBleusPrisCol = 100;
+        int nbPionsRougesPrisCol = 100;
+        for (int i = 0; i < prises.length; i++) {
+            if (animal.IsAnimalJoueurRouge(prises[i])) {
+                afficherPrise(prises[i], "ROUGE", nbPionsRougesPrisCol);
+                nbPionsRougesPrisCol += 80;
             } else {
-                PositionPriseXR = 50;
-                PositionPriseYR -= 100;
+                afficherPrise(prises[i], "BLEU", nbPionsBleusPrisCol);
+                nbPionsBleusPrisCol += 80;
             }
         }
     }
-    
-    public void sauvegarderPartie() {
+
+    public void sauvegarderPartie(String nom) {
 //        Date actuelle = new Date();
 //        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
 
         try {
 //            File fichier = new File("Sauvegarde_" + dateFormat.format(actuelle) + ".txt");
-            File fichier = new File("C:\\Users\\lucas\\OneDrive\\Documents\\NetBeansProjects\\Jeu_Jungle\\Parties_Sauvegardees\\Sauvegarde.txt");
+            File fichier = new File(nom);
             // créer le fichier s'il n'existe pas
             if (!fichier.exists()) {
                 fichier.createNewFile();
             }
             FileWriter fw = new FileWriter(fichier.getAbsoluteFile());
             for (int NumLigne = 0; NumLigne < 9; NumLigne++) {
-                
+
                 for (int NumCol = 0; NumCol < 7; NumCol++) {
                     fw.write(pieces[NumLigne][NumCol] + " ");
                 }
@@ -579,19 +623,19 @@ public class IHMPlateau extends javax.swing.JFrame {
             fw.write(NomJoueurBleu + "\n");
             fw.write(NomJoueurRouge + "\n");
             fw.close();
-            
+
             jLabelCommentaire.setText("<HTML> Votre partie a bien été sauvegardée </HTML>");
-            
+
         } catch (IOException e) {
         }
     }
-    
+
     public void enregistrerDeplacement() {
         Date actuelle = new Date();
-        DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
-        
+        DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
+
         try {
-            File fichier = new File("Déplacement_" + dateFormat.format(actuelle) + ".txt");
+            File fichier = new File("Déplacement.txt");
             // créer le fichier s'il n'existe pas
             if (!fichier.exists()) {
                 fichier.createNewFile();

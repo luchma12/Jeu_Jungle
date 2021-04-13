@@ -30,8 +30,8 @@ public class IHMRegles extends javax.swing.JFrame {
      */
     public IHMRegles() {
         initComponents();
-        setTitle("Rappel des Régles");
-        setBounds(200, 50, 1207, 834);
+        setTitle("Rappel des Règles");
+        setBounds(300, 100, 1207, 834);
         try {
             imageRegles = ImageIO.read(fichierRegles);
         } catch (IOException ex) {

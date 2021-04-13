@@ -34,11 +34,16 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="jPanel1">
+      <Properties>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Curseur par d&#xe9;faut"/>
+        </Property>
+      </Properties>
       <Events>
         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jPanel1MouseClicked"/>
       </Events>
       <AuxValues>
-        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(){&#xa;    public void paintComponent(Graphics g)&#xa;    {&#xa;        g.drawImage(imagefond2, 0, 0, 1500, 970, null);&#xa;        g.drawImage(imagePlateau, 580, 10, 700, 900, null);&#xa;        g.drawImage(imageElephantRouge, 1190, 220, 80, 80, null);&#xa;        g.drawImage(imageElephantBleu, 590, 620, 80, 80, null);&#xa;        g.drawImage(imageTigreRouge, 1190, 20, 80, 80, null);&#xa;        g.drawImage(imageTigreBleu, 590, 820, 80, 80, null);&#xa;        g.drawImage(imageLionRouge, 590, 20, 80, 80, null);&#xa;        g.drawImage(imageLionBleu, 1190, 820, 80, 80, null);&#xa;        g.drawImage(imageLeopardRouge, 790, 220, 80, 80, null);&#xa;        g.drawImage(imageLeopardBleu, 990, 620, 80, 80, null);&#xa;        g.drawImage(imageLoupRouge, 990, 220, 80, 80, null);&#xa;        g.drawImage(imageLoupBleu, 790, 620, 80, 80, null);&#xa;        g.drawImage(imageChienRouge, 690, 120, 80, 80, null);&#xa;        g.drawImage(imageChienBleu, 1090, 720, 80, 80, null);&#xa;        g.drawImage(imageChatRouge, 1090, 120, 80, 80, null);&#xa;        g.drawImage(imageChatBleu, 690, 720, 80, 80, null);&#xa;        g.drawImage(imageRatRouge, 590, 220, 80, 80, null);&#xa;        g.drawImage(imageRatBleu, 1190, 620, 80, 80, null);&#xa;&#xa;    }&#xa;}"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JPanel(){&#xa;    public void paintComponent(Graphics g){&#xa;        System.out.println(&quot;paintComponent =&gt; d&#xe9;but&quot;);&#xa;        g.drawImage(imagefond2, 0, 0, 1500, 970, null);&#xa;        g.drawImage(imagePlateau, 580, 10, 700, 900, null);&#xa;        for (int NumLigne = 0; NumLigne &lt; 9; NumLigne++) {&#xa;            for (int NumCol = 0; NumCol &lt; 7; NumCol++) {&#xa;                g.drawImage(imageAnimal(pieces[NumLigne][NumCol]), colonne[NumCol], ligne[NumLigne], 80, 80, null);&#xa;            }&#xa;        }&#xa;        try {&#xa;            afficherLesPrises();&#xa;        } catch (IOException ex) {&#xa;            Logger.getLogger(IHMPlateau.class.getName()).log(Level.SEVERE, null, ex);&#xa;        }&#xa;        System.out.println(&quot;paintComponent =&gt; fin&quot;);&#xa;&#xa;    }&#xa;}"/>
       </AuxValues>
 
       <Layout>
