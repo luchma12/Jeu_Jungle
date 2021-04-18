@@ -182,7 +182,7 @@ public class IHMNom_Joueur extends javax.swing.JFrame {
         System.out.println("joueur 2 = " + joueurRouge);
         IHMPlateau ihmPlateau = new IHMPlateau();
         ihmPlateau.afficherNomJoueur(joueurBleu, joueurRouge);
-//        ihmPlateau.repaint();
+////        ihmPlateau.repaint();
         ihmPlateau.setVisible(true); // afficher le plateau
         this.setVisible(false);
 
