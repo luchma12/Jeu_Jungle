@@ -1,15 +1,15 @@
 LionRouge null null TaniereRouge null null TigreRouge 
-null null null null null ChatRouge null 
+null ChienRouge null null null ChatRouge null 
 null null null null LoupRouge null ElephantRouge 
 null null null null null null null 
-ChienRouge null null LeopardBleu null null null 
 null null null null null null null 
-null null null null null null RatBleu 
+ChatBleu null null LeopardRouge null null null 
+null null null null LeopardBleu null RatBleu 
 null null null null null ChienBleu null 
 TigreBleu null null TaniereBleu null null LionBleu 
-Rocky
-Gamin
-LoupBleu ElephantBleu RatRouge LeopardRouge ChatBleu null null null null null null null null null null null null null null null 
-5
-true
+kkkk
+lllll
+LoupBleu ElephantBleu RatRouge null null null null null null null null null null null null null null null null null 
+3
 false
+true

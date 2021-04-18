@@ -9,6 +9,8 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import static java.lang.Boolean.FALSE;
+import static java.lang.Boolean.TRUE;
 import javax.imageio.ImageIO;
 
 /**
@@ -176,12 +178,14 @@ public class IHMNom_Joueur extends javax.swing.JFrame {
         }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonValiderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonValiderActionPerformed
-        String joueurBleu = jTextFieldJoueur1.getText();
-        String joueurRouge = jTextFieldJoueur2.getText();
-        System.out.println("joueur 1 = " + joueurBleu);
-        System.out.println("joueur 2 = " + joueurRouge);
+        String NomJoueurBleu = jTextFieldJoueur1.getText();
+        String NomJoueurRouge = jTextFieldJoueur2.getText();
+        Boolean JoueurBleu = TRUE;
+        Boolean JoueurRouge = FALSE;
+        System.out.println("joueur 1 = " + NomJoueurBleu);
+        System.out.println("joueur 2 = " + NomJoueurRouge);
         IHMPlateau ihmPlateau = new IHMPlateau();
-        ihmPlateau.afficherNomJoueur(joueurBleu, joueurRouge);
+        ihmPlateau.afficherNomJoueur(NomJoueurBleu, NomJoueurRouge, JoueurBleu, JoueurRouge);
 ////        ihmPlateau.repaint();
         ihmPlateau.setVisible(true); // afficher le plateau
         this.setVisible(false);

@@ -45,7 +45,7 @@ public class FichiersParties {
                 }
                 ihmPlateau.NomJoueurBleu = br.readLine();
                 ihmPlateau.NomJoueurRouge = br.readLine();
-                ihmPlateau.afficherNomJoueur(ihmPlateau.NomJoueurBleu, ihmPlateau.NomJoueurRouge);
+//                ihmPlateau.afficherNomJoueur(ihmPlateau.NomJoueurBleu, ihmPlateau.NomJoueurRouge);
                 remplirPrises(br.readLine());
 //                Graphics g = ihmPlateau.getGraphics();
 //                ihmPlateau.afficherLesPrises(g);
@@ -62,6 +62,7 @@ public class FichiersParties {
                 {
                     ihmPlateau.JoueurRouge = FALSE;
                 };
+                ihmPlateau.afficherNomJoueur(ihmPlateau.NomJoueurBleu, ihmPlateau.NomJoueurRouge,ihmPlateau.JoueurBleu,ihmPlateau.JoueurRouge);
                 System.out.println("LireFichier: JoueurBleu = " + ihmPlateau.JoueurBleu);
                 System.out.println("LireFichier: JoueurRouge = " + ihmPlateau.JoueurRouge);
                 br.close();

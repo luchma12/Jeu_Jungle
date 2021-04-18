@@ -105,11 +105,11 @@ public class Animal {
     }
 
     public boolean win(String a, String jB, String jR) {
-        if (a == "TaniereRouge") {
+        if ("TaniereRouge".equals(a)) {
             System.out.println("Les bleus ont gagné");
             this.gagnant = jB;
             return true;
-        } else if (a == "TaniereBleu") {
+        } else if ("TaniereBleu".equals(a)) {
             System.out.println("Les rouges ont gagné");
             this.gagnant = jR;
             return true;
@@ -121,8 +121,24 @@ public class Animal {
     public String combat(String[][] p, int l1, int c1, int l2, int c2) {
         String animalCourant = p[l1][c1];
         String animalTarget = p[l2][c2];
+       System.out.println( "combat => animalTarget = " + p[l2][c2]);
         // lignes à revoir
-        if (animalTarget != null && animalTarget != "TaniereRouge" && animalTarget != "TaniereBleu") {
+        
+        
+//        if ((animalTarget instanceof String) && animalTarget.equals("TaniereBleu")) {
+//                        System.out.println("combat => animalTarget 2 = " + animalTarget);
+//                    }
+//        if (!"TaniereBleu".equals(animalTarget)) {
+//                        System.out.println("combat => animalTarget 2 = " + animalTarget);
+//                    } else
+//        {
+//            System.out.println("combat => animalTarget 3 = " + animalTarget);
+//        }
+//        
+//        
+        
+       
+        if (animalTarget != null && !"TaniereRouge".equals(animalTarget) && !"TaniereBleu".equals(animalTarget)) {
             orderAnimal(animalCourant, animalTarget, animal1, animal2);
             if (!isPiege(animal2[1], l2, c2)) {
                 // Si la case sélectionnée contient un animal => combat
@@ -139,9 +155,9 @@ public class Animal {
     }
 
     public String plusPuissant(String animalCourant, String animalTarget, String animal1[], String animal2[]) {
-        if (animal1[0] == "RAT" && animal2[0] == "ELEPHANT") {
+        if ("RAT".equals(animal1[0]) && "ELEPHANT".equals(animal2[0])) {
             return animalCourant;
-        } else if (animal1[0] == "ELEPHANT" && animal2[0] == "RAT") {
+        } else if ("ELEPHANT".equals(animal1[0]) && "RAT".equals(animal2[0])) {
             return animalTarget;
         } else if (Integer.parseInt(animal1[2]) >= Integer.parseInt(animal2[2])) {
             return animalCourant;
@@ -151,7 +167,7 @@ public class Animal {
     }
 
     public Boolean isPiege(String couleur, int l, int c) {
-        if (couleur == "BLEU") {
+        if ("BLEU".equals(couleur)) {
             if (l == 0 && c == 2) {
                 return true;
             } else if (l == 0 && c == 4) {
@@ -159,7 +175,7 @@ public class Animal {
             } else if (l == 1 && c == 3) {
                 return true;
             }
-        } else if (couleur == "ROUGE") {
+        } else if ("ROUGE".equals(couleur)) {
             if (l == 7 && c == 3) {
                 return true;
             } else if (l == 8 && c == 2) {

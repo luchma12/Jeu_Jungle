@@ -76,8 +76,10 @@ public class IHMPlateau extends javax.swing.JFrame {
 
     Boolean ElementSelectionne = FALSE;
     // Le joueur Bleu commence la partie
-    Boolean JoueurBleu = TRUE;
-    Boolean JoueurRouge = FALSE;
+//    Boolean JoueurBleu = TRUE;
+//    Boolean JoueurRouge = FALSE;
+    Boolean JoueurBleu;
+    Boolean JoueurRouge;
 
     TableauDesPieces tableauDesPieces;
     String[] prises;
@@ -132,12 +134,20 @@ public class IHMPlateau extends javax.swing.JFrame {
         jLabelCommentaire.setForeground(Color.white);
         System.out.println("ihmPlateau: JoueurBleu = " + JoueurBleu);
         System.out.println("ihmPlateau: JoueurRouge = " + JoueurRouge);
-        if (Objects.equals(JoueurBleu, TRUE)) {
-            jLabelCommentaire.setText("<HTML> Le joueur Bleu commence </HTML>");
-        };
-        if (Objects.equals(JoueurRouge, TRUE)) {
-            jLabelCommentaire.setText("<HTML> Le joueur Rouge commence </HTML>");
-        };
+        System.out.println("ihmPlateau: NomJoueurBleu = " + NomJoueurBleu);
+        System.out.println("ihmPlateau: NomJoueurRouge = " + NomJoueurRouge);
+//        if (Objects.equals(JoueurBleu, null)) {
+//            JoueurBleu = TRUE;
+//            JoueurRouge = FALSE;
+//            jLabelCommentaire.setText("<HTML> Le joueur Bleu commence </HTML>");}
+//        else {
+//        if (Objects.equals(JoueurBleu, TRUE)) {
+//            jLabelCommentaire.setText("<HTML> Le joueur Bleu commence </HTML>");
+//        };
+//        if (Objects.equals(JoueurRouge, TRUE)) {
+//            jLabelCommentaire.setText("<HTML> Le joueur Rouge commence </HTML>");
+//        };
+//        }
 //        
 //        System.out.println("jPanel1MouseClicked => Le joueur bleu commence");
         jPanel1.setFocusable(true);
@@ -328,7 +338,7 @@ public class IHMPlateau extends javax.swing.JFrame {
         Animal animal = new Animal();
 //        afficherPlateau();
 //        tableauDesPieces.AfficherTableauPieces(pieces);
-        outputPrises();
+//        outputPrises();
         if (Objects.equals(ElementSelectionne, FALSE)) {
 //            System.out.println("jPanel1MouseClicked => Element sélectionne FALSE");
             int x1 = evt.getX();
@@ -513,21 +523,30 @@ public class IHMPlateau extends javax.swing.JFrame {
         }
     }
 
-    public void afficherNomJoueur(String jB, String jR) {
+    public void afficherNomJoueur(String jB, String jR, Boolean jBT, Boolean jRT) {
+        System.out.println("****************** afficherNOmJoueur ******************");
         NomJoueurBleu = jB;
         NomJoueurRouge = jR;
+        JoueurBleu = jBT;
+        JoueurRouge = jRT;
         jLabelNomJoueur1.setText("Joueur Bleu : " + jB);
         jLabelNomJoueur2.setText("Joueur Rouge : " + jR);
+        if (Objects.equals(JoueurBleu, TRUE)) {
+            jLabelCommentaire.setText("<HTML> Le joueur Bleu commence </HTML>");
+        } else {
+            jLabelCommentaire.setText("<HTML> Le joueur Rouge commence </HTML>");
+        }
+        
     }
 
     // Pas utilisée ?
-    public char CouleurPièces(String piece) {
-        if (piece.contains("Bleu")) {
-            return 'b';
-        } else {
-            return 'r';
-        }
-    }
+//    public char CouleurPièces(String piece) {
+//        if (piece.contains("Bleu")) {
+//            return 'b';
+//        } else {
+//            return 'r';
+//        }
+//    }
 
     // Sert a afficher le tableau des prises uniquement pour tracer dans la fenêtre output
     public void outputPrises() {
@@ -589,7 +608,7 @@ public class IHMPlateau extends javax.swing.JFrame {
         int NbPiecesRouges = 0;
         int NbPiecesBleues = 0;
         System.out.println("afficherLesPrises => début Prises = ");
-        outputPrises();
+//        outputPrises();
           for (int i = 0; i < NbPrises; i++) {
             if (animal.IsAnimalJoueurRouge(prises[i])) {
                 afficherPrise(g,prises[i], "ROUGE", ColRouge,LigneRouge);
