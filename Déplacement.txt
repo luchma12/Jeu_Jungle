@@ -1,0 +1,11 @@
+Déplacement n°
+
+LionRouge null null TaniereRouge null null TigreRouge 
+null ChienRouge null null null ChatRouge null 
+null null LeopardRouge null LoupRouge null ElephantRouge 
+null null null null null null null 
+RatRouge null null null null null null 
+null null null null null null null 
+ElephantBleu null LoupBleu null LeopardBleu null RatBleu 
+null ChatBleu null null null ChienBleu null 
+TigreBleu null null TaniereBleu null null LionBleu 

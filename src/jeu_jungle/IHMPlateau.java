@@ -8,24 +8,16 @@ package jeu_jungle;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.Objects;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
-import javax.swing.JLabel;
-import javax.swing.Timer;
 
 /**
  *
@@ -75,24 +67,14 @@ public class IHMPlateau extends javax.swing.JFrame {
     int[] colonne = {590, 690, 790, 890, 990, 1090, 1190};
 
     Boolean ElementSelectionne = FALSE;
-    // Le joueur Bleu commence la partie
-//    Boolean JoueurBleu = TRUE;
-//    Boolean JoueurRouge = FALSE;
     Boolean JoueurBleu;
     Boolean JoueurRouge;
 
     TableauDesPieces tableauDesPieces;
     String[] prises;
     String[][] pieces;
-   
-//    String [] prises = {"LionRouge"};
-    int NbPrises=0;
-//    String[] prises = {"LionRouge", "ElephantBleu","LionRouge", "ElephantBleu","LionRouge", "ElephantBleu", "RatRouge", "RatBleu", "LionRouge", "ChatBleu","LionRouge", "ElephantBleu", "RatRouge", "RatBleu", "LionRouge", "ChatBleu"};
 
-    int coordonnee_c1 = 0;
-    int coordonnee_l1 = 0;
-    int coordonnee_c2 = 0;
-    int coordonnee_l2 = 0;
+    int NbPrises = 0;
 
     String imageCible;
     String NomJoueurBleu = null;
@@ -102,14 +84,6 @@ public class IHMPlateau extends javax.swing.JFrame {
     int l1 = 0;
     int c2 = 0;
     int l2 = 0;
-
-//    int PositionPriseXB = 50;
-//    int PositionPriseYB = 100;
-//    int PositionPriseXR = 50;
-//    int PositionPriseYR = 800;
-
-//    int NbrePiecesBleu = 0;
-//    int NbrePiecesRouge = 0;
 
     IHMMessageVictoire ihmMessageVictoire = new IHMMessageVictoire();
 
@@ -126,30 +100,10 @@ public class IHMPlateau extends javax.swing.JFrame {
         setTitle("Plateau de jeu");
         setBounds(200, 50, 1500, 970);
         setResizable(false);
-//        String joueur1 = null;
-//        String joueur2 = null;
 
         jLabelCommentaire.setFont(new Font("Segoe Script", 1, 24));
         jLabelCommentaire.setSize(500, 100);
         jLabelCommentaire.setForeground(Color.white);
-        System.out.println("ihmPlateau: JoueurBleu = " + JoueurBleu);
-        System.out.println("ihmPlateau: JoueurRouge = " + JoueurRouge);
-        System.out.println("ihmPlateau: NomJoueurBleu = " + NomJoueurBleu);
-        System.out.println("ihmPlateau: NomJoueurRouge = " + NomJoueurRouge);
-//        if (Objects.equals(JoueurBleu, null)) {
-//            JoueurBleu = TRUE;
-//            JoueurRouge = FALSE;
-//            jLabelCommentaire.setText("<HTML> Le joueur Bleu commence </HTML>");}
-//        else {
-//        if (Objects.equals(JoueurBleu, TRUE)) {
-//            jLabelCommentaire.setText("<HTML> Le joueur Bleu commence </HTML>");
-//        };
-//        if (Objects.equals(JoueurRouge, TRUE)) {
-//            jLabelCommentaire.setText("<HTML> Le joueur Rouge commence </HTML>");
-//        };
-//        }
-//        
-//        System.out.println("jPanel1MouseClicked => Le joueur bleu commence");
         jPanel1.setFocusable(true);
         pieces = tableauDesPieces.InitialisationTableauDesPieces();
 
@@ -176,7 +130,6 @@ public class IHMPlateau extends javax.swing.JFrame {
         } catch (IOException ex) {
             System.out.println("fichier introuvable");
         }
-//        afficherPlateau();
     }
 
     /**
@@ -336,19 +289,15 @@ public class IHMPlateau extends javax.swing.JFrame {
     private void jPanel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel1MouseClicked
         String ImageCible;
         Animal animal = new Animal();
-//        afficherPlateau();
-//        tableauDesPieces.AfficherTableauPieces(pieces);
-//        outputPrises();
         if (Objects.equals(ElementSelectionne, FALSE)) {
 //            System.out.println("jPanel1MouseClicked => Element sélectionne FALSE");
             int x1 = evt.getX();
             int y1 = evt.getY();
             // Vérifie qu'il a cliqué dans le plateau
             if ((inPlateau(x1, y1))) {
-                c1 = ((x1 - 590) / 100);
-                coordonnee_c1 = colonne[c1];
-                l1 = (y1 / 100);
-                coordonnee_l1 = ligne[l1];
+                c1 = ((x1 - 580) / 100);
+                l1 = ((y1 - 10) / 100);
+                System.out.println(c1 + "*******" + l1);
 //                System.out.println("jPanel1MouseClicked => Contenu de la case sélectionnée : " + pieces[l1][c1]);
                 if (JoueurBleu == TRUE) {
                     if (animal.IsAnimalJoueurBleu(pieces[l1][c1])) {
@@ -377,11 +326,8 @@ public class IHMPlateau extends javax.swing.JFrame {
             int x2 = evt.getX();
             int y2 = evt.getY();
             if ((inPlateau(x2, y2))) {
-                /* Formule a revoir */
                 c2 = ((x2 - 580) / 100);
-                coordonnee_c2 = colonne[c2];
-                l2 = (y2 / 100);
-                coordonnee_l2 = ligne[l2];
+                l2 = ((y2 - 10) / 100);
                 if (animal.IsLegalMouvement(pieces, l1, c1, l2, c2)) {
                     if (animal.win(pieces[l2][c2], this.NomJoueurBleu, this.NomJoueurRouge)) {
                         ihmMessageVictoire.recupPlateau(this, animal.gagnant);
@@ -394,7 +340,6 @@ public class IHMPlateau extends javax.swing.JFrame {
                     }
 //                    tableauDesPieces.AfficherTableauPieces(pieces);
                     if (pieces[l2][c2] != null) {
-//                    if (!pieces[l2][c2].equals("null")) {
                         if (animal.combat(pieces, l1, c1, l2, c2) == pieces[l1][c1]) {
 //                            System.out.println("jPanel1MouseClicked => prises l1 c1 = "+ pieces[l1][c1]);
                             prises[NbPrises] = pieces[l2][c2];
@@ -402,12 +347,10 @@ public class IHMPlateau extends javax.swing.JFrame {
 //                            System.out.println("jPanel1MouseClicked => gagnant l1 c1 = " + pieces[l1][c1]);
                             jLabelCommentaire.setText("<HTML>" + pieces[l1][c1] + " a gagné le combat" + "</HTML>");
                             tableauDesPieces.majTableauPiece(pieces, c1, l1, c2, l2);
-//                          enregistrerDeplacement();
 
                             // Afficher piece prise "pieces[l2][c2]" à gauche du plateau
                         } else {
 //                          System.out.println("jPanel1MouseClicked =>gagant l2 c2 = " + pieces[l2][c2]);
-                            // Ceci ne s'affiche jamais,
                             prises[NbPrises] = pieces[l1][c1];
                             NbPrises += 1;
                             jLabelCommentaire.setText("<HTML>" + pieces[l2][c2] + " a gagné le combat" + "</HTML>");
@@ -417,9 +360,7 @@ public class IHMPlateau extends javax.swing.JFrame {
                         // si case 2 = null
 //                        System.out.println("jPanel1MouseClicked => pieces l2 c2 = 2 " + pieces[l2][c2]);
                         tableauDesPieces.majTableauPiece(pieces, c1, l1, c2, l2);
-//                        enregistrerDeplacement();
                     }
-//                    afficherPlateau();
                     // Passer la main à l'autre joueur
                     ElementSelectionne = FALSE;
                     changerDeJoueur();
@@ -444,7 +385,6 @@ public class IHMPlateau extends javax.swing.JFrame {
 
     private void jButtonRejouerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRejouerActionPerformed
         this.setVisible(false); // quitter la partie en cours
-//        this.setVisible(true); // Afficher un nouveau plateau
         IHMNom_Joueur ihmNom_Joueur = new IHMNom_Joueur();
         ihmNom_Joueur.setVisible(true);
     }//GEN-LAST:event_jButtonRejouerActionPerformed
@@ -496,7 +436,6 @@ public class IHMPlateau extends javax.swing.JFrame {
         });
     }
 
-
     public void changerDeJoueur() {
         if (JoueurBleu == TRUE) {
             JoueurBleu = FALSE;
@@ -536,60 +475,9 @@ public class IHMPlateau extends javax.swing.JFrame {
         } else {
             jLabelCommentaire.setText("<HTML> Le joueur Rouge commence </HTML>");
         }
-        
     }
 
-    // Pas utilisée ?
-//    public char CouleurPièces(String piece) {
-//        if (piece.contains("Bleu")) {
-//            return 'b';
-//        } else {
-//            return 'r';
-//        }
-//    }
-
-    // Sert a afficher le tableau des prises uniquement pour tracer dans la fenêtre output
-    public void outputPrises() {
-        for (int i = 0; i < 20; i++) {
-            System.out.println("OutputPrises => Prise[" + i +"] = " + prises[i]);
-        }
-    }
-    
-//    public void afficherPrise(String piece) throws IOException {
-//        Graphics g = this.getGraphics();
-//        BufferedImage image = imageAnimal(piece);
-//        if (CouleurPièces(piece) == 'b') {
-//            NbrePiecesBleu += 1;
-//            g.drawImage(image, PositionPriseXB, PositionPriseYB, 80, 80, null);
-//            if (NbrePiecesBleu == 8) {
-//                ihmMessageVictoire.recupPlateau(this, NomJoueurBleu);
-//            }
-//            // affiche les pions mangés en dehors du plateau
-//            if (PositionPriseXB < 400) {
-//                PositionPriseXB += 100;
-//            } else {
-//                PositionPriseXB = 50;
-//                PositionPriseYB += 100;
-//            }
-//        } else {
-//            NbrePiecesRouge += 1;
-//            g.drawImage(image, PositionPriseXR, PositionPriseYR, 80, 80, null);
-//            if (NbrePiecesRouge == 8) {
-//                ihmMessageVictoire.recupPlateau(this, NomJoueurRouge);
-//            }
-//            // affiche les pions mangés en dehors du plateau
-//            if (PositionPriseXR < 400) {
-//                PositionPriseXR += 100;
-//            } else {
-//                PositionPriseXR = 50;
-//                PositionPriseYR -= 100;
-//            }
-//        }
-//    }
-    
-    // Il fallait passer Grphics g à initComponent :-(
-    public void afficherPrise(Graphics g,String piece, String couleur, int x, int y) throws IOException {
-//        Graphics g = this.getGraphics();
+    public void afficherPrise(Graphics g, String piece, String couleur, int x, int y) throws IOException {
         BufferedImage image = imageAnimal(piece);
         if ("ROUGE".equals(couleur)) {
 //             System.out.println("afficherPrise => " + image);
@@ -608,47 +496,40 @@ public class IHMPlateau extends javax.swing.JFrame {
         int NbPiecesRouges = 0;
         int NbPiecesBleues = 0;
         System.out.println("afficherLesPrises => début Prises = ");
-//        outputPrises();
-          for (int i = 0; i < NbPrises; i++) {
+        for (int i = 0; i < NbPrises; i++) {
             if (animal.IsAnimalJoueurRouge(prises[i])) {
-                afficherPrise(g,prises[i], "ROUGE", ColRouge,LigneRouge);
+                afficherPrise(g, prises[i], "ROUGE", ColRouge, LigneRouge);
                 ColRouge += 90;
                 NbPiecesRouges += 1;
                 if (NbPiecesRouges == 8) {
-                     ihmMessageVictoire.recupPlateau(this, NomJoueurRouge);}
-                else {
+                    ihmMessageVictoire.recupPlateau(this, NomJoueurRouge);
+                } else {
                     if (NbPiecesRouges == 4) {
                         ColRouge = 100;
-                        LigneRouge = 145;  
+                        LigneRouge = 145;
                     }
                 }
                 System.out.println("afficherLesPrise => Nb pieces rouges = " + NbPiecesRouges);
-                
             } else {
-                afficherPrise(g,prises[i], "BLEU", ColBleu, LigneBleu);
+                afficherPrise(g, prises[i], "BLEU", ColBleu, LigneBleu);
                 ColBleu += 90;
                 NbPiecesBleues += 1;
-                 if (NbPiecesBleues == 8) {
-                     ihmMessageVictoire.recupPlateau(this, NomJoueurBleu);
+                if (NbPiecesBleues == 8) {
+                    ihmMessageVictoire.recupPlateau(this, NomJoueurBleu);
                 } else {
                     if (NbPiecesBleues == 4) {
-                            ColBleu = 100;
-                            LigneBleu = 685;  
-                     }
-                 }
+                        ColBleu = 100;
+                        LigneBleu = 685;
+                    }
+                }
                 System.out.println("afficherLesPrise => Nb pieces bleues = " + NbPiecesRouges);
-               
             }
         }
-         System.out.println("afficherLes Prise => fin");
+        System.out.println("afficherLes Prise => fin");
     }
 
     public void sauvegarderPartie(String nom) {
-//        Date actuelle = new Date();
-//        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss");
-
         try {
-//            File fichier = new File("Sauvegarde_" + dateFormat.format(actuelle) + ".txt");
             File fichier = new File(nom);
             // créer le fichier s'il n'existe pas
             if (!fichier.exists()) {
@@ -667,63 +548,18 @@ public class IHMPlateau extends javax.swing.JFrame {
             fw.write(NomJoueurRouge + "\n");
             // Sauvegarde des prises
             for (int i = 0; i < prises.length; i++) {
-                    fw.write(prises[i] + " ");
-                }
-           System.out.println("sauvegarderPartie : NbPrise = "+ NbPrises);
+                fw.write(prises[i] + " ");
+            }
+            System.out.println("sauvegarderPartie : NbPrise = " + NbPrises);
             fw.write("\n" + NbPrises);
             // Sauvegarde du tour 
             fw.write("\n" + JoueurBleu);
             fw.write("\n" + JoueurRouge);
             fw.close();
-
             jLabelCommentaire.setText("<HTML> Votre partie a bien été sauvegardée </HTML>");
-
         } catch (IOException e) {
         }
     }
-
-    public void enregistrerDeplacement() {
-        Date actuelle = new Date();
-        DateFormat dateFormat = new SimpleDateFormat("hh:mm:ss");
-
-        try {
-            File fichier = new File("Déplacement.txt");
-            // créer le fichier s'il n'existe pas
-            if (!fichier.exists()) {
-                fichier.createNewFile();
-            }
-            FileWriter fw = new FileWriter(fichier.getAbsoluteFile());
-            fw.write("Déplacement n°" + "");
-            fw.write("\n");
-            for (int NumLigne = 0; NumLigne < 9; NumLigne++) {
-                fw.write("\n");
-                for (int NumCol = 0; NumCol < 7; NumCol++) {
-                    fw.write(pieces[NumLigne][NumCol] + " ");
-                }
-            }
-            fw.close();
-        } catch (IOException e) {
-        }
-    }
-    
-//    public void rafraichir (Graphics g){
-//                System.out.println("**** rafraichir => début");
-//                g.drawImage(imagefond2, 0, 0, 1500, 970, null);
-//                g.drawImage(imagePlateau, 580, 10, 700, 900, null);
-//                for (int NumLigne = 0; NumLigne < 9; NumLigne++) {
-//                    for (int NumCol = 0; NumCol < 7; NumCol++) {
-//                        g.drawImage(imageAnimal(pieces[NumLigne][NumCol]), colonne[NumCol], ligne[NumLigne], 80, 80, null);
-//                    }
-//                }
-//                try {
-//                    System.out.println("**** rafraichir => avant afficher les prises");
-////                    afficherLesPrises();
-//                    System.out.println("**** rafraichir => apres afficher les prises");
-//                } catch (IOException ex) {
-//                    Logger.getLogger(IHMPlateau.class.getName()).log(Level.SEVERE, null, ex);
-//                }
-//                System.out.println("**** rafraichir => fin");
-//    }
 
     // Transforme la String contenant l'animal en une BufferedImage
     public BufferedImage imageAnimal(String animal) {

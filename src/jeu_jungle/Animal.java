@@ -70,8 +70,6 @@ public class Animal {
             if ((p[l1][c1].equals("TigreRouge") || p[l1][c1].equals("TigreBleu") || p[l1][c1].equals("LionRouge") || p[l1][c1].equals("LionBleu")) && sauterRiviere(p, l1, c1, l2, c2)) {
                 System.out.println("IsLegalMouvement: Tigre ou Lion");
                 return true;
-//        } else if (p[l1][c1] == null) {
-//            return false;
             } else if (!isRiver(l2, c2) || p[l1][c1].equals("RatRouge") || p[l1][c1].equals("RatBleu")) {
                 if ((l2 == l1 - 1) && (c2 == c1)) {
                     System.out.println("Le mouvement est legal part1");
@@ -121,23 +119,7 @@ public class Animal {
     public String combat(String[][] p, int l1, int c1, int l2, int c2) {
         String animalCourant = p[l1][c1];
         String animalTarget = p[l2][c2];
-       System.out.println( "combat => animalTarget = " + p[l2][c2]);
-        // lignes à revoir
-        
-        
-//        if ((animalTarget instanceof String) && animalTarget.equals("TaniereBleu")) {
-//                        System.out.println("combat => animalTarget 2 = " + animalTarget);
-//                    }
-//        if (!"TaniereBleu".equals(animalTarget)) {
-//                        System.out.println("combat => animalTarget 2 = " + animalTarget);
-//                    } else
-//        {
-//            System.out.println("combat => animalTarget 3 = " + animalTarget);
-//        }
-//        
-//        
-        
-       
+        System.out.println("combat => animalTarget = " + p[l2][c2]);
         if (animalTarget != null && !"TaniereRouge".equals(animalTarget) && !"TaniereBleu".equals(animalTarget)) {
             orderAnimal(animalCourant, animalTarget, animal1, animal2);
             if (!isPiege(animal2[1], l2, c2)) {

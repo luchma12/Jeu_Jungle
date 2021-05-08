@@ -32,13 +32,11 @@ public class IHMMessageVictoire extends javax.swing.JFrame {
     public IHMMessageVictoire() {
         initComponents();
         setTitle("Message de Victoire");
-
         setBounds(650, 250, 500, 400);
         jPanelFond2.setFocusable(true);
         try {
             imagefond2 = ImageIO.read(fichierfond2);
             imageCoupe = ImageIO.read(fichierCoupe);
-
         } catch (IOException ex) {
             System.out.println("fichier introuvable");
         }

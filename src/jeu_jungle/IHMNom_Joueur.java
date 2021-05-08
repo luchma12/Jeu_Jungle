@@ -27,12 +27,10 @@ public class IHMNom_Joueur extends javax.swing.JFrame {
 
         initComponents();
         setTitle("Nom des joueurs");
-
         setBounds(650, 250, 600, 500);
         jPanelFond.setFocusable(true);
         try {
             imagefond2 = ImageIO.read(fichierfond2);
-
         } catch (IOException ex) {
             System.out.println("fichier introuvable");
         }
@@ -186,11 +184,8 @@ public class IHMNom_Joueur extends javax.swing.JFrame {
         System.out.println("joueur 2 = " + NomJoueurRouge);
         IHMPlateau ihmPlateau = new IHMPlateau();
         ihmPlateau.afficherNomJoueur(NomJoueurBleu, NomJoueurRouge, JoueurBleu, JoueurRouge);
-////        ihmPlateau.repaint();
         ihmPlateau.setVisible(true); // afficher le plateau
         this.setVisible(false);
-
-
     }//GEN-LAST:event_jButtonValiderActionPerformed
 
     private void jButtonQuitterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonQuitterActionPerformed

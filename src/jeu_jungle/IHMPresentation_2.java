@@ -27,16 +27,12 @@ public class IHMPresentation_2 extends javax.swing.JFrame {
     public IHMPresentation_2() throws HeadlessException {
         initComponents();
         setTitle("Présentation");
-
         setBounds(650, 250, 700, 570);
-
         jPanel1.setFocusable(true);
         try {
             imagefond_jungle = ImageIO.read(fichierfond_jungle);
-
         } catch (IOException ex) {
             System.out.println("fichier introuvable");
-
         }
     }
 
