@@ -62,26 +62,26 @@ public class Animal {
     // Vérifie que la case sélectionnée ne contient pas un animal de la même couleur
     public boolean IsLegalMouvement(String[][] p, int l1, int c1, int l2, int c2) {
         Boolean mvtLegal = false;
-        System.out.println("IsLegalMouvement => " + p[l1][c1]);
+//        System.out.println("IsLegalMouvement => " + p[l1][c1]);
         if (p[l1][c1] == null) {
-            System.out.println("IsLegalMouvement => null");
+//            System.out.println("IsLegalMouvement => null");
             return false;
         } else {
             if ((p[l1][c1].equals("TigreRouge") || p[l1][c1].equals("TigreBleu") || p[l1][c1].equals("LionRouge") || p[l1][c1].equals("LionBleu")) && sauterRiviere(p, l1, c1, l2, c2)) {
-                System.out.println("IsLegalMouvement: Tigre ou Lion");
+//                System.out.println("IsLegalMouvement: Tigre ou Lion");
                 return true;
             } else if (!isRiver(l2, c2) || p[l1][c1].equals("RatRouge") || p[l1][c1].equals("RatBleu")) {
                 if ((l2 == l1 - 1) && (c2 == c1)) {
-                    System.out.println("Le mouvement est legal part1");
+//                    System.out.println("Le mouvement est legal part1");
                     mvtLegal = true;
                 } else if ((l2 == l1 + 1) && (c2 == c1)) {
-                    System.out.println("Le mouvement est legal part2");
+//                    System.out.println("Le mouvement est legal part2");
                     mvtLegal = true;
                 } else if ((l2 == l1) && (c2 == c1 - 1)) {
-                    System.out.println("Le mouvement est legal part3");
+//                    System.out.println("Le mouvement est legal part3");
                     mvtLegal = true;
                 } else if ((l2 == l1) && (c2 == c1 + 1)) {
-                    System.out.println("Le mouvement est legal part4");
+//                    System.out.println("Le mouvement est legal part4");
                     mvtLegal = true;
                 }
                 if (mvtLegal == true) {
@@ -119,13 +119,13 @@ public class Animal {
     public String combat(String[][] p, int l1, int c1, int l2, int c2) {
         String animalCourant = p[l1][c1];
         String animalTarget = p[l2][c2];
-        System.out.println("combat => animalTarget = " + p[l2][c2]);
+//        System.out.println("combat => animalTarget = " + p[l2][c2]);
         if (animalTarget != null && !"TaniereRouge".equals(animalTarget) && !"TaniereBleu".equals(animalTarget)) {
             orderAnimal(animalCourant, animalTarget, animal1, animal2);
             if (!isPiege(animal2[1], l2, c2)) {
                 // Si la case sélectionnée contient un animal => combat
-                System.out.println(animal1[0] + animal1[1] + animal1[2]);
-                System.out.println(animal2[0] + animal2[1] + animal2[2]);
+//                System.out.println(animal1[0] + animal1[1] + animal1[2]);
+//                System.out.println(animal2[0] + animal2[1] + animal2[2]);
                 return plusPuissant(animalCourant, animalTarget, animal1, animal2);
             } else {
                 // couleur  animal2 != couleur du piège
@@ -170,11 +170,11 @@ public class Animal {
     }
 
     public Boolean isRiver(int l, int c) {
-        System.out.println("isRiver => l : " + l + " c: " + c);
+//        System.out.println("isRiver => l : " + l + " c: " + c);
         for (int i = 3; i <= 5; i++) {
             if (l == i) {
                 if (c == 1 || c == 2 || c == 4 || c == 5) {
-                    System.out.println("isRiver => case rivière");
+//                    System.out.println("isRiver => case rivière");
                     return true;
                 }
             }
@@ -184,12 +184,12 @@ public class Animal {
 
     public Boolean sauterRiviere(String[][] p, int l1, int c1, int l2, int c2) {
         String val = l1 + "," + c1 + "," + l2 + "," + c2;
-        System.out.println("Sauter Riviere : val = " + val);
+//        System.out.println("Sauter Riviere : val = " + val);
         if (Arrays.toString(riviere).contains(val)) {
-            System.out.println("Sauter Riviere : bord de la riviere OK");
+//            System.out.println("Sauter Riviere : bord de la riviere OK");
             return true;
         } else {
-            System.out.println("Sauter Riviere : bord de la riviere KO");
+//            System.out.println("Sauter Riviere : bord de la riviere KO");
             return false;
         }
     }

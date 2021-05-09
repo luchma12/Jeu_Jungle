@@ -94,9 +94,9 @@ public class IHMPlateau extends javax.swing.JFrame {
     public IHMPlateau() {
         this.prises = new String[20];
         this.tableauDesPieces = new TableauDesPieces();
-        System.out.println("IHMPlateau => avant initcoponent");
+//        System.out.println("IHMPlateau => avant initcoponent");
         initComponents();
-        System.out.println("IHMPlateau => apres initcomponent");
+//        System.out.println("IHMPlateau => apres initcomponent");
         setTitle("Plateau de jeu");
         setBounds(200, 50, 1500, 970);
         setResizable(false);
@@ -143,7 +143,7 @@ public class IHMPlateau extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel(){
             public void paintComponent(Graphics g){
-                System.out.println("paintComponent => début");
+                //System.out.println("paintComponent => début");
                 g.drawImage(imagefond2, 0, 0, 1500, 970, null);
                 g.drawImage(imagePlateau, 580, 10, 700, 900, null);
                 for (int NumLigne = 0; NumLigne < 9; NumLigne++) {
@@ -152,13 +152,13 @@ public class IHMPlateau extends javax.swing.JFrame {
                     }
                 }
                 try {
-                    System.out.println("paintComponent => avant afficher les prises");
+                    //System.out.println("paintComponent => avant afficher les prises");
                     afficherLesPrises(g);
-                    System.out.println("paintComponent => apres afficher les prises");
+                    //System.out.println("paintComponent => apres afficher les prises");
                 } catch (IOException ex) {
                     Logger.getLogger(IHMPlateau.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                System.out.println("paintComponent => fin");
+                //System.out.println("paintComponent => fin");
 
             }
         };
@@ -305,7 +305,7 @@ public class IHMPlateau extends javax.swing.JFrame {
             if ((inPlateau(x1, y1))) {
                 c1 = ((x1 - 580) / 100);
                 l1 = ((y1 - 10) / 100);
-                System.out.println(c1 + "*******" + l1);
+//                System.out.println(c1 + "*******" + l1);
 //                System.out.println("jPanel1MouseClicked => Contenu de la case sélectionnée : " + pieces[l1][c1]);
                 if (JoueurBleu == TRUE) {
                     if (animal.IsAnimalJoueurBleu(pieces[l1][c1])) {
@@ -458,11 +458,11 @@ public class IHMPlateau extends javax.swing.JFrame {
 
     public boolean inPlateau(int x, int y) {
         if ((x < 580) || (x > 1280)) {
-            System.out.println("inPlateau => Hors du cadre x");
+//            System.out.println("inPlateau => Hors du cadre x");
             jLabelCommentaire.setText("<HTML> Veuillez sélectionner une case du plateau </HTML>");
             return false;
         } else if ((y < 10) || (y > 910)) {
-            System.out.println("inPlateau => Hors du cadre y");
+//            System.out.println("inPlateau => Hors du cadre y");
             jLabelCommentaire.setText("<HTML> Veuillez sélectionner une case du plateau </HTML>");
             return false;
         } else {
@@ -471,7 +471,7 @@ public class IHMPlateau extends javax.swing.JFrame {
     }
 
     public void afficherNomJoueur(String jB, String jR, Boolean jBT, Boolean jRT) {
-        System.out.println("****************** afficherNOmJoueur ******************");
+//        System.out.println("****************** afficherNOmJoueur ******************");
         NomJoueurBleu = jB;
         NomJoueurRouge = jR;
         JoueurBleu = jBT;
@@ -497,13 +497,13 @@ public class IHMPlateau extends javax.swing.JFrame {
 
     public void afficherLesPrises(Graphics g) throws IOException {
         Animal animal = new Animal();
-        int ColBleu = 100;
-        int ColRouge = 100;
-        int LigneBleu = 765;
-        int LigneRouge = 65;
+        int ColBleu = 50;
+        int ColRouge = 50;
+        int LigneBleu = 65;
+        int LigneRouge = 765;
         int NbPiecesRouges = 0;
         int NbPiecesBleues = 0;
-        System.out.println("afficherLesPrises => début Prises = ");
+//        System.out.println("afficherLesPrises => début Prises = ");
         for (int i = 0; i < NbPrises; i++) {
             if (animal.IsAnimalJoueurRouge(prises[i])) {
                 afficherPrise(g, prises[i], "ROUGE", ColRouge, LigneRouge);
@@ -513,11 +513,11 @@ public class IHMPlateau extends javax.swing.JFrame {
                     ihmMessageVictoire.recupPlateau(this, NomJoueurRouge);
                 } else {
                     if (NbPiecesRouges == 4) {
-                        ColRouge = 100;
-                        LigneRouge = 145;
+                        ColRouge = 50;
+                        LigneRouge = 680;
                     }
                 }
-                System.out.println("afficherLesPrise => Nb pieces rouges = " + NbPiecesRouges);
+//                System.out.println("afficherLesPrise => Nb pieces rouges = " + NbPiecesRouges);
             } else {
                 afficherPrise(g, prises[i], "BLEU", ColBleu, LigneBleu);
                 ColBleu += 90;
@@ -526,14 +526,14 @@ public class IHMPlateau extends javax.swing.JFrame {
                     ihmMessageVictoire.recupPlateau(this, NomJoueurBleu);
                 } else {
                     if (NbPiecesBleues == 4) {
-                        ColBleu = 100;
-                        LigneBleu = 685;
+                        ColBleu = 50;
+                        LigneBleu = 150;
                     }
                 }
-                System.out.println("afficherLesPrise => Nb pieces bleues = " + NbPiecesRouges);
+//                System.out.println("afficherLesPrise => Nb pieces bleues = " + NbPiecesRouges);
             }
         }
-        System.out.println("afficherLes Prise => fin");
+//        System.out.println("afficherLes Prise => fin");
     }
 
     public void sauvegarderPartie(String nom) {
@@ -558,7 +558,7 @@ public class IHMPlateau extends javax.swing.JFrame {
             for (int i = 0; i < prises.length; i++) {
                 fw.write(prises[i] + " ");
             }
-            System.out.println("sauvegarderPartie : NbPrise = " + NbPrises);
+//            System.out.println("sauvegarderPartie : NbPrise = " + NbPrises);
             fw.write("\n" + NbPrises);
             // Sauvegarde du tour 
             fw.write("\n" + JoueurBleu);

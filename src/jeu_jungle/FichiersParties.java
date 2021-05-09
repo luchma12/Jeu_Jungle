@@ -24,7 +24,7 @@ public class FichiersParties {
     @SuppressWarnings("empty-statement")
     public void LireFichier(String nom) {
         int i = 0;
-        System.out.print("LireFichier debut");
+//        System.out.print("LireFichier debut");
 
         try {
             File fichier = new File(nom);
@@ -56,18 +56,18 @@ public class FichiersParties {
                     ihmPlateau.JoueurRouge = FALSE;
                 };
                 ihmPlateau.afficherNomJoueur(ihmPlateau.NomJoueurBleu, ihmPlateau.NomJoueurRouge,ihmPlateau.JoueurBleu,ihmPlateau.JoueurRouge);
-                System.out.println("LireFichier: JoueurBleu = " + ihmPlateau.JoueurBleu);
-                System.out.println("LireFichier: JoueurRouge = " + ihmPlateau.JoueurRouge);
+//                System.out.println("LireFichier: JoueurBleu = " + ihmPlateau.JoueurBleu);
+//                System.out.println("LireFichier: JoueurRouge = " + ihmPlateau.JoueurRouge);
                 br.close();
                 fr.close();
             } catch (IOException e) {
-                System.out.println("Erreur lors de la lecture : " + e.getMessage());
+//                System.out.println("Erreur lors de la lecture : " + e.getMessage());
             }
 
         } catch (FileNotFoundException e) {
-            System.out.println("Le fichier n'a pas été trouvé");
+//            System.out.println("Le fichier n'a pas été trouvé");
         }
-        System.out.print("LireFichier fin\n");
+//        System.out.print("LireFichier fin\n");
         ihmPlateau.setVisible(true);
     }
 
