@@ -26,7 +26,7 @@ public class IHMRegles extends javax.swing.JFrame {
     public IHMRegles() {
         initComponents();
         setTitle("Rappel des Règles");
-        setBounds(300, 100, 1207, 834);
+        setBounds(300, 100, 1207, 834); // coordonnées et dimensions de la fenêtre
         try {
             imageRegles = ImageIO.read(fichierRegles);
         } catch (IOException ex) {

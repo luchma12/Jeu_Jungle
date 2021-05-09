@@ -32,7 +32,7 @@ public class IHMMessageVictoire extends javax.swing.JFrame {
     public IHMMessageVictoire() {
         initComponents();
         setTitle("Message de Victoire");
-        setBounds(650, 250, 500, 400);
+        setBounds(650, 250, 500, 400); // coordonnées et dimensions de la fenêtre
         jPanelFond2.setFocusable(true);
         try {
             imagefond2 = ImageIO.read(fichierfond2);
@@ -42,7 +42,7 @@ public class IHMMessageVictoire extends javax.swing.JFrame {
         }
     }
 
-    // Passage du plateau
+    // Passage du plateau pour récupérer le nom du gagnant
     public void recupPlateau(JFrame plateau, String g) {
         this.plateau = plateau;
         System.out.println(this.gagnant);

@@ -63,6 +63,7 @@ public class IHMPlateau extends javax.swing.JFrame {
     private BufferedImage imageRatRouge;
     private BufferedImage imageRatBleu;
 
+    // coordonnées des différentes cases du plateau en pixels
     int[] ligne = {25, 125, 225, 325, 425, 525, 625, 725, 825};
     int[] colonne = {590, 690, 790, 890, 990, 1090, 1190};
 
@@ -98,7 +99,7 @@ public class IHMPlateau extends javax.swing.JFrame {
         initComponents();
 //        System.out.println("IHMPlateau => apres initcomponent");
         setTitle("Plateau de jeu");
-        setBounds(200, 50, 1500, 970);
+        setBounds(200, 50, 1500, 970); // coordonnées et dimensions de la fenêtre
         setResizable(false);
 
         jLabelCommentaire.setFont(new Font("Segoe Script", 1, 24));
@@ -303,6 +304,7 @@ public class IHMPlateau extends javax.swing.JFrame {
             int y1 = evt.getY();
             // Vérifie qu'il a cliqué dans le plateau
             if ((inPlateau(x1, y1))) {
+                // conversion clic en pixel -> cases du plateau 
                 c1 = ((x1 - 580) / 100);
                 l1 = ((y1 - 10) / 100);
 //                System.out.println(c1 + "*******" + l1);
@@ -321,7 +323,7 @@ public class IHMPlateau extends javax.swing.JFrame {
                 }
                 if (JoueurRouge == TRUE) {
                     if (animal.IsAnimalJoueurRouge(pieces[l1][c1])) {
-                        imageCible = "image" + pieces[l1][c1];
+                        imageCible = "image" + pieces[l1][c1]; // pion sélectionné
                         ElementSelectionne = TRUE;
 //                        System.out.println("=> Element sélectionne ROUGE OK");
                         jLabelCommentaire.setText("<HTML>" + "Le joueur rouge a sélectionné le " + " " + pieces[l1][c1] + "</HTML>");

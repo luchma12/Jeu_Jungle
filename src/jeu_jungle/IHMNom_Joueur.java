@@ -206,12 +206,13 @@ public class IHMNom_Joueur extends javax.swing.JFrame {
 
     private void jTextFieldJoueur2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldJoueur2KeyPressed
         if (VérifierNom()) {
-            jButtonValider.setEnabled(true);
+            jButtonValider.setEnabled(true); // dégriser le bouton
         } else {
-            jButtonValider.setEnabled(false);
+            jButtonValider.setEnabled(false); // griser le bouton
         }
     }//GEN-LAST:event_jTextFieldJoueur2KeyPressed
 
+    // Vérifier que les deux joueurs n'ont pas laissé les case vides et ont bien entré chacun leur nom
     public boolean VérifierNom() {
         if (!jTextFieldJoueur1.getText().equals("") && !jTextFieldJoueur2.getText().equals("")) {
             return true;
